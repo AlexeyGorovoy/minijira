@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+              <!--
+	<application>
+		<view-handler> org.jboss.portletbridge.application.PortletViewHandler</view-handler>
+		<state-manager>org.jboss.portletbridge.application.PortletStateManager</state-manager>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>ru</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>i18n</base-name>
+            <var>msg</var>
+        </resource-bundle>
+	</application>
+
+	<managed-bean>
+		<managed-bean-name>accessLogBean</managed-bean-name>
+		<managed-bean-class>address.catalog.history.web.AccessLogBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+                -->
+                
+    <navigation-rule>
+    	<from-view-id>/index.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>login</from-outcome>
+    		<to-view-id>/welcome.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+    	<managed-bean-name>user</managed-bean-name>
+    	<managed-bean-class>
+    		com.test.UserBean
+    	</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+</faces-config>

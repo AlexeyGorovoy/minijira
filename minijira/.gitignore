@@ -1,0 +1,10 @@
+.project
+*.impl
+*.iml
+*.bat
+.idea
+.settings
+target
+atlassian-ide-plugin.xml
+*.kate-swp
+

@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+	<title>List of projects</title>
+    <c:set var="context"
+           value="#{facesContext.externalContext.requestContextPath}"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/bootstrap.min.js"></script>   
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+<body>
+	<div id="container">
+	<h:form>
+	
+		<ui:include src="blocks/menubar_block.xhtml"/>
+		<ui:include src="blocks/left_sidebar_block.xhtml"/>
+		<ui:include src="blocks/right_sidebar_block.xhtml"/>
+
+		<div id="content">
+		
+			<h3>Info about project</h3>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><b>Title</b></td>
+						<td><b>Description</b></td>
+						<td><b>Leader</b></td>
+						<td><b>Customer</b></td>
+					</tr>
+				</tbody>
+				<tr>
+					<td><h:outputText value="#{project.getCurProject().title}"/></td>
+					<td><h:outputText value="#{project.getCurProject().description}"/></td>
+					<td><h:outputText value="#{project.getCurProject().leader.name} #{project.getCurProject().leader.surname}"/></td>
+					<td><h:outputText value="#{project.getCurProject().customer.title}"/></td>
+				</tr>
+			</table>
+			
+			<h3>Used skills</h3>
+			
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><b>Title</b></td>
+						<td><b>Description</b></td>
+					</tr>
+				</tbody>
+				<ui:repeat var="skill" value="#{project.getCurProject().skills}">
+					<tr>
+						<td><h:outputText value="#{skill.title}"/> </td>
+						<td><h:outputText value="#{skill.description}"/> </td>
+					</tr>
+				</ui:repeat>
+			</table>
+			
+			
+				
+			<center>
+				<h:commandLink class="btn btn-inverse" action="#{project.prev()}" style="float: left;"> 
+					<i class="icon-white icon-arrow-left"></i>prev
+				</h:commandLink>
+				
+				<h:outputText value="#{project.cur} / #{project.getCountProjects()}"/>
+				
+				<h:commandLink class="btn btn-inverse" action="#{project.next()}" style="float: right;"> 
+					<i class="icon-white icon-arrow-right"></i>next
+				</h:commandLink>
+			</center>
+					
+			
+			<br/>
+			
+		</div>
+		
+		<ui:include src="blocks/footer_block.xhtml"/>
+	
+	</h:form>
+	</div>
+</body>
+</html>

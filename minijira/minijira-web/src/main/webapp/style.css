@@ -1,0 +1,33 @@
+#container
+{
+	position:relative; 
+	margin:0 auto;
+	width: 900px;
+	background: #bbbbbb;
+}
+
+
+#content
+{
+	margin: auto 150;
+	width: 600px;
+}
+
+#left_sidebar
+{
+	width: 150px;
+	float: left;
+}
+
+#right_sidebar
+{
+	width: 150px;
+	float: right;
+}
+
+#footer
+{
+	width: 100%;
+	height: 25px;
+	background: #999999;
+}

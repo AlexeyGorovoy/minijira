@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<title>Edit person</title>
+    <c:set var="context"
+           value="#{facesContext.externalContext.requestContextPath}"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/bootstrap.min.js"></script>   
+    <link rel="stylesheet" href="style.css"></link>
+</head>
+<body>
+	<div id="container">
+	<h:form>
+	
+		<ui:include src="blocks/menubar_block.xhtml"/>
+		<ui:include src="blocks/left_sidebar_block.xhtml"/>
+		<ui:include src="blocks/right_sidebar_block.xhtml"/>
+
+		<div id="content">
+		
+			<h:form styleClass="form-actions">
+				<h:outputLabel value="Add person" styleClass="text-info"/>
+				<b><h:outputText value="Name" /></b> <br/>
+				<h:inputText value="#{personB.tmpPerson.name}"/> <br/>
+				<b><h:outputText value="Surname" /></b> <br/>
+				<h:inputText value="#{personB.tmpPerson.surname}"/><br/>
+				<b><h:outputText value="Mail" /></b> <br/>
+				<h:inputText value="#{personB.tmpPerson.mail}"/> <br/>
+				<b><h:outputText value="Skype" /></b> <br/>
+				<h:inputText value="#{personB.tmpPerson.skype}"/><br/>
+				<b><h:outputText value="Site" /></b> <br/>
+				<h:inputText value="#{personB.tmpPerson.site}"/><br/>
+				<h:commandButton action="#{personB.saveChanges}" value="Save" styleClass="btn btn-inverse"/>
+			</h:form>
+			<br/>
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><b>Title</b></td>
+						<td><b>Description</b></td>
+						
+					</tr>
+				</tbody>
+				<ui:repeat var="skill" value="#{personB.tmpPerson.skills}">
+					<tr>
+						<td><h:outputText value="#{skill.title}"/> </td>
+						<td><h:outputText value="#{skill.description}"/> </td>
+						<td>
+							<h:commandLink styleClass="btn btn-inverse btn-small" action="#{personB.removeSkillFromPerson(skill.id)}"> 
+								<i class="icon-white icon-remove"></i>
+							</h:commandLink>
+						</td>
+					</tr>
+				</ui:repeat>
+			</table>
+			<br/>
+			<h:selectOneMenu value="#{personB.skill.id}">
+				<f:selectItems value="#{sample.skills}" var="s"
+                       itemLabel="#{s.title}" itemValue="#{s.id}" />
+				</h:selectOneMenu>
+				<br/>
+				<h:commandButton action="#{personB.addSkillToPerson}" value="Add skill to person" styleClass="btn btn-inverse"/>
+			
+		</div>
+		
+		<ui:include src="blocks/footer_block.xhtml"/>
+	
+	</h:form>
+	</div>
+</body>
+</html>

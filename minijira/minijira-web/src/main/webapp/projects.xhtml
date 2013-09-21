@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core">
+
+<head>
+	<title>List of projects</title>
+    <c:set var="context"
+           value="#{facesContext.externalContext.requestContextPath}"/>
+           
+    <link rel="stylesheet" href="style.css"></link>
+    
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id="container">
+	<h:form>
+	
+		<ui:include src="blocks/menubar_block.xhtml"/>
+		<ui:include src="blocks/left_sidebar_block.xhtml"/>
+		<ui:include src="blocks/right_sidebar_block.xhtml"/>
+
+		<div id="content">
+			<h3><center>List of projects</center></h3>
+			<table width="100%">
+			<ui:repeat var="proj" value="#{sample.projects}">
+				<tr>
+					<td width="30%">
+						<h4><h:commandLink action="#{project.getUrl(proj.id)}">#{proj.title}</h:commandLink></h4>
+					</td>
+					<td>
+						<h:commandLink class="btn btn-inverse btn-small" action="#{project.remove(proj.id)}"> 
+							<i class="icon-white icon-remove"></i>
+						</h:commandLink>
+						<h:commandLink class="btn btn-inverse btn-small" action="#{project.getUrlEdit(proj.id)}"> 
+							<i class="icon-white icon-pencil"></i>
+						</h:commandLink>
+					</td>
+				</tr>
+			</ui:repeat>
+			</table>
+			<h:commandLink class="btn btn-inverse btn-small" action="#{project.getUrlAdd()}"> 
+				<i class="icon-white icon-plus"></i>Add new project
+			</h:commandLink>
+		</div>
+		
+		
+		<ui:include src="blocks/footer_block.xhtml"/>
+	
+	</h:form>
+	</div>
+</body>
+</html>
