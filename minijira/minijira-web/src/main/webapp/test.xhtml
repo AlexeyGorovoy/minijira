@@ -173,19 +173,5 @@
         <h:outputLabel value="Person: #{adder.person.name} #{adder.person.surname}"/>
     </h:form>
 
-<h:form>
-    <h:outputText value="GetWeather result: "/>
-    <h:outputLabel value="City"/>
-    <h:selectOneMenu value="#{adder.city}" >
-        <f:selectItems value="#{adder.citiesByCountry}" var="city"
-                       itemLabel="#{city}" itemValue="#{city}" />
-    </h:selectOneMenu>
-
-    <h:outputLabel value="Country"/>
-    <h:inputText value="#{adder.country}" readonly="true" />
-    <h:commandButton value="Get!" action="#{adder.getWeather}" styleClass="btn btn-info"/>
-    <h:outputText value="#{adder.weatherResponse}"/>
-</h:form>
-
 </body>
 </html>

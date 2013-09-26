@@ -11,6 +11,12 @@
     <!-- Write your navigation rules here. You are encouraged to use CDI for
        creating @Named managed beans. -->
 
+    <!--
+	<application>
+		<view-handler>org.ajax4jsf.application.AjaxViewHandler</view-handler>
+	</application>
+    -->
+       
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
@@ -21,13 +27,13 @@
 
     <managed-bean>
         <managed-bean-name>sample</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.SampleBean</managed-bean-class>
+        <managed-bean-class>minijira.web.SampleBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 	
 	<managed-bean>
         <managed-bean-name>project</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.ProjectBean</managed-bean-class>
+        <managed-bean-class>minijira.web.ProjectBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
             <property-name>sample</property-name>
@@ -38,7 +44,7 @@
 	
 	<managed-bean>
         <managed-bean-name>personB</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.PersonBean</managed-bean-class>
+        <managed-bean-class>minijira.web.PersonBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
             <property-name>sample</property-name>
@@ -49,7 +55,7 @@
 	
 	<managed-bean>
         <managed-bean-name>skillB</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.SkillBean</managed-bean-class>
+        <managed-bean-class>minijira.web.SkillBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
             <property-name>sample</property-name>
@@ -59,7 +65,7 @@
 	
 	<managed-bean>
         <managed-bean-name>customer</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.CustomerBean</managed-bean-class>
+        <managed-bean-class>minijira.web.CustomerBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
             <property-name>sample</property-name>
@@ -67,9 +73,26 @@
         </managed-property>
     </managed-bean>
 
+
+    <managed-bean>
+        <managed-bean-name>auth</managed-bean-name>
+        <managed-bean-class>minijira.web.AuthBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>sample</property-name>
+            <value>#{sample}</value>
+        </managed-property>
+    </managed-bean>
+
     <managed-bean>
         <managed-bean-name>adder</managed-bean-name>
-        <managed-bean-class>com.mycompany.firstapp.web.AdderBean</managed-bean-class>
+        <managed-bean-class>minijira.web.AdderBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+	
+	<managed-bean>
+        <managed-bean-name>weather</managed-bean-name>
+        <managed-bean-class>minijira.web.WeatherBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 

@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mycompany</groupId>
-    <artifactId>firstapp</artifactId>
+    <artifactId>minijira</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>FirstApp</name>
-    <description>Our FirstApp a la portfolio</description>
+    <name>minijira</name>
+    <description>Our minijira a la portfolio</description>
 
     <dependencies>
         <!-- Enterprise java  -->
@@ -22,10 +22,10 @@
     </dependencies>
 
     <modules>
-        <module>firstapp-ear</module>
-        <module>firstapp-ejb</module>
-        <module>firstapp-ejbapi</module>
-        <module>firstapp-web</module>
+        <module>minijira-ear</module>
+        <module>minijira-ejb</module>
+        <module>minijira-ejbapi</module>
+        <module>minijira-web</module>
     </modules>
 
     <!--

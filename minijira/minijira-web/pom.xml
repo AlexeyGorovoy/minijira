@@ -16,11 +16,7 @@
     </parent>
 
     <properties>
-        <jsf.version>1.2_13</jsf.version>
-        <richfaces.version>3.3.3.Final</richfaces.version>
-        <!--
-        <portletbridge.version>2.3.1.Final</portletbridge.version>
-		-->
+        <jsf.version>2.0</jsf.version>
     </properties>
    
     <build>
@@ -54,20 +50,20 @@
         </plugins>
     </build>
 
-	<!--
+        <!--
     <repositories>
         <repository>
             <id>repository.jboss.org</id>
             <name>JBoss Public Maven Repository Group</name>
             <layout>default</layout>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
             <releases>
             </releases>
             <snapshots>
             </snapshots>
         </repository>
     </repositories>
-	-->
+	   !-->
 
     <pluginRepositories>
         <pluginRepository>
@@ -83,93 +79,6 @@
     </pluginRepositories>
 
     <dependencies>
-		<!--
-        <dependency>
-            <groupId>javax.portlet</groupId>
-            <artifactId>portlet-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.portletbridge</groupId>
-            <artifactId>portletbridge-api</artifactId>
-            <version>${portletbridge.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.portletbridge</groupId>
-            <artifactId>portletbridge-impl</artifactId>
-            <version>${portletbridge.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        -->
-        <!--
-        <dependency>
-            <groupId>org.richfaces.framework</groupId>
-            <artifactId>richfaces-impl</artifactId>
-            <version>${richfaces.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.richfaces.framework</groupId>
-            <artifactId>richfaces-api</artifactId>
-            <version>${richfaces.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.richfaces.ui</groupId>
-            <artifactId>richfaces-ui</artifactId>
-            <version>${richfaces.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>javax.faces</groupId>
-                    <artifactId>jsf-impl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-		
-		-->
-                      
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>jsf-api</artifactId>
@@ -194,6 +103,12 @@
             <artifactId>minijira-ejbapi</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+		
+		<dependency>
+			<groupId>com.maxmind.geoip</groupId>
+			<artifactId>geoip-api</artifactId>
+			<version>1.2.11</version>
+		</dependency>
 
     </dependencies>
 

@@ -3,9 +3,27 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jstl/core"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich">
       
 	<div id="right_sidebar">
+        <h:form class="form-signin">
+            <h:panelGroup rendered="#{auth.logged == true}">
+                <b><h:outputText value="#{auth.tmpPerson.name} #{auth.tmpPerson.surname}" /></b> <br/>
+                <h:commandButton action="#{auth.logout()}" value="Logout" style="width: 190px" styleClass="btn btn-inverse btn-block" type="submit"/>
+
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{auth.logged == false}">
+                <h4 class="form-signin-heading">Please sign in</h4>
+                <b><h:outputText value="Email" /></b> <br/>
+                <h:inputText value="#{auth.email}" class="form-control" style="width: 190px"/><br/>
+                <b><h:outputText value="Password" /></b> <br/>
+                <h:inputText value="#{auth.password}" class="form-control" type="password" style="width: 190px"/> <br/>
+                <h:commandButton action="#{auth.signin()}" value="Sign in" style="width: 190px" styleClass="btn btn-inverse btn-block" type="submit"/>
+            </h:panelGroup>
+
+        </h:form>
 	</div>
 	
 </ui:composition>
