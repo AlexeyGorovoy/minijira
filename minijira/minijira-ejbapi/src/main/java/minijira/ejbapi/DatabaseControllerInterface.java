@@ -1,9 +1,6 @@
 package minijira.ejbapi;
 
-import minijira.ejbapi.dto.CustomerDto;
-import minijira.ejbapi.dto.PersonDto;
-import minijira.ejbapi.dto.ProjectDto;
-import minijira.ejbapi.dto.SkillDto;
+import minijira.ejbapi.dto.*;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -16,10 +13,14 @@ import java.util.List;
  */
 @Local
 public interface DatabaseControllerInterface {
+
+    List<? extends Dto> get(Class clazz);
+
     List<CustomerDto> getCustomers();
     List<PersonDto> getPeople();
     List<SkillDto> getSkills();
     List<ProjectDto> getProjects();
+    List<EmployeeDto> getEmployee();
 
     void newSkill(SkillDto skillDto);
     void newCustomer(CustomerDto customerDto);

@@ -13,16 +13,40 @@
 </head>
 <body>
 
+	<h1 style="text-align: center;">Employees</h1>
+    <table class="table" border="1" style="margin: auto;">
+    <tr>
+			<td style="text-align: center; font-weight: bold">Name</td>
+			<td style="text-align: center; font-weight: bold">Surname</td>
+			<td style="text-align: center; font-weight: bold">Mail</td>
+			<td style="text-align: center; font-weight: bold">Skype</td>
+			<td style="text-align: center; font-weight: bold">Phonenumber</td>
+            <td style="text-align: center; font-weight: bold">Date hired</td>
+		</tr>
+        <ui:repeat var="entry2" value="#{sample.employees}">
+            <tr>
+                <td><h:outputText value="#{entry2.name}"/> </td>
+                <td><h:outputText value="#{entry2.surname}"/> </td>
+                <td><h:outputText value="#{entry2.email}"/> </td>
+                <td><h:outputText value="#{entry2.skype}"/> </td>
+                <td><h:outputText value="#{entry2.phonenumber}"/></td>
+                <td><h:outputText value="#{entry2.date_hired}"/></td>
+            </tr>
+        </ui:repeat>
+    </table>
+	<br/>
+    <!--
+
     <h1 style="text-align: center;"> Customers</h1>
     <table class="table" border="1" style="margin: auto;">
 		<tr>
 				<td style="text-align: center; font-weight: bold">Title</td>
 				<td style="text-align: center; font-weight: bold">Description</td>
 		</tr>
-        <ui:repeat var="entry1" value="#{sample.customers}">
+        <ui:repeat var="entry1" value="{sample.customers}">
             <tr>
-                <td><h:outputText value="#{entry1.title}"/> </td>
-                <td><h:outputText value="#{entry1.description}"/> </td>
+                <td><h:outputText value="{entry1.title}"/> </td>
+                <td><h:outputText value="{entry1.description}"/> </td>
             </tr>
         </ui:repeat>
     </table>
@@ -35,55 +59,28 @@
     <h:commandButton action="#{adder.saveCustomer}" value="Save in Database!" styleClass="btn"/>
 </h:form>
 
-	<h1 style="text-align: center;">People</h1>
-    <table class="table" border="1" style="margin: auto;">
-    <tr>
-			<td style="text-align: center; font-weight: bold">Name</td>
-			<td style="text-align: center; font-weight: bold">Surname</td>
-			<td style="text-align: center; font-weight: bold">Mail</td>
-			<td style="text-align: center; font-weight: bold">Skype</td>
-			<td style="text-align: center; font-weight: bold">Site</td>
-            <td style="text-align: center; font-weight: bold">Skills</td>
-		</tr>
-        <ui:repeat var="entry2" value="#{sample.people}">
-            <tr>
-                <td><h:outputText value="#{entry2.name}"/> </td>
-                <td><h:outputText value="#{entry2.surname}"/> </td>
-                <td><h:outputText value="#{entry2.mail}"/> </td>
-                <td><h:outputText value="#{entry2.skype}"/> </td>
-                <td><h:outputText value="#{entry2.site}"/> </td>
-                <td>
-                <ui:repeat var="skill" value="${entry2.skills}">
-                    <h:outputText value="#{skill.title} "/>
-                </ui:repeat>
-                </td>
-            </tr>
-        </ui:repeat>
-    </table>
-	<br/>
-
 <h:form>
     <h:outputLabel value="Add person"/> <br/>
-    <h:outputLabel value="Name">  <h:inputText value="#{adder.person.name}"/></h:outputLabel>
-    <h:outputLabel value="Surname">  <h:inputText value="#{adder.person.surname}"/></h:outputLabel>
-    <h:outputLabel value="Mail">  <h:inputText value="#{adder.person.mail}"/></h:outputLabel>
-    <h:outputLabel value="Skype">  <h:inputText value="#{adder.person.skype}"/></h:outputLabel>
-    <h:outputLabel value="Site">  <h:inputText value="#{adder.person.site}"/></h:outputLabel>
-    <h:outputLabel value="Password">  <h:inputText value="#{adder.person.password}"/></h:outputLabel>
-    <h:commandButton action="#{adder.savePerson}" value="Save in Database!" styleClass="btn"/>
+    <h:outputLabel value="Name">  <h:inputText value="{adder.person.name}"/></h:outputLabel>
+    <h:outputLabel value="Surname">  <h:inputText value="{adder.person.surname}"/></h:outputLabel>
+    <h:outputLabel value="Mail">  <h:inputText value="{adder.person.mail}"/></h:outputLabel>
+    <h:outputLabel value="Skype">  <h:inputText value="{adder.person.skype}"/></h:outputLabel>
+    <h:outputLabel value="Site">  <h:inputText value="{adder.person.site}"/></h:outputLabel>
+    <h:outputLabel value="Password">  <h:inputText value="{adder.person.password}"/></h:outputLabel>
+    <h:commandButton action="{adder.savePerson}" value="Save in Database!" styleClass="btn"/>
 </h:form>
 
 <h:form styleClass="form-inline">
     <h:outputLabel value="Add skill to a person"/>
-    <h:selectOneMenu value="#{adder.person.id}" >
-        <f:selectItems value="#{sample.people}" var="p"
-                       itemLabel="#{p.name} #{p.surname}" itemValue="#{p.id}" />
+    <h:selectOneMenu value="{adder.person.id}" >
+        <f:selectItems value="{sample.people}" var="p"
+                       itemLabel="{p.name} {p.surname}" itemValue="{p.id}" />
     </h:selectOneMenu>
-    <h:selectOneMenu value="#{adder.skill.id}" >
-        <f:selectItems value="#{sample.skills}" var="s"
-                       itemLabel="#{s.title}" itemValue="#{s.id}" />
+    <h:selectOneMenu value="{adder.skill.id}" >
+        <f:selectItems value="{sample.skills}" var="s"
+                       itemLabel="{s.title}" itemValue="{s.id}" />
     </h:selectOneMenu>
-    <h:commandButton action="#{adder.addSkillToPerson}" value="Add!" styleClass="btn"/>
+    <h:commandButton action="{adder.addSkillToPerson}" value="Add!" styleClass="btn"/>
 </h:form>
 
     <h1 style="text-align: center;">Projects</h1>
@@ -95,15 +92,15 @@
 			<td style="text-align: center; font-weight: bold">Customer</td>
             <td style="text-align: center; font-weight: bold">Skills</td>
 		</tr>
-        <ui:repeat var="entry3" value="${sample.projects}">
+        <ui:repeat var="entry3" value="{sample.projects}">
             <tr>
-                <td><h:outputText value="#{entry3.title}"/> </td>
-                <td><h:outputText value="#{entry3.description}"/> </td>
-                <td><h:outputText value="#{entry3.leader.name} #{entry3.leader.surname}"/> </td>
-                <td><h:outputText value="#{entry3.customer.title}"/> </td>
+                <td><h:outputText value="{entry3.title}"/> </td>
+                <td><h:outputText value="{entry3.description}"/> </td>
+                <td><h:outputText value="{entry3.leader.name} {entry3.leader.surname}"/> </td>
+                <td><h:outputText value="{entry3.customer.title}"/> </td>
                 <td>
-                    <ui:repeat var="skill" value="${entry3.skills}">
-                        <h:outputText value="#{skill.title} "/>
+                    <ui:repeat var="skill" value="{entry3.skills}">
+                        <h:outputText value="{skill.title} "/>
                     </ui:repeat>
                 </td>
             </tr>
@@ -113,32 +110,32 @@
 
 <h:form styleClass="form-horizontal">
     <h:outputLabel value="Add project"/>
-    <h:outputText value="Title" />  <h:inputText value="#{adder.project.title}"/><br/>
-    <h:outputText value="Description" />  <h:inputText value="#{adder.project.description}"/><br/>
-    <h:selectOneMenu id="project_lead_select" value="#{adder.person.id}" >
-        <f:selectItems value="#{sample.people}" var="p"
-                     itemLabel="#{p.name} #{p.surname}" itemValue="#{p.id}" />
+    <h:outputText value="Title" />  <h:inputText value="{adder.project.title}"/><br/>
+    <h:outputText value="Description" />  <h:inputText value="{adder.project.description}"/><br/>
+    <h:selectOneMenu id="project_lead_select" value="{adder.person.id}" >
+        <f:selectItems value="{sample.people}" var="p"
+                     itemLabel="{p.name} {p.surname}" itemValue="{p.id}" />
     </h:selectOneMenu>
-    <h:selectOneMenu value="#{adder.customer.id}">
-        <f:selectItems value="#{sample.customers}" var="c"
-                     itemLabel="#{c.title}" itemValue="#{c.id}" />
+    <h:selectOneMenu value="{adder.customer.id}">
+        <f:selectItems value="{sample.customers}" var="c"
+                     itemLabel="{c.title}" itemValue="{c.id}" />
     </h:selectOneMenu>
-    <h:commandButton action="#{adder.saveProject}" value="Save in Database!" styleClass="btn"/>
+    <h:commandButton action="{adder.saveProject}" value="Save in Database!" styleClass="btn"/>
 </h:form>
 
 <h:form styleClass="form-inline">
     <br/>
     <h:outputLabel value="Add skill to a project">
-    <h:selectOneMenu value="#{adder.project.id}" >
-        <f:selectItems value="#{sample.projects}" var="pr"
-                       itemLabel="#{pr.title}" itemValue="#{pr.id}" />
+    <h:selectOneMenu value="{adder.project.id}" >
+        <f:selectItems value="{sample.projects}" var="pr"
+                       itemLabel="{pr.title}" itemValue="{pr.id}" />
     </h:selectOneMenu>
     </h:outputLabel>
-    <h:selectOneMenu value="#{adder.skill.id}" >
-        <f:selectItems value="#{sample.skills}" var="s"
-                       itemLabel="#{s.title}" itemValue="#{s.id}" />
+    <h:selectOneMenu value="{adder.skill.id}" >
+        <f:selectItems value="{sample.skills}" var="s"
+                       itemLabel="{s.title}" itemValue="{s.id}" />
     </h:selectOneMenu>
-    <h:commandButton action="#{adder.addSkillToProject}" value="Add!" styleClass="btn"/>
+    <h:commandButton action="{adder.addSkillToProject}" value="Add!" styleClass="btn"/>
 </h:form>
 
 <h:form>
@@ -148,11 +145,11 @@
 			<td style="text-align: center; font-weight: bold">Title</td>
 			<td style="text-align: center; font-weight: bold">Description</td>
 		</tr>
-        <ui:repeat var="entry4" value="#{sample.skills}">
+        <ui:repeat var="entry4" value="{sample.skills}">
             <tr>
-                <td><h:outputText value="#{entry4.title}"/> </td>
-                <td><h:outputText value="#{entry4.description}"/> </td>
-                <td><h:commandLink value="Remove" action="#{adder.removeSkill(entry4.id)}"/> </td>
+                <td><h:outputText value="{entry4.title}"/> </td>
+                <td><h:outputText value="{entry4.description}"/> </td>
+                <td><h:commandLink value="Remove" action="{adder.removeSkill(entry4.id)}"/> </td>
             </tr>
         </ui:repeat>
     </table>
@@ -160,18 +157,18 @@
 </h:form>
 
 <h:form>
-    <h:outputLabel value="Id">  <h:inputText value="#{adder.skill.id}"/> </h:outputLabel>
-    <h:outputLabel value="Title">  <h:inputText value="#{adder.skill.title}"/> </h:outputLabel>
-    <h:outputLabel value="Description"><h:inputText value="#{adder.skill.description}"/> </h:outputLabel>
-    <h:commandButton action="#{adder.saveSkill}" value="Save in Database!" styleClass="btn"/><h:outputLabel value="( to save - id must be 0)" />
-    <h:commandButton action="#{adder.updateSkill}" value="Update in Database!" styleClass="btn"/>
+    <h:outputLabel value="Id">  <h:inputText value="{adder.skill.id}"/> </h:outputLabel>
+    <h:outputLabel value="Title">  <h:inputText value="{adder.skill.title}"/> </h:outputLabel>
+    <h:outputLabel value="Description"><h:inputText value="{adder.skill.description}"/> </h:outputLabel>
+    <h:commandButton action="{adder.saveSkill}" value="Save in Database!" styleClass="btn"/><h:outputLabel value="( to save - id must be 0)" />
+    <h:commandButton action="{adder.updateSkill}" value="Update in Database!" styleClass="btn"/>
 </h:form>
 
     <h:form>
-        <h:outputLabel value="Get user by email:">  <h:inputText value="#{adder.email}"/> </h:outputLabel>
-        <h:commandButton action="#{adder.getByEmail}" value="Get!" styleClass="btn"/>
-        <h:outputLabel value="Person: #{adder.person.name} #{adder.person.surname}"/>
+        <h:outputLabel value="Get user by email:">  <h:inputText value="{adder.email}"/> </h:outputLabel>
+        <h:commandButton action="{adder.getByEmail}" value="Get!" styleClass="btn"/>
+        <h:outputLabel value="Person: {adder.person.name} {adder.person.surname}"/>
     </h:form>
-
+    -->
 </body>
 </html>

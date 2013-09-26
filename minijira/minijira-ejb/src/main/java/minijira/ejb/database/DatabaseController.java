@@ -5,10 +5,7 @@ import minijira.ejb.database.model.joint.PersonSkill;
 import minijira.ejb.database.model.joint.ProjectSkill;
 import minijira.ejb.util.Log;
 import minijira.ejbapi.DatabaseControllerInterface;
-import minijira.ejbapi.dto.CustomerDto;
-import minijira.ejbapi.dto.PersonDto;
-import minijira.ejbapi.dto.ProjectDto;
-import minijira.ejbapi.dto.SkillDto;
+import minijira.ejbapi.dto.*;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -45,6 +42,14 @@ public class DatabaseController implements DatabaseControllerInterface{
     public Query createNamedQuery(String queryName) {
         return em.createNamedQuery(queryName);
     }
+
+    @Override
+    public List<EmployeeDto> getEmployee() {
+        Log.getLogger().info("getEmployee called");
+        DatabaseGetter<Employee> dg = new DatabaseGetter<Employee>(createNamedQuery("Employee.findAll"));
+        return (List<EmployeeDto>)dg.get();
+    }
+
     @Override
     public List<CustomerDto> getCustomers() {
         Log.getLogger().info("getCustomers called");
@@ -183,5 +188,13 @@ public class DatabaseController implements DatabaseControllerInterface{
     @Override
     public void removeSkillFromProject(int skill_id, int project_id) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<? extends Dto> get(Class clazz) {
+        if (clazz.equals(EmployeeDto.class)) {
+            return getEmployee();
+        }
+        return null;
     }
 }

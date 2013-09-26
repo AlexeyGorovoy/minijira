@@ -2,10 +2,7 @@ package minijira.web;
 
 import minijira.ejbapi.DatabaseControllerInterface;
 import minijira.ejbapi.SampleInterface;
-import minijira.ejbapi.dto.CustomerDto;
-import minijira.ejbapi.dto.PersonDto;
-import minijira.ejbapi.dto.ProjectDto;
-import minijira.ejbapi.dto.SkillDto;
+import minijira.ejbapi.dto.*;
 
 import javax.ejb.EJB;
 import java.util.List;
@@ -15,6 +12,10 @@ public class SampleBean {
 
 	String test = "";
 
+
+    public List<EmployeeDto> getEmployees () {
+        return (List<EmployeeDto>)dci.get(EmployeeDto.class);
+    }
 
     public void setTest(String t) {
 		test = t;
