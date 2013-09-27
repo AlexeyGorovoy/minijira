@@ -4,7 +4,7 @@ import minijira.ejb.database.model.*;
 import minijira.ejb.database.model.joint.PersonSkill;
 import minijira.ejb.database.model.joint.ProjectSkill;
 import minijira.ejb.util.Log;
-import minijira.ejbapi.DatabaseControllerInterface;
+import minijira.ejbapi.DatabaseController;
 import minijira.ejbapi.dto.*;
 
 import javax.annotation.PostConstruct;
@@ -22,9 +22,9 @@ import java.util.List;
  * Time:    13:35
  * Email:   alexey.gorovoy.work@gmail.com
  */
-@Local(value = DatabaseControllerInterface.class)
+@Local(value = DatabaseController.class)
 @Stateless
-public class DatabaseController implements DatabaseControllerInterface{
+public class DatabaseControllerBean implements DatabaseController {
 
 
     @PostConstruct
@@ -51,11 +51,106 @@ public class DatabaseController implements DatabaseControllerInterface{
     }
 
     @Override
-    public List<CustomerDto> getCustomers() {
-        Log.getLogger().info("getCustomers called");
+    public List<OfficeDto> getOffice() {
+        Log.getLogger().info("getOffice called");
+        DatabaseGetter<Office> dg = new DatabaseGetter<Office>(createNamedQuery("Office.findAll"));
+        return (List<OfficeDto>)dg.get();
+    }
+
+    @Override
+    public List<PriorityDto> getPriority() {
+        Log.getLogger().info("getPriority called");
+        DatabaseGetter<Priority> dg = new DatabaseGetter<Priority>(createNamedQuery("Priority.findAll"));
+        return (List<PriorityDto>)dg.get();
+    }
+
+    @Override
+    public List<WorkflowDto> getWorkflow() {
+        Log.getLogger().info("getWorkflow called");
+        DatabaseGetter<Workflow> dg = new DatabaseGetter<Workflow>(createNamedQuery("Workflow.findAll"));
+        return (List<WorkflowDto>)dg.get();
+    }
+
+    @Override
+    public List<RankDto> getRank() {
+        Log.getLogger().info("getRank called");
+        DatabaseGetter<Rank> dg = new DatabaseGetter<Rank>(createNamedQuery("Rank.findAll"));
+        return (List<RankDto>)dg.get();
+    }
+
+    @Override
+    public List<ProjectTypeDto> getProjectType() {
+        Log.getLogger().info("getProjectType called");
+        DatabaseGetter<ProjectType> dg = new DatabaseGetter<ProjectType>(createNamedQuery("ProjectType.findAll"));
+        return (List<ProjectTypeDto>)dg.get();
+    }
+
+    @Override
+    public List<TestTypeDto> getTestType() {
+        Log.getLogger().info("getTestType called");
+        DatabaseGetter<TestType> dg = new DatabaseGetter<TestType>(createNamedQuery("TestType.findAll"));
+        return (List<TestTypeDto>)dg.get();
+    }
+
+    @Override
+    public List<ManagerTypeDto> getManagerType() {
+        Log.getLogger().info("getManagerType called");
+        DatabaseGetter<ManagerType> dg = new DatabaseGetter<ManagerType>(createNamedQuery("ManagerType.findAll"));
+        return (List<ManagerTypeDto>)dg.get();
+    }
+
+    @Override
+    public List<TechDto> getTech() {
+        Log.getLogger().info("getTech called");
+        DatabaseGetter<Tech> dg = new DatabaseGetter<Tech>(createNamedQuery("Tech.findAll"));
+        return (List<TechDto>)dg.get();
+    }
+
+    @Override
+    public List<CustomerDto> getCustomer() {
+        Log.getLogger().info("getCustomer called");
         DatabaseGetter<Customer> dg = new DatabaseGetter<Customer>(createNamedQuery("Customer.findAll"));
         return (List<CustomerDto>)dg.get();
     }
+
+
+    @Override
+    public List<? extends Dto> get(Class clazz) {
+        if (clazz.equals(EmployeeDto.class)) {
+            return getEmployee();
+        }
+        if (clazz.equals(OfficeDto.class)) {
+            return getOffice();
+        }
+        if (clazz.equals(PriorityDto.class)){
+            return getPriority();
+        }
+        if (clazz.equals(WorkflowDto.class)){
+            return getWorkflow();
+        }
+        if (clazz.equals(RankDto.class)){
+            return getRank();
+        }
+        if (clazz.equals(ProjectTypeDto.class)){
+            return getProjectType();
+        }
+        if (clazz.equals(TestTypeDto.class)){
+            return getTestType();
+        }
+        if (clazz.equals(ManagerTypeDto.class)){
+            return getManagerType();
+        }
+        if (clazz.equals(TechDto.class)){
+            return getTech();
+        }
+        if (clazz.equals(CustomerDto.class)){
+            return getCustomer();
+        }
+        return null;
+    }
+
+    // ----------------- Old
+
 
     @Override
     public List<PersonDto> getPeople() {
@@ -82,13 +177,6 @@ public class DatabaseController implements DatabaseControllerInterface{
     public void newSkill(SkillDto skillDto) {
         Log.getLogger().info("newSkill called");
         em.persist(new Skill(skillDto));
-    }
-
-
-    @Override
-    public void newCustomer(CustomerDto customerDto) {
-        Log.getLogger().info("newCustomer called");
-        em.persist(new Customer(customerDto));
     }
 
     @Override
@@ -139,12 +227,6 @@ public class DatabaseController implements DatabaseControllerInterface{
     }
 
     @Override
-    public void updateCustomer(CustomerDto customerDto) {
-        Log.getLogger().info("updateCustomer called");
-        em.merge(new Customer(customerDto));
-    }
-
-    @Override
     public void updateProject(ProjectDto projectDto) {
         Log.getLogger().info("updateCustomer called");
         em.merge(new Project(projectDto));
@@ -160,12 +242,6 @@ public class DatabaseController implements DatabaseControllerInterface{
     public void removeSkill(int  id) {
         Log.getLogger().info("removeSkill called");
         em.remove(em.find(Skill.class, id));
-    }
-
-    @Override
-    public void removeCustomer(int id) {
-        Log.getLogger().info("removeCustomer called");
-        em.remove(em.find(Customer.class, id));
     }
 
     @Override
@@ -190,11 +266,5 @@ public class DatabaseController implements DatabaseControllerInterface{
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    @Override
-    public List<? extends Dto> get(Class clazz) {
-        if (clazz.equals(EmployeeDto.class)) {
-            return getEmployee();
-        }
-        return null;
-    }
+
 }

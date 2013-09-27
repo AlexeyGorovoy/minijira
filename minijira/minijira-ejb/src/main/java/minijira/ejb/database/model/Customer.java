@@ -12,52 +12,33 @@ import javax.persistence.*;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table (name = "customers")
+@Table (name = "customer")
 @NamedQueries({
         @NamedQuery(name = "Customer.findAll", query = "select c from Customer c")
 })
 public class Customer implements ModelEntity{
 
     @Id
+    @Column (name = "customer_id")
     private int id;
 
     private String title;
-    private  String description;
+    private String description;
+    private String address;
+    private String info;
 
     public Customer() {}
 
-    public Customer(CustomerDto customerDto) {
-        this.id = customerDto.getId();
-        this.title = customerDto.getTitle();
-        this.description = customerDto.getDescription();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public Customer(CustomerDto dto) {
+        id = dto.getId();
+        title = dto.getTitle();
+        description = dto.getDescription();
+        address = dto.getAddress();
+        info = dto.getInfo();
     }
 
     @Override
     public Dto getDto() {
-        return new CustomerDto(id, title, description);
+        return new CustomerDto(id, title, description, address, info);
     }
 }

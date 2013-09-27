@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+    <title>Test database</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../bootstrap/js/bootstrap.min.js" />
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<table class="table" border="1" style="margin: auto;">
+    <tr>
+        <td style="text-align: center; font-weight: bold">Task workflow</td>
+    </tr>
+    <ui:repeat var="entry2" value="#{databaseBean.workflows}">
+        <tr>
+            <td><h:outputText value="#{entry2.title}"/> </td>
+        </tr>
+    </ui:repeat>
+</table>
+<br/>
+
+</body>
+</html>

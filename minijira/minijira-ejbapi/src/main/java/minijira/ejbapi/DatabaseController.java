@@ -12,28 +12,37 @@ import java.util.List;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Local
-public interface DatabaseControllerInterface {
+public interface DatabaseController {
 
     List<? extends Dto> get(Class clazz);
 
-    List<CustomerDto> getCustomers();
+    List<EmployeeDto> getEmployee();
+    List<OfficeDto> getOffice();
+    List<PriorityDto> getPriority();
+    List<WorkflowDto> getWorkflow();
+    List<RankDto> getRank();
+    List<ProjectTypeDto> getProjectType();
+    List<TestTypeDto> getTestType();
+    List<ManagerTypeDto> getManagerType();
+    List<TechDto> getTech();
+    List<CustomerDto> getCustomer();
+
+
+    // --------------- Old
+
     List<PersonDto> getPeople();
     List<SkillDto> getSkills();
     List<ProjectDto> getProjects();
-    List<EmployeeDto> getEmployee();
 
     void newSkill(SkillDto skillDto);
-    void newCustomer(CustomerDto customerDto);
     void newProject(ProjectDto projectDto);
     void newPerson(PersonDto personDto);
 
     void updateSkill(SkillDto skillDto);
-    void updateCustomer(CustomerDto customerDto);
     void updateProject(ProjectDto projectDto);
     void updatePerson(PersonDto personDto);
 
     void removeSkill(int id);
-    void removeCustomer(int id);
     void removeProject(int id);
     void removePerson(int id);
 

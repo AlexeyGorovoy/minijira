@@ -32,10 +32,10 @@
                 <td><h:outputText value="#{cus.description}"/> </td>
                 <h:panelGroup rendered="#{auth.admin == true}">
                 <td>
-					<h:commandLink class="btn btn-inverse btn-small" action="#{customer.remove(cus.id)}"> 
+					<h:commandLink class="btn btn-inverse btn-small" action="{customer.remove(cus.id)}">
 						<i class="icon-white icon-remove"></i>
 					</h:commandLink>
-					<h:commandLink class="btn btn-inverse btn-small" action="#{customer.getUrlEdit(cus.id)}"> 
+					<h:commandLink class="btn btn-inverse btn-small" action="{customer.getUrlEdit(cus.id)}">
 						<i class="icon-white icon-pencil"></i>
 					</h:commandLink>
 				</td>
@@ -45,7 +45,7 @@
 			</table>
 			<br/>
             <h:panelGroup rendered="#{auth.admin == true}">
-			<h:commandLink class="btn btn-inverse btn-small" action="#{customer.getUrlAdd()}"> 
+			<h:commandLink class="btn btn-inverse btn-small" action="{customer.getUrlAdd()}">
 				<i class="icon-white icon-plus"></i>Add new customer
 			</h:commandLink>
             </h:panelGroup>

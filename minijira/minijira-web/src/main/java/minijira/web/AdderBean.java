@@ -1,6 +1,6 @@
 package minijira.web;
 
-import minijira.ejbapi.DatabaseControllerInterface;
+import minijira.ejbapi.DatabaseController;
 import minijira.ejbapi.dto.CustomerDto;
 import minijira.ejbapi.dto.PersonDto;
 import minijira.ejbapi.dto.ProjectDto;
@@ -18,7 +18,7 @@ import javax.ejb.EJB;
 public class AdderBean {
 
     @EJB
-    private DatabaseControllerInterface dci;
+    private DatabaseController dci;
 
     private SkillDto skill;
 
@@ -35,7 +35,6 @@ public class AdderBean {
         person = new PersonDto();
         skill = new SkillDto();
         project = new ProjectDto();
-        customer = new CustomerDto();
     }
 
     public void test() {
@@ -48,10 +47,6 @@ public class AdderBean {
 
     public void updateSkill() {
         dci.updateSkill(skill);
-    }
-
-    public void saveCustomer() {
-        dci.newCustomer(customer);
     }
 
     public void savePerson() {

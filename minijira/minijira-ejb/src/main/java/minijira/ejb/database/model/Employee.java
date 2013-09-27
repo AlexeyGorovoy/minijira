@@ -36,6 +36,20 @@ public class Employee implements ModelEntity {
     String skype;
     String password;
 
+    public Employee() {
+    }
+
+    public Employee(EmployeeDto dto) {
+        id = dto.getId();
+        name = dto.getName();
+        surname = dto.getSurname();
+        date_hired = dto.getDate_hired();
+        phonenumber = dto.getPhonenumber();
+        email = dto.getEmail();
+        skype = dto.getSkype();
+        password = dto.getPassword();
+    }
+
     @Override
     public Dto getDto() {
         return new EmployeeDto(id, name, surname, phonenumber, email, skype, password, date_hired);

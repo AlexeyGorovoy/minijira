@@ -62,17 +62,6 @@
             <value>#{sample}</value>
         </managed-property>
     </managed-bean>
-	
-	<managed-bean>
-        <managed-bean-name>customer</managed-bean-name>
-        <managed-bean-class>minijira.web.CustomerBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-		<managed-property>
-            <property-name>sample</property-name>
-            <value>#{sample}</value>
-        </managed-property>
-    </managed-bean>
-
 
     <managed-bean>
         <managed-bean-name>auth</managed-bean-name>
@@ -89,12 +78,5 @@
         <managed-bean-class>minijira.web.AdderBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
-	
-	<managed-bean>
-        <managed-bean-name>weather</managed-bean-name>
-        <managed-bean-class>minijira.web.WeatherBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-
 
 </faces-config>

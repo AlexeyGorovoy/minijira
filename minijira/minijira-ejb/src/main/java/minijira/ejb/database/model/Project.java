@@ -55,7 +55,7 @@ public class Project implements ModelEntity {
         this.leader =  new Person (projectDto.getLeader());
         this.customer = new Customer (projectDto.getCustomer());
         logger.severe("Project created: " + id + ", " + title + ", "
-                    + description + ", " + leader.getName() + ", " + customer.getTitle());
+                    + description + ", " + leader.getName());
     }
 
     public int getId() {

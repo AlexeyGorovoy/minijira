@@ -1,11 +1,12 @@
 package minijira.web;
 
-import minijira.ejbapi.dto.ProjectDto;
-import minijira.ejbapi.dto.PersonDto;
 import minijira.ejbapi.dto.CustomerDto;
+import minijira.ejbapi.dto.PersonDto;
+import minijira.ejbapi.dto.ProjectDto;
 import minijira.ejbapi.dto.SkillDto;
-import java.util.List;
+
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 
 public class ProjectBean {
@@ -30,7 +31,7 @@ public class ProjectBean {
 		editInd = 0;
 		skill = new SkillDto();
 		tmpPerson = new PersonDto();
-		tmpCustomer = new CustomerDto();
+		tmpCustomer = new CustomerDto(0, "", "", "", "");
 		list = sample.getProjects();
 		okAdded = false;
 	}
