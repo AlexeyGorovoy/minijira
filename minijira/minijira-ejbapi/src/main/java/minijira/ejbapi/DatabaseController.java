@@ -17,6 +17,10 @@ public interface DatabaseController {
     List<? extends Dto> get(Class clazz);
 
     List<EmployeeDto> getEmployee();
+    List<DeveloperDto> getDeveloper();
+    List<TesterDto> getTester();
+    List<ManagerDto> getManager();
+    List<CustomerAgentDto> getCustomerAgent();
     List<OfficeDto> getOffice();
     List<PriorityDto> getPriority();
     List<WorkflowDto> getWorkflow();

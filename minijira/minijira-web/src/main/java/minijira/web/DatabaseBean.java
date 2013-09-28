@@ -24,6 +24,22 @@ public class DatabaseBean {
         return (List<EmployeeDto>)dc.get(EmployeeDto.class);
     }
 
+    public List<TesterDto> getTesters () {
+        return (List<TesterDto>)dc.get(TesterDto.class);
+    }
+
+    public List<ManagerDto> getManagers () {
+        return (List<ManagerDto>)dc.get(ManagerDto.class);
+    }
+
+    public List<CustomerAgentDto> getCustomerAgents () {
+        return (List<CustomerAgentDto>)dc.get(CustomerAgentDto.class);
+    }
+
+    public List<DeveloperDto> getDevelopers () {
+        return (List<DeveloperDto>)dc.get(DeveloperDto.class);
+    }
+
     public List<OfficeDto> getOffices () {
         return (List<OfficeDto>)dc.get(OfficeDto.class);
     }

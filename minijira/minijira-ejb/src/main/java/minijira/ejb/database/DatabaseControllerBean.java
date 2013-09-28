@@ -51,6 +51,34 @@ public class DatabaseControllerBean implements DatabaseController {
     }
 
     @Override
+    public List<DeveloperDto> getDeveloper() {
+        Log.getLogger().info("getDeveloper called");
+        DatabaseGetter<Developer> dg = new DatabaseGetter<Developer>(createNamedQuery("Developer.findAll"));
+        return (List<DeveloperDto>)dg.get();
+    }
+
+    @Override
+    public List<TesterDto> getTester() {
+        Log.getLogger().info("getTester called");
+        DatabaseGetter<Tester> dg = new DatabaseGetter<Tester>(createNamedQuery("Tester.findAll"));
+        return (List<TesterDto>)dg.get();
+    }
+
+    @Override
+    public List<ManagerDto> getManager() {
+        Log.getLogger().info("getManager called");
+        DatabaseGetter<Manager> dg = new DatabaseGetter<Manager>(createNamedQuery("Manager.findAll"));
+        return (List<ManagerDto>)dg.get();
+    }
+
+    @Override
+    public List<CustomerAgentDto> getCustomerAgent() {
+        Log.getLogger().info("getCustomerAgent called");
+        DatabaseGetter<CustomerAgent> dg = new DatabaseGetter<CustomerAgent>(createNamedQuery("CustomerAgent.findAll"));
+        return (List<CustomerAgentDto>)dg.get();
+    }
+
+    @Override
     public List<OfficeDto> getOffice() {
         Log.getLogger().info("getOffice called");
         DatabaseGetter<Office> dg = new DatabaseGetter<Office>(createNamedQuery("Office.findAll"));
@@ -118,6 +146,18 @@ public class DatabaseControllerBean implements DatabaseController {
     public List<? extends Dto> get(Class clazz) {
         if (clazz.equals(EmployeeDto.class)) {
             return getEmployee();
+        }
+        if (clazz.equals(DeveloperDto.class)){
+            return getDeveloper();
+        }
+        if (clazz.equals(ManagerDto.class)){
+            return getManager();
+        }
+        if (clazz.equals(TesterDto.class)){
+            return getTester();
+        }
+        if (clazz.equals(CustomerAgentDto.class)) {
+            return getCustomerAgent();
         }
         if (clazz.equals(OfficeDto.class)) {
             return getOffice();

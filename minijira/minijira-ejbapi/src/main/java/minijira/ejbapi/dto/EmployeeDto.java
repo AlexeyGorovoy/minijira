@@ -10,14 +10,14 @@ import java.util.Date;
  */
 public class EmployeeDto implements Dto {
 
-    int id;
-    String name;
-    String surname;
-    String phonenumber;
-    String email;
-    String skype;
-    String password;
-    Date date_hired;
+    protected int id;
+    protected String name;
+    protected String surname;
+    protected String phonenumber;
+    protected String email;
+    protected String skype;
+    protected String password;
+    protected Date date_hired;
 
     public EmployeeDto(int id, String name, String surname, String phonenumber, String email, String skype, String password, Date date_hired) {
         this.id = id;
