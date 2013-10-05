@@ -1,11 +1,11 @@
 package minijira.ejb.database;
 
 import minijira.ejb.database.model.*;
-import minijira.ejb.database.model.joint.PersonSkill;
-import minijira.ejb.database.model.joint.ProjectSkill;
 import minijira.ejb.util.Log;
 import minijira.ejbapi.DatabaseController;
 import minijira.ejbapi.dto.*;
+import org.eclipse.persistence.queries.ReadAllQuery;
+import org.eclipse.persistence.queries.StoredProcedureCall;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
@@ -24,6 +24,7 @@ import java.util.List;
  */
 @Local(value = DatabaseController.class)
 @Stateless
+@SuppressWarnings("unchecked")
 public class DatabaseControllerBean implements DatabaseController {
 
 
@@ -42,6 +43,48 @@ public class DatabaseControllerBean implements DatabaseController {
     public Query createNamedQuery(String queryName) {
         return em.createNamedQuery(queryName);
     }
+
+
+    @Override
+    public List<CommentDto> getCommentByProject(int project_id) {
+        Log.getLogger().info("getCommentByProject called, project_id: " + project_id);
+        Query q = createNamedQuery("Comment.findByProject");
+        q.setParameter("project_id", project_id);
+        DatabaseGetter<Comment> dg = new DatabaseGetter<Comment>(q);
+        return (List<CommentDto>)dg.get();
+    }
+    // Stored procedures calls
+    @Override
+    public List<CommentDto> findCommentByProjectSP(int project_id) {
+        Log.getLogger().info("SP findCommentByProjectSP called, project_id: " + project_id);
+
+        Query q = em.createNamedStoredProcedureQuery("Comment.findByProjectSP");
+        q.setParameter("project_id", project_id);
+        DatabaseGetter<Comment> dg = new DatabaseGetter<Comment>(q);
+        return (List<CommentDto>)dg.get();
+    }
+
+    @Override
+    public List<ProjectDto> findProjectByTechSP(int tech_id) {
+        Log.getLogger().info("SP findProjectByTechSP called, tech_id: " + tech_id);
+
+        Query q = em.createNamedStoredProcedureQuery("Project.findByTechSP");
+        q.setParameter("tech_id", tech_id);
+        DatabaseGetter<Project> dg = new DatabaseGetter<Project>(q);
+        return (List<ProjectDto>)dg.get();
+    }
+
+    @Override
+    public List<ProjectDto> findProjectByEmployeeSP(int employee_id) {
+        Log.getLogger().info("SP findProjectByEmployeeSP called, employee_id: " + employee_id);
+
+        Query q = em.createNamedStoredProcedureQuery("Project.findByEmployeeSP");
+        q.setParameter("employee_id", employee_id);
+        DatabaseGetter<Project> dg = new DatabaseGetter<Project>(q);
+        return (List<ProjectDto>)dg.get();
+    }
+
+    ///
 
     @Override
     public List<EmployeeDto> getEmployee() {
@@ -141,6 +184,26 @@ public class DatabaseControllerBean implements DatabaseController {
         return (List<CustomerDto>)dg.get();
     }
 
+    @Override
+    public List<CommentDto> getComment() {
+        Log.getLogger().info("getComment called");
+        DatabaseGetter<Comment> dg = new DatabaseGetter<Comment>(createNamedQuery("Comment.findAll"));
+        return (List<CommentDto>)dg.get();
+    }
+
+    @Override
+    public List<ProjectDto> getProject() {
+        Log.getLogger().info("getProject called");
+        DatabaseGetter<Project> dg = new DatabaseGetter<Project>(createNamedQuery("Project.findAll"));
+        return (List<ProjectDto>)dg.get();
+    }
+
+    @Override
+    public List<TaskDto> getTask() {
+        Log.getLogger().info("getTasks called");
+        DatabaseGetter<Task> dg = new DatabaseGetter<Task>(createNamedQuery("Task.findAll"));
+        return (List<TaskDto>)dg.get();
+    }
 
     @Override
     public List<? extends Dto> get(Class clazz) {
@@ -186,125 +249,22 @@ public class DatabaseControllerBean implements DatabaseController {
         if (clazz.equals(CustomerDto.class)){
             return getCustomer();
         }
+        if (clazz.equals(CommentDto.class)){
+            return getComment();
+        }
+        if (clazz.equals(ProjectDto.class)){
+            return getProject();
+        }
+        if (clazz.equals(TaskDto.class)){
+            return getTask();
+        }
         return null;
     }
 
     // ----------------- Old
 
-
-    @Override
-    public List<PersonDto> getPeople() {
-        Log.getLogger().info("getPeople called");
-        DatabaseGetter<Person> dg = new DatabaseGetter<Person>(createNamedQuery("Person.findAll"));
-        return (List<PersonDto>)dg.get();
-    }
-
-    @Override
-    public List<SkillDto> getSkills() {
-        Log.getLogger().info("getSkills called");
-        DatabaseGetter<Skill> dg = new DatabaseGetter<Skill>(createNamedQuery("Skill.findAll"));
-        return (List<SkillDto>)dg.get();
-    }
-
-    @Override
-    public List<ProjectDto> getProjects() {
-        Log.getLogger().info("getProjects called");
-        DatabaseGetter<Project> dg = new DatabaseGetter<Project>(createNamedQuery("Project.findAll"));
-        return (List<ProjectDto>)dg.get();
-    }
-
-    @Override
-    public void newSkill(SkillDto skillDto) {
-        Log.getLogger().info("newSkill called");
-        em.persist(new Skill(skillDto));
-    }
-
-    @Override
-    public void newPerson(PersonDto personDto) {
-        Log.getLogger().info("newPerson called");
-        em.persist(new Person(personDto));
-    }
-
-    @Override
-    public void addSkillToPerson(SkillDto skillDto, PersonDto personDto) {
-        Log.getLogger().info("addSkillToPerson called");
-        em.persist(new PersonSkill(personDto, skillDto));
-    }
-
-    @Override
-    public void newProject(ProjectDto projectDto) {
-        Log.getLogger().info("newProject called");
-        em.persist(new Project(projectDto));
-    }
-
     @Override
     public void test() {
         Log.getLogger().info("TEST!");
     }
-
-    @Override
-    public void addSkillToProject(SkillDto skillDto, ProjectDto projectDto) {
-        Log.getLogger().info("addSkillToProject called");
-        em.persist(new ProjectSkill(projectDto, skillDto));
-    }
-
-    @Override
-    public PersonDto getPersonByEmail(String email) {
-        Query q = createNamedQuery("Person.findByEmail");
-        q.setParameter("email", email);
-        List<Person> list = q.getResultList();
-        if (list.isEmpty()) {
-            return null;
-        } else {
-            return (PersonDto)list.get(0).getDto();
-        }
-    }
-
-    @Override
-    public void updateSkill(SkillDto skillDto) {
-        Log.getLogger().info("updateSkill called");
-        em.merge(new Skill(skillDto));
-    }
-
-    @Override
-    public void updateProject(ProjectDto projectDto) {
-        Log.getLogger().info("updateCustomer called");
-        em.merge(new Project(projectDto));
-    }
-
-    @Override
-    public void updatePerson(PersonDto personDto) {
-        Log.getLogger().info("updateCustomer called");
-        em.merge(new Person(personDto));
-    }
-
-    @Override
-    public void removeSkill(int  id) {
-        Log.getLogger().info("removeSkill called");
-        em.remove(em.find(Skill.class, id));
-    }
-
-    @Override
-    public void removeProject(int id) {
-        Log.getLogger().info("removeProject called");
-        em.remove(em.find(Project.class, id));
-    }
-
-    @Override
-    public void removePerson(int id) {
-        Log.getLogger().info("removePerson called");
-        em.remove(em.find(Person.class, id));
-    }
-
-    @Override
-    public void removeSkillFromPerson(int skill_id, int person_id) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void removeSkillFromProject(int skill_id, int project_id) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-
 }

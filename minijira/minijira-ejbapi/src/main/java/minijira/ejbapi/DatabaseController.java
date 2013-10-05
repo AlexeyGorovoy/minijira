@@ -16,6 +16,14 @@ public interface DatabaseController {
 
     List<? extends Dto> get(Class clazz);
 
+    List<CommentDto> getCommentByProject(int project_id);
+
+    //Stored procedures calls
+    List<CommentDto> findCommentByProjectSP(int project_id);
+    List<ProjectDto> findProjectByTechSP(int tech_id);
+    List<ProjectDto> findProjectByEmployeeSP(int employee_id);
+    ///
+
     List<EmployeeDto> getEmployee();
     List<DeveloperDto> getDeveloper();
     List<TesterDto> getTester();
@@ -30,33 +38,11 @@ public interface DatabaseController {
     List<ManagerTypeDto> getManagerType();
     List<TechDto> getTech();
     List<CustomerDto> getCustomer();
+    List<CommentDto> getComment();
+    List<ProjectDto> getProject();
+    List<TaskDto> getTask();
 
 
     // --------------- Old
-
-    List<PersonDto> getPeople();
-    List<SkillDto> getSkills();
-    List<ProjectDto> getProjects();
-
-    void newSkill(SkillDto skillDto);
-    void newProject(ProjectDto projectDto);
-    void newPerson(PersonDto personDto);
-
-    void updateSkill(SkillDto skillDto);
-    void updateProject(ProjectDto projectDto);
-    void updatePerson(PersonDto personDto);
-
-    void removeSkill(int id);
-    void removeProject(int id);
-    void removePerson(int id);
-
-    void addSkillToPerson(SkillDto skillDto, PersonDto personDto);
-    void addSkillToProject(SkillDto skillDto, ProjectDto projectDto);
-
-    void removeSkillFromPerson(int skill_id, int person_id);
-    void removeSkillFromProject(int skill_id, int project_id);
-
-    PersonDto getPersonByEmail(String email);
-
     void test();
 }

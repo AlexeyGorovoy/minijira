@@ -20,6 +20,28 @@ public class DatabaseBean {
     @EJB
     DatabaseController dc;
 
+    public List<CommentDto> getComments() {
+        return (List<CommentDto>)dc.getComment();
+    }
+
+    public List<CommentDto> getCommentsByProject(int project_id) {
+        return (List<CommentDto>)dc.getCommentByProject(project_id);
+    }
+
+    // Stored procedures
+    public List<CommentDto> getCommentsByProjectSP(int project_id) {
+        return (List<CommentDto>)dc.findCommentByProjectSP(project_id);
+    }
+
+    public List<ProjectDto> findProjectsByEmployeeSP(int employee_id) {
+        return (List<ProjectDto>)dc.findProjectByEmployeeSP(employee_id);
+    }
+
+    public List<ProjectDto> findProjectsByTechSP(int tech_id) {
+        return (List<ProjectDto>)dc.findProjectByTechSP(tech_id);
+    }
+    ///
+
     public List<EmployeeDto> getEmployees () {
         return (List<EmployeeDto>)dc.get(EmployeeDto.class);
     }
@@ -74,5 +96,13 @@ public class DatabaseBean {
 
     public List<CustomerDto> getCustomers() {
         return (List<CustomerDto>)dc.get(CustomerDto.class);
+    }
+
+    public List<ProjectDto> getProjects() {
+        return (List<ProjectDto>)dc.get(ProjectDto.class);
+    }
+
+    public List<TaskDto> getTasks() {
+        return (List<TaskDto>)dc.get(TaskDto.class);
     }
 }

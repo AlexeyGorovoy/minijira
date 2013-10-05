@@ -1,15 +1,13 @@
 package minijira.ejb.database.model;
 
-import minijira.ejb.database.model.joint.ProjectSkill;
+
+import minijira.ejb.database.model.joint.ProjectEmployeeJoint;
+import minijira.ejb.database.model.joint.ProjectTechJoint;
 import minijira.ejbapi.dto.*;
 
-import javax.ejb.EJB;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
-
-import java.util.logging.Logger;
 
 /**
  * Created by  Alexey Gorovoy
@@ -18,107 +16,83 @@ import java.util.logging.Logger;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table (name = "projects")
+@Table (name = "project")
 @NamedQueries({
         @NamedQuery(name = "Project.findAll", query = "select p from Project p")
 })
+@NamedStoredProcedureQueries( {
+        @NamedStoredProcedureQuery(name = "Project.findByTechSP",
+                procedureName = "findProjectByTech",
+                resultClasses = Project.class,
+                parameters = {
+                        @StoredProcedureParameter(name = "tech_id", type = Integer.class, mode = ParameterMode.IN)
+                }),
+        @NamedStoredProcedureQuery(name = "Project.findByEmployeeSP",
+                procedureName = "findProjectByEmployee",
+                resultClasses = Project.class,
+                parameters = {
+                        @StoredProcedureParameter(name = "employee_id", type = Integer.class, mode = ParameterMode.IN)
+                })
+})
 public class Project implements ModelEntity {
     @Id
+    @Column(name = "project_id")
     private int id;
 
     private String title;
     private String description;
 
-    @ManyToOne
-    private Person leader;
+    @Temporal(value = TemporalType.DATE)
+    private Date date_start;
+
+    @Temporal(value = TemporalType.DATE)
+    private Date date_end;
 
     @ManyToOne
+    @JoinColumn(name = "dev_lead_id")
+    private Developer dev_leader;
+
+
+    @ManyToOne
+    @JoinColumn(name = "test_lead_id")
+    private Tester test_leader;
+
+
+    @ManyToOne
+    @JoinColumn(name = "pm_id")
+    private Manager pm;
+
+
+    @ManyToOne
+    @JoinColumn(name = "customer_agent_id")
+    private CustomerAgent customer_agent;
+
+    @ManyToOne
+    @JoinColumn (name = "customer_id")
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn (name = "project_type_id")
+    private ProjectType type;
+
+
+    // Not a columns!
+    /*
     @OneToMany (mappedBy = "project")
-    private Collection<ProjectSkill> skills;
+    List<ProjectEmployeeJoint> employeeJoint;
+
+    @OneToMany (mappedBy = "project")
+    List<ProjectTechJoint> techJoint;
+    */
+    ///
 
     public Project () {}
 
-    @EJB
-    @Transient
-    @PersistenceContext
-    EntityManager em;
-
-    @Transient
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
-    public Project (ProjectDto projectDto) {
-        this.id = projectDto.getId();
-        this.title = projectDto.getTitle();
-        this.description = projectDto.getDescription();
-        this.leader =  new Person (projectDto.getLeader());
-        this.customer = new Customer (projectDto.getCustomer());
-        logger.severe("Project created: " + id + ", " + title + ", "
-                    + description + ", " + leader.getName());
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Person getLeader() {
-        return leader;
-    }
-
-    public void setLeader(Person leader_id) {
-        this.leader = leader_id;
-    }
-
-    public Collection<ProjectSkill> getSkills() {
-        return skills;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public void addProjectSkill(ProjectSkill projectSkill){
-        if (skills == null) {
-            skills = new LinkedList<ProjectSkill>();
-        }
-        skills.add(projectSkill);
-    }
-
     @Override
     public Dto getDto() {
-
-        List<SkillDto> skillDtos = new LinkedList<SkillDto>();
-        for (ProjectSkill ps : skills ) {
-            skillDtos.add((SkillDto) ps.getSkill().getDto());
-        }
-
-        return new ProjectDto(id, title, description,
-                            (PersonDto)leader.getDto(),
-                            (CustomerDto)customer.getDto(), skillDtos);
+        return new ProjectDto(id, title, description, date_start, date_end, (DeveloperDto) dev_leader.getDto(),
+                    (TesterDto)test_leader.getDto(), (ManagerDto) pm.getDto(),
+                    (CustomerAgentDto)customer_agent.getDto(),
+                    (CustomerDto)customer.getDto(), (ProjectTypeDto)type.getDto());
     }
 }
