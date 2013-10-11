@@ -1,5 +1,9 @@
 package minijira.ejbapi.dto;
 
+import minijira.ejbapi.dto.joint.DeveloperTechDto;
+
+import java.util.List;
+
 /**
  * Created by  Alexey Gorovoy
  * Date:    28.09.13
@@ -11,11 +15,14 @@ public class DeveloperDto implements Dto{
     EmployeeDto employee;
     RankDto rank;
     TechDto mainTech;
+    List<DeveloperTechDto> techs;
 
-    public DeveloperDto(EmployeeDto employee, RankDto rank, TechDto mainTech) {
+    public DeveloperDto(EmployeeDto employee, RankDto rank,
+                        TechDto mainTech, List<DeveloperTechDto> techs) {
         this.employee = employee;
         this.rank = rank;
         this.mainTech = mainTech;
+        this.techs = techs;
     }
 
     public RankDto getRank() {

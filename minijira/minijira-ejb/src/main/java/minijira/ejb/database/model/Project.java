@@ -77,13 +77,13 @@ public class Project implements ModelEntity {
 
 
     // Not a columns!
-    /*
+
     @OneToMany (mappedBy = "project")
     List<ProjectEmployeeJoint> employeeJoint;
 
     @OneToMany (mappedBy = "project")
     List<ProjectTechJoint> techJoint;
-    */
+
     ///
 
     public Project () {}

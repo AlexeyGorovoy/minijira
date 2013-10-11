@@ -23,8 +23,6 @@ public class ProjectTechJoint {
     @Id
     int tech_id;
 
-    boolean active;
-
     @ManyToOne
     @PrimaryKeyJoinColumn(name="project_id", referencedColumnName="project_id")
     private Project project;

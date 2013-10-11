@@ -1,8 +1,12 @@
 package minijira.ejb.database.model;
 
+import minijira.ejb.database.model.joint.DeveloperTechJoint;
 import minijira.ejbapi.dto.*;
+import minijira.ejbapi.dto.joint.DeveloperTechDto;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by  Alexey Gorovoy
@@ -30,10 +34,19 @@ public class Developer implements ModelEntity{
     @JoinColumn(name = "main_tech_id", nullable = false)
     Tech mainTech;
 
+    // Not a column
+    @OneToMany (mappedBy = "developer")
+    List<DeveloperTechJoint> techs;
+    ///
+
     @Override
     public Dto getDto() {
+        List<DeveloperTechDto> techDtos = new LinkedList<DeveloperTechDto>();
+        for (DeveloperTechJoint joint : techs) {
+            techDtos.add((DeveloperTechDto)joint.getDto());
+        }
         return new DeveloperDto((EmployeeDto)employee.getDto(),
                                 (RankDto)rank.getDto(),
-                                (TechDto)mainTech.getDto());
+                                (TechDto)mainTech.getDto(), techDtos);
     }
 }

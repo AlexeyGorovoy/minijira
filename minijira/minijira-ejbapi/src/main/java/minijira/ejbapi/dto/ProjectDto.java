@@ -1,5 +1,7 @@
 package minijira.ejbapi.dto;
 
+import minijira.ejbapi.dto.joint.ProjectEmployeeDto;
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +24,14 @@ public class ProjectDto  implements Dto {
     private CustomerAgentDto customer_agent;
     private CustomerDto customer;
     private ProjectTypeDto type;
+    private List<TechDto> techs;
+    private List<ProjectEmployeeDto> employees;
 
     public ProjectDto() {}
 
     public ProjectDto(int id, String title, String description, Date date_start, Date date_end, DeveloperDto dev_leader, TesterDto test_leader,
-                      ManagerDto pm, CustomerAgentDto customer_agent, CustomerDto customer, ProjectTypeDto type) {
+                      ManagerDto pm, CustomerAgentDto customer_agent, CustomerDto customer, ProjectTypeDto type,
+                      List<TechDto> techs, List<ProjectEmployeeDto> employees) {
         this.id = id;
         this.title = title;
         this.date_start = date_start;
@@ -38,6 +43,8 @@ public class ProjectDto  implements Dto {
         this.customer_agent = customer_agent;
         this.customer = customer;
         this.type = type;
+        this.techs = techs;
+        this.employees = employees;
     }
 
     public int getId() {
@@ -126,5 +133,21 @@ public class ProjectDto  implements Dto {
 
     public void setDate_end(Date date_end) {
         this.date_end = date_end;
+    }
+
+    public List<TechDto> getTechs() {
+        return techs;
+    }
+
+    public void setTechs(List<TechDto> techs) {
+        this.techs = techs;
+    }
+
+    public List<ProjectEmployeeDto> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<ProjectEmployeeDto> employees) {
+        this.employees = employees;
     }
 }
