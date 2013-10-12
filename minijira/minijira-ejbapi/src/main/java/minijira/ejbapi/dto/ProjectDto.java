@@ -30,8 +30,7 @@ public class ProjectDto  implements Dto {
     public ProjectDto() {}
 
     public ProjectDto(int id, String title, String description, Date date_start, Date date_end, DeveloperDto dev_leader, TesterDto test_leader,
-                      ManagerDto pm, CustomerAgentDto customer_agent, CustomerDto customer, ProjectTypeDto type,
-                      List<TechDto> techs, List<ProjectEmployeeDto> employees) {
+                      ManagerDto pm, CustomerAgentDto customer_agent, CustomerDto customer, ProjectTypeDto type) {
         this.id = id;
         this.title = title;
         this.date_start = date_start;
@@ -43,8 +42,12 @@ public class ProjectDto  implements Dto {
         this.customer_agent = customer_agent;
         this.customer = customer;
         this.type = type;
+        /*
+        List<TechDto> techs, List<ProjectEmployeeDto> employees
+
         this.techs = techs;
         this.employees = employees;
+        */
     }
 
     public int getId() {

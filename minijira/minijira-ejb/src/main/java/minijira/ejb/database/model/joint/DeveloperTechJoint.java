@@ -22,7 +22,7 @@ public class DeveloperTechJoint implements ModelEntity {
     int developer_id;
 
     @Id
-    int tech_id;
+    int dev_tech_id;
 
     int experience;
 
