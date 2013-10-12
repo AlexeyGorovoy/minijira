@@ -1,11 +1,6 @@
 package minijira.ejb.database.model;
 
 
-import minijira.ejbapi.dto.CommentDto;
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.EmployeeDto;
-import minijira.ejbapi.dto.ProjectDto;
-
 import javax.persistence.*;
 
 @Entity
@@ -36,8 +31,35 @@ public class Comment implements ModelEntity{
     @JoinColumn (name = "project_id", nullable = false)
     Project project;
 
-    @Override
-    public Dto getDto() {
-        return new CommentDto(id, text, (EmployeeDto)employee.getDto(), (ProjectDto)project.getDto());
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

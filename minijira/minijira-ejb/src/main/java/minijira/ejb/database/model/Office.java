@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.OfficeDto;
-
 import javax.persistence.*;
 
 /**
@@ -27,15 +24,27 @@ public class Office implements ModelEntity {
     public Office() {
     }
 
-    public Office(OfficeDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
-        address = dto.getAddress();
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    @Override
-    public Dto getDto() {
-        return new OfficeDto(id, title, address);
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -1,13 +1,8 @@
 package minijira.ejb.database.model;
 
 
-import minijira.ejb.database.model.joint.ProjectEmployeeJoint;
-import minijira.ejb.database.model.joint.ProjectTechJoint;
-import minijira.ejbapi.dto.*;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by  Alexey Gorovoy
@@ -88,11 +83,91 @@ public class Project implements ModelEntity {
 
     public Project () {}
 
-    @Override
-    public Dto getDto() {
-        return new ProjectDto(id, title, description, date_start, date_end, (DeveloperDto) dev_leader.getDto(),
-                    (TesterDto)test_leader.getDto(), (ManagerDto) pm.getDto(),
-                    (CustomerAgentDto)customer_agent.getDto(),
-                    (CustomerDto)customer.getDto(), (ProjectTypeDto)type.getDto());
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDate_start() {
+        return date_start;
+    }
+
+    public void setDate_start(Date date_start) {
+        this.date_start = date_start;
+    }
+
+    public Date getDate_end() {
+        return date_end;
+    }
+
+    public void setDate_end(Date date_end) {
+        this.date_end = date_end;
+    }
+
+    public Developer getDev_leader() {
+        return dev_leader;
+    }
+
+    public void setDev_leader(Developer dev_leader) {
+        this.dev_leader = dev_leader;
+    }
+
+    public Tester getTest_leader() {
+        return test_leader;
+    }
+
+    public void setTest_leader(Tester test_leader) {
+        this.test_leader = test_leader;
+    }
+
+    public Manager getPm() {
+        return pm;
+    }
+
+    public void setPm(Manager pm) {
+        this.pm = pm;
+    }
+
+    public CustomerAgent getCustomer_agent() {
+        return customer_agent;
+    }
+
+    public void setCustomer_agent(CustomerAgent customer_agent) {
+        this.customer_agent = customer_agent;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public ProjectType getType() {
+        return type;
+    }
+
+    public void setType(ProjectType type) {
+        this.type = type;
     }
 }

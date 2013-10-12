@@ -24,7 +24,6 @@
     <modules>
         <module>minijira-ear</module>
         <module>minijira-ejb</module>
-        <module>minijira-ejbapi</module>
         <module>minijira-web</module>
     </modules>
 

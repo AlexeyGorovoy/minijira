@@ -1,7 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.*;
-
 import javax.persistence.*;
 
 /**
@@ -30,10 +28,27 @@ public class Developer implements ModelEntity{
     @JoinColumn(name = "main_tech_id", nullable = false)
     Tech mainTech;
 
-    @Override
-    public Dto getDto() {
-        return new DeveloperDto((EmployeeDto)employee.getDto(),
-                                (RankDto)rank.getDto(),
-                                (TechDto)mainTech.getDto());
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public Tech getMainTech() {
+        return mainTech;
+    }
+
+    public void setMainTech(Tech mainTech) {
+        this.mainTech = mainTech;
     }
 }

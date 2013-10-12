@@ -1,6 +1,8 @@
 package minijira.web;
 
-import minijira.ejbapi.dto.ProjectDto;
+
+import minijira.ejb.database.model.Project;
+import minijira.ejb.util.Log;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -16,7 +18,7 @@ import java.util.List;
  */
 @ManagedBean
 public class ProjectsBean {
-    List<ProjectDto> projects;
+    List<Project> projects;
 
     int employee_id;
 
@@ -27,7 +29,10 @@ public class ProjectsBean {
 
     @PostConstruct
     void init() {
+        Log.getLogger().info("ProjectsBean.init() called");
+        Log.getLogger().info("databaseBean = " + databaseBean);
         projects = databaseBean.getProjects();
+        Log.getLogger().info("ProjectsBean.init() called");
     }
 
     public void findProjectsByEmployee() {
@@ -38,11 +43,11 @@ public class ProjectsBean {
         projects = databaseBean.findProjectsByTechSP(tech_id);
     }
 
-    public List<ProjectDto> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(List<ProjectDto> projects) {
+    public void setProjects(List<Project> projects) {
         this.projects = projects;
     }
 

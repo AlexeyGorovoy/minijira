@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.ManagerTypeDto;
-
 import javax.persistence.*;
 
 /**
@@ -26,14 +23,27 @@ public class ManagerType implements ModelEntity{
 
     public ManagerType() {}
 
-    public ManagerType(ManagerTypeDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
-        description = dto.getDescription();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public Dto getDto() {
-        return new ManagerTypeDto(id, title, description);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

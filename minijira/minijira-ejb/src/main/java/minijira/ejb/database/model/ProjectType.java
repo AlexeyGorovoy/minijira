@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.ProjectTypeDto;
-
 import javax.persistence.*;
 
 /**
@@ -26,14 +23,4 @@ public class ProjectType implements ModelEntity{
 
     public ProjectType() {}
 
-    public ProjectType(ProjectTypeDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
-        description = dto.getDescription();
-    }
-
-    @Override
-    public Dto getDto() {
-        return new ProjectTypeDto(id, title, description);
-    }
 }

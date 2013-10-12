@@ -1,7 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.*;
-
 import javax.persistence.*;
 
 /**
@@ -30,10 +28,27 @@ public class Tester implements ModelEntity{
     @JoinColumn(name = "test_type_id", nullable = false)
     TestType type;
 
-    @Override
-    public Dto getDto() {
-        return new TesterDto((EmployeeDto)employee.getDto(),
-                (RankDto)rank.getDto(),
-                (TestTypeDto)type.getDto());
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
+    public void setRank(Rank rank) {
+        this.rank = rank;
+    }
+
+    public TestType getType() {
+        return type;
+    }
+
+    public void setType(TestType type) {
+        this.type = type;
     }
 }

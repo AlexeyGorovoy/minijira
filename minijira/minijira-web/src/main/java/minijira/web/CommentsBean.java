@@ -1,6 +1,6 @@
 package minijira.web;
 
-import minijira.ejbapi.dto.CommentDto;
+import minijira.ejb.database.model.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -20,21 +20,21 @@ public class CommentsBean {
 
     int project_id;
 
-    List<CommentDto> comments;
+    List<Comment> comments;
 
     @ManagedProperty  (value = "#{databaseBean}")
     DatabaseBean databaseBean;
 
     @PostConstruct
     void init() {
-        comments = new LinkedList<CommentDto>();
+        comments = new LinkedList<Comment>();
     }
 
-    public List<CommentDto> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<CommentDto> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 

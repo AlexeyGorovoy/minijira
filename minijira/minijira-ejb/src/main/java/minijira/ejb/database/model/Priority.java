@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.PriorityDto;
-
 import javax.persistence.*;
 
 /**
@@ -27,14 +24,19 @@ public class Priority implements ModelEntity {
     public Priority() {
     }
 
-    public Priority(PriorityDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public Dto getDto() {
-        return new PriorityDto(id, title);
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

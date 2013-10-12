@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.CustomerDto;
-import minijira.ejbapi.dto.Dto;
-
 import javax.persistence.*;
 
 /**
@@ -29,16 +26,43 @@ public class Customer implements ModelEntity{
 
     public Customer() {}
 
-    public Customer(CustomerDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
-        description = dto.getDescription();
-        address = dto.getAddress();
-        info = dto.getInfo();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public Dto getDto() {
-        return new CustomerDto(id, title, description, address, info);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

@@ -1,7 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.*;
-
 import javax.persistence.*;
 
 /**
@@ -26,9 +24,19 @@ public class CustomerAgent implements ModelEntity{
     @JoinColumn(name = "customer_id", nullable = false)
     Customer customer;
 
-    @Override
-    public Dto getDto() {
-        return new CustomerAgentDto((EmployeeDto)employee.getDto(),
-                (CustomerDto)customer.getDto());
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.TechDto;
-
 import javax.persistence.*;
 
 /**
@@ -26,14 +23,27 @@ public class Tech implements ModelEntity{
 
     public Tech() {}
 
-    public Tech(TechDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
-        description = dto.getDescription();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public Dto getDto() {
-        return new TechDto(id, title, description);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -1,7 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.*;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -52,10 +50,83 @@ public class Task implements ModelEntity{
     @JoinColumn(name = "workflow_id")
     Workflow workflow;
 
-    @Override
-    public Dto getDto() {
-        return new TaskDto(id, title, description, dueto, closed, (ProjectDto)project.getDto(),
-                (EmployeeDto)assignee.getDto(), (EmployeeDto)reporter.getDto(),
-                (PriorityDto)priority.getDto(), (WorkflowDto)workflow.getDto());
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Date getDueto() {
+        return dueto;
+    }
+
+    public void setDueto(Date dueto) {
+        this.dueto = dueto;
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Employee getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(Employee assignee) {
+        this.assignee = assignee;
+    }
+
+    public Employee getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(Employee reporter) {
+        this.reporter = reporter;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Workflow getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(Workflow workflow) {
+        this.workflow = workflow;
     }
 }

@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.RankDto;
-
 import javax.persistence.*;
 
 /**
@@ -25,13 +22,19 @@ public class Rank implements ModelEntity{
 
     public Rank () {}
 
-    public Rank (RankDto dto) {
-        id = dto.getId();
-        title = dto.getTitle();
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public Dto getDto() {
-        return new RankDto(id, title);
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

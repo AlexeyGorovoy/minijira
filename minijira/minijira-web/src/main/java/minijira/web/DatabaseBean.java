@@ -1,10 +1,14 @@
 package minijira.web;
 
-import minijira.ejbapi.DatabaseController;
-import minijira.ejbapi.dto.*;
+import minijira.ejb.database.DatabaseController;
+import minijira.ejb.database.DatabaseControllerBean;
+import minijira.ejb.database.model.*;
 
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.List;
 
 /**
@@ -15,94 +19,99 @@ import java.util.List;
  */
 @SuppressWarnings(value = "unchecked")
 @ManagedBean
+@SessionScoped
 public class DatabaseBean {
 
-    @EJB
-    DatabaseController dc;
+    //@EJB
+    DatabaseController dc = new DatabaseControllerBean();
 
-    public List<CommentDto> getComments() {
-        return (List<CommentDto>)dc.getComment();
+    public DatabaseBean() {
+        dc = new DatabaseControllerBean();
     }
 
-    public List<CommentDto> getCommentsByProject(int project_id) {
-        return (List<CommentDto>)dc.getCommentByProject(project_id);
+    public List<Comment> getComments() {
+        return dc.getComment();
+    }
+
+    public List<Comment> getCommentsByProject(int project_id) {
+        return dc.getCommentByProject(project_id);
     }
 
     // Stored procedures
-    public List<CommentDto> getCommentsByProjectSP(int project_id) {
-        return (List<CommentDto>)dc.findCommentByProjectSP(project_id);
+    public List<Comment> getCommentsByProjectSP(int project_id) {
+        return dc.findCommentByProjectSP(project_id);
     }
 
-    public List<ProjectDto> findProjectsByEmployeeSP(int employee_id) {
-        return (List<ProjectDto>)dc.findProjectByEmployeeSP(employee_id);
+    public List<Project> findProjectsByEmployeeSP(int employee_id) {
+        return dc.findProjectByEmployeeSP(employee_id);
     }
 
-    public List<ProjectDto> findProjectsByTechSP(int tech_id) {
-        return (List<ProjectDto>)dc.findProjectByTechSP(tech_id);
+    public List<Project> findProjectsByTechSP(int tech_id) {
+        return dc.findProjectByTechSP(tech_id);
     }
     ///
 
-    public List<EmployeeDto> getEmployees () {
-        return (List<EmployeeDto>)dc.get(EmployeeDto.class);
+    public List<Employee> getEmployees () {
+        return (List<Employee>)dc.get(Employee.class);
     }
 
-    public List<TesterDto> getTesters () {
-        return (List<TesterDto>)dc.get(TesterDto.class);
+    public List<Tester> getTesters () {
+        return (List<Tester>)dc.get(Tester.class);
     }
 
-    public List<ManagerDto> getManagers () {
-        return (List<ManagerDto>)dc.get(ManagerDto.class);
+    public List<Manager> getManagers () {
+        return (List<Manager>)dc.get(Manager.class);
     }
 
-    public List<CustomerAgentDto> getCustomerAgents () {
-        return (List<CustomerAgentDto>)dc.get(CustomerAgentDto.class);
+    public List<CustomerAgent> getCustomerAgents () {
+        return (List<CustomerAgent>)dc.get(CustomerAgent.class);
     }
 
-    public List<DeveloperDto> getDevelopers () {
-        return (List<DeveloperDto>)dc.get(DeveloperDto.class);
+    public List<Developer> getDevelopers () {
+        return (List<Developer>)dc.get(Developer.class);
     }
 
-    public List<OfficeDto> getOffices () {
-        return (List<OfficeDto>)dc.get(OfficeDto.class);
+    public List<Office> getOffices () {
+        return (List<Office>)dc.get(Office.class);
     }
 
-    public List<PriorityDto> getPriorities() {
-        return (List<PriorityDto>)dc.get(PriorityDto.class);
+    public List<Priority> getPriorities() {
+        return (List<Priority>)dc.get(Priority.class);
     }
 
-    public List<WorkflowDto> getWorkflows() {
-        return (List<WorkflowDto>)dc.get(WorkflowDto.class);
+    public List<Workflow> getWorkflows() {
+        return (List<Workflow>)dc.get(Workflow.class);
     }
 
-    public List<RankDto> getRanks() {
-        return (List<RankDto>)dc.get(RankDto.class);
+    public List<Rank> getRanks() {
+        return (List<Rank>)dc.get(Rank.class);
     }
 
-    public List<ProjectTypeDto> getProjectTypes() {
-        return (List<ProjectTypeDto>)dc.get(ProjectTypeDto.class);
+    public List<ProjectType> getProjectTypes() {
+        return (List<ProjectType>)dc.get(ProjectType.class);
     }
 
-    public List<TestTypeDto> getTestTypes() {
-        return (List<TestTypeDto>)dc.get(TestTypeDto.class);
+    public List<TestType> getTestTypes() {
+        return (List<TestType>)dc.get(TestType.class);
     }
 
-    public List<ManagerTypeDto> getManagerTypes() {
-        return (List<ManagerTypeDto>)dc.get(ManagerTypeDto.class);
+    public List<ManagerType> getManagerTypes() {
+        return (List<ManagerType>)dc.get(ManagerType.class);
     }
 
-    public List<TechDto> getTechs() {
-        return (List<TechDto>)dc.get(TechDto.class);
+    public List<Tech> getTechs() {
+        return (List<Tech>)dc.get(Tech.class);
     }
 
-    public List<CustomerDto> getCustomers() {
-        return (List<CustomerDto>)dc.get(CustomerDto.class);
+    public List<Customer> getCustomers() {
+        return (List<Customer>)dc.get(Customer.class);
     }
 
-    public List<ProjectDto> getProjects() {
-        return (List<ProjectDto>)dc.get(ProjectDto.class);
+    public List<Project> getProjects() {
+        return (List<Project>)dc.get(Project.class);
     }
 
-    public List<TaskDto> getTasks() {
-        return (List<TaskDto>)dc.get(TaskDto.class);
+    public List<Task> getTasks() {
+        return (List<Task>)dc.get(Task.class);
     }
 }

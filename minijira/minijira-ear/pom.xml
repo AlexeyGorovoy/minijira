@@ -42,12 +42,6 @@
                             <artifactId>minijira-ejb</artifactId>
                             <bundleFileName>minijira-ejb-${ejb.version}.jar</bundleFileName>
                         </ejbModule>
-                        <jarModule>
-                            <groupId>com.mycompany</groupId>
-                            <artifactId>minijira-ejbapi</artifactId>
-                            <bundleFileName>minijira-ejbapi-${ejbapi.version}.jar</bundleFileName>
-                            <bundleDir>lib</bundleDir>
-                        </jarModule>
                     </modules>
 
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
@@ -74,13 +68,6 @@
             <artifactId>minijira-ejb</artifactId>
             <version>${ejb.version}</version>
             <type>ejb</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.mycompany</groupId>
-            <artifactId>minijira-ejbapi</artifactId>
-            <version>${ejbapi.version}</version>
-            <type>jar</type>
         </dependency>
 
     </dependencies>

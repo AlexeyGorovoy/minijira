@@ -1,8 +1,5 @@
 package minijira.ejb.database.model;
 
-import minijira.ejbapi.dto.Dto;
-import minijira.ejbapi.dto.EmployeeDto;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -39,22 +36,6 @@ public class Employee implements ModelEntity {
     public Employee() {
     }
 
-    public Employee(EmployeeDto dto) {
-        id = dto.getId();
-        name = dto.getName();
-        surname = dto.getSurname();
-        date_hired = dto.getDate_hired();
-        phonenumber = dto.getPhonenumber();
-        email = dto.getEmail();
-        skype = dto.getSkype();
-        password = dto.getPassword();
-    }
-
-    @Override
-    public Dto getDto() {
-        return new EmployeeDto(id, name, surname, phonenumber, email, skype, password, date_hired);
-    }
-
     public int getId() {
         return id;
     }
@@ -77,6 +58,14 @@ public class Employee implements ModelEntity {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Date getDate_hired() {
+        return date_hired;
+    }
+
+    public void setDate_hired(Date date_hired) {
+        this.date_hired = date_hired;
     }
 
     public String getPhonenumber() {
@@ -109,13 +98,5 @@ public class Employee implements ModelEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Date getDate_hired() {
-        return date_hired;
-    }
-
-    public void setDate_hired(Date date_hired) {
-        this.date_hired = date_hired;
     }
 }

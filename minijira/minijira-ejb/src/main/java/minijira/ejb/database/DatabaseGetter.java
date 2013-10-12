@@ -1,7 +1,6 @@
 package minijira.ejb.database;
 
 import minijira.ejb.database.model.ModelEntity;
-import minijira.ejbapi.dto.Dto;
 
 import javax.persistence.Query;
 import java.util.LinkedList;
@@ -23,12 +22,12 @@ public class DatabaseGetter <E extends ModelEntity> {
 
     public List get() {
         List<E> entities = query.getResultList();
-
+        /*
         List<Dto> dtos = new LinkedList<Dto>();
         for (E e : entities) {
             dtos.add(e.getDto());
         }
-
-        return dtos;
+          */
+        return entities;
     }
 }
