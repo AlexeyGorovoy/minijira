@@ -1,6 +1,6 @@
 package minijira.web;
 
-import minijira.ejb.database.model.*;
+import ejb.database.model.Comment;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

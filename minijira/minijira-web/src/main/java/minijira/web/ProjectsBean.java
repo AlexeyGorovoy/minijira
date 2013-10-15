@@ -1,8 +1,8 @@
 package minijira.web;
 
 
-import minijira.ejb.database.model.Project;
-import minijira.ejb.util.Log;
+import ejb.database.model.Project;
+import ejb.util.Log;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;

@@ -1,12 +1,10 @@
 package minijira.web;
 
-import minijira.ejb.database.DatabaseController;
-import minijira.ejb.database.DatabaseControllerBean;
-import minijira.ejb.database.model.*;
+import ejb.database.model.*;
+import ejb.database.DatabaseController;
+import ejb.database.DatabaseControllerBean;
 
 
-import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.List;

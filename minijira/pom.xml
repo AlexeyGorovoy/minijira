@@ -22,8 +22,6 @@
     </dependencies>
 
     <modules>
-        <module>minijira-ear</module>
-        <module>minijira-ejb</module>
         <module>minijira-web</module>
     </modules>
 
