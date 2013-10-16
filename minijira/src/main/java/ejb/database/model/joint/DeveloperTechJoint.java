@@ -2,8 +2,7 @@ package ejb.database.model.joint;
 
 import javax.persistence.*;
 
-import ejb.database.model.Tech;
-import ejb.database.model.Project;
+import ejb.database.model.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,22 +12,22 @@ import ejb.database.model.Project;
  * Email: alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table(name = "project_tech_joint")
-@IdClass(ProjectTechId.class)
-public class ProjectTechJoint {
+@Table(name = "dev_tech_joint")
+@IdClass(DeveloperTechId.class)
+public class DeveloperTechJoint implements ModelEntity {
     @Id
-    int project_id;
+    int developer_id;
 
     @Id
-    int tech_id;
+    int dev_tech_id;
+
+    int experience;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="project_id", referencedColumnName="project_id")
-    private Project project;
+    @PrimaryKeyJoinColumn(name="developer_id", referencedColumnName="employee_id")
+    private Developer developer;
 
     @ManyToOne
     @PrimaryKeyJoinColumn(name="dev_tech_id", referencedColumnName="dev_tech_id")
     private Tech tech;
-
-
 }

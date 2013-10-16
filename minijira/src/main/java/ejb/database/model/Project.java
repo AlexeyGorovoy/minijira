@@ -70,9 +70,9 @@ public class Project implements ModelEntity {
     @JoinColumn (name = "project_type_id")
     private ProjectType type;
 
-
-    // Not a columns!
     /*
+    // Not a columns!
+
     @OneToMany (mappedBy = "project")
     List<ProjectEmployeeJoint> employeeJoint;
 

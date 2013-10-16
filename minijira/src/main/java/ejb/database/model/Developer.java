@@ -1,6 +1,8 @@
 package ejb.database.model;
 
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by  Alexey Gorovoy
@@ -50,5 +52,6 @@ public class Developer implements ModelEntity{
 
     public void setMainTech(Tech mainTech) {
         this.mainTech = mainTech;
+
     }
 }
