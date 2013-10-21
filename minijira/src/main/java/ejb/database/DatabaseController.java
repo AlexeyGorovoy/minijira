@@ -43,6 +43,11 @@ public interface DatabaseController {
     List<Task> getTask();
 
 
+    //
+    Project find(int id);
+    ProjectType findProjectType(int id);
+    <T> T merge(T tObject);
+
     // --------------- Old
     void test();
 }

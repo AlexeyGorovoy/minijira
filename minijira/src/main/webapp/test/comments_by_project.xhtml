@@ -11,13 +11,7 @@
 <body>
 
 <h1 style="text-align: center;">Comments</h1>
-<h:form>
-    <h:selectOneMenu value="#{commentsBean.project_id}">
-        <f:selectItems value="#{databaseBean.projects}" var="p"
-                       itemLabel="#{p.title}" itemValue="#{p.id}" />
-    </h:selectOneMenu>
-    <h:commandButton value="Get!" action="#{commentsBean.refresh}" styleClass="btn btn-danger"/>
-</h:form>
+
 <table class="table" border="1" style="margin: auto;">
     <tr>
         <td style="text-align: center; font-weight: bold">Name</td>
@@ -33,4 +27,51 @@
 <br/>
 
 </body>
+</html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Test database</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="/blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+
+            <h2>Comments by project</h2>
+
+            <h:form>
+                <h:selectOneMenu value="#{commentsBean.project_id}">
+                    <f:selectItems value="#{databaseBean.projects}" var="p"
+                                   itemLabel="#{p.title}" itemValue="#{p.id}" />
+                </h:selectOneMenu>
+                <h:commandButton value="Get!" action="#{commentsBean.refresh}" styleClass="btn btn-danger"/>
+            </h:form>
+
+            <h:dataTable value="#{commentsBean.comments}" var="o" styleClass="table table-bordered">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{o.employee.name} #{o.employee.surname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Project (id)</f:facet>
+                    #{o.project} (#{o.project.id})
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Text</f:facet>
+                    #{o.text}
+                </h:column>
+            </h:dataTable>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
 </html>

@@ -1,40 +1,24 @@
-<html	xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:c="http://java.sun.com/jstl/core"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:a4j="http://richfaces.org/a4j"
-		xmlns:rich="http://richfaces.org/rich">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+<h:body>
 
-<head>
-	<title>Main Page</title>
-    <c:set var="context"
-           value="#{facesContext.externalContext.requestContextPath}"/>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="bootstrap/js/jquery-1.7.2.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css"></link>
-</head>
-<body>
-	<div id="container">
-	<h:form>
-	
-		
-		<ui:include src="blocks/menubar_block.xhtml"/>
-		<ui:include src="blocks/left_sidebar_block.xhtml"/>
-		<ui:include src="blocks/right_sidebar_block.xhtml"/>
+    <ui:composition template="/blocks/dafaultPage.xhtml">
 
-		<div id="content">
-			<h3>Жертвоприношения</h3>
+        <ui:define name="content">
+            <h2>Start page</h2>
 
-            Стартовая страничка ;)
+            <p>Hi there!</p>
+            <p>This is start page of minijira project tracking system!</p>
 
-        </div>
-		
-		<ui:include src="blocks/footer_block.xhtml"/>
-		
-	
-	</h:form>
-	</div>
-</body>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
 </html>

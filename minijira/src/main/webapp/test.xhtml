@@ -1,58 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+<h:body>
 
-<head>
-	<title>Test database</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
+    <ui:composition template="blocks/dafaultPage.xhtml">
 
-	<h1 style="text-align: center;">Test page</h1>
-    <h:outputLink value="test/employees.jsf" styleClass="btn btn-info">Employees table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/developers.jsf" styleClass="btn btn-info">Developers table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/testers.jsf" styleClass="btn btn-info">Testers table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/customer_agents.jsf" styleClass="btn btn-info">Customer agents table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/managers.jsf" styleClass="btn btn-info">Managers table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/offices.jsf" styleClass="btn btn-info">Offices table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/priorities.jsf" styleClass="btn btn-info">Priorities table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/workflows.jsf" styleClass="btn btn-info">Workflows table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/ranks.jsf" styleClass="btn btn-info">Ranks table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/project_types.jsf" styleClass="btn btn-info">Project types table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/test_types.jsf" styleClass="btn btn-info">Test types table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/manager_types.jsf" styleClass="btn btn-info">Manager types table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/techs.jsf" styleClass="btn btn-info">Techs table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/customers.jsf" styleClass="btn btn-info">Customers table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/comments.jsf" styleClass="btn btn-info">Comments table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/comments_by_project.jsf" styleClass="btn btn-danger">Comments by project</h:outputLink>
-    <br/>
-    <h:outputLink value="test/comments_by_project_sp.jsf" styleClass="btn btn-danger">Comments by project - stored procedure</h:outputLink>
-    <br/>
-    <h:outputLink value="test/projects.jsf" styleClass="btn btn-info">Projects table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/tasks.jsf" styleClass="btn btn-info">Tasks table</h:outputLink>
-    <br/>
-    <h:outputLink value="test/projects_by_employee_sp.jsf" styleClass="btn btn-danger">Projects by employee - stored procedure</h:outputLink>
-    <br/>
-    <h:outputLink value="test/projects_by_tech_sp.jsf" styleClass="btn btn-danger">Projects by tech - stored procedure</h:outputLink>
-    <br/>
-</body>
+        <ui:define name="content">
+            <h2>Test database</h2>
+
+            <h:panelGrid columns="3">
+
+            <h:outputLink value="test/employees.jsf" styleClass="btn btn-info">Employees table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/developers.jsf" styleClass="btn btn-info">Developers table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/testers.jsf" styleClass="btn btn-info">Testers table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/customer_agents.jsf" styleClass="btn btn-info">Customer agents table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/managers.jsf" styleClass="btn btn-info">Managers table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/offices.jsf" styleClass="btn btn-info">Offices table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/priorities.jsf" styleClass="btn btn-info">Priorities table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/workflows.jsf" styleClass="btn btn-info">Workflows table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/ranks.jsf" styleClass="btn btn-info">Ranks table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/project_types.jsf" styleClass="btn btn-info">Project types table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/test_types.jsf" styleClass="btn btn-info">Test types table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/manager_types.jsf" styleClass="btn btn-info">Manager types table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/techs.jsf" styleClass="btn btn-info">Techs table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/customers.jsf" styleClass="btn btn-info">Customers table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/comments.jsf" styleClass="btn btn-info">Comments table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/comments_by_project.jsf" styleClass="btn btn-danger">Comments by project</h:outputLink>
+            <br/>
+            <h:outputLink value="test/comments_by_project_sp.jsf" styleClass="btn btn-danger">Comments by project - stored procedure</h:outputLink>
+            <br/>
+            <h:outputLink value="test/projects.jsf" styleClass="btn btn-info">Projects table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/tasks.jsf" styleClass="btn btn-info">Tasks table</h:outputLink>
+            <br/>
+            <h:outputLink value="test/projects_by_employee_sp.jsf" styleClass="btn btn-danger">Projects by employee - stored procedure</h:outputLink>
+            <br/>
+            <h:outputLink value="test/projects_by_tech_sp.jsf" styleClass="btn btn-danger">Projects by tech - stored procedure</h:outputLink>
+            <br/>
+
+            </h:panelGrid>
+
+            <br/>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
 </html>

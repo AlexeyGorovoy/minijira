@@ -3,27 +3,30 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
 
-<head>
+<h:head>
     <title>Test database</title>
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-</head>
-<body>
+</h:head>
+<h:body>
 
-<h1 style="text-align: center;">Managers</h1>
-<table class="table" border="1" style="margin: auto;">
-    <tr>
-        <td style="text-align: center; font-weight: bold">Name</td>
-        <td style="text-align: center; font-weight: bold">Type</td>
-    </tr>
-    <ui:repeat var="entry2" value="#{databaseBean.managers}">
-        <tr>
-            <td><h:outputText value="#{entry2.employee.name} #{entry2.employee.surname}"/> </td>
-            <td><h:outputText value="#{entry2.type.title}"/> </td>
-        </tr>
-    </ui:repeat>
-</table>
-<br/>
+    <ui:composition template="/blocks/dafaultPage.xhtml">
 
-</body>
+        <ui:define name="content">
+
+            <h2>Managers</h2>
+            <h:dataTable value="#{databaseBean.managers}" var="o" styleClass="table table-bordered">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{o.employee.name} #{o.employee.surname}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{o.type.title}
+                </h:column>
+            </h:dataTable>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
 </html>

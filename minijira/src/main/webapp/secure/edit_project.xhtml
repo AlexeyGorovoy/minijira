@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+        >
+<h:body>
+
+    <ui:composition template="/blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+            <h3>Edit project</h3>
+
+            <h:form styleClass="form-actions">
+                <h:outputLabel value="Title">
+                    <h:inputText value="#{projectEditor.project.title}" />
+                </h:outputLabel>
+                <br/>
+                <h:outputLabel value="Type">
+                    <h:selectOneMenu value="#{projectEditor.projectTypeId}">
+                        <f:selectItems value="#{databaseBean.projectTypes}" var="t"
+                                       itemLabel="#{t.title}" itemValue="#{t.id}" />
+                    </h:selectOneMenu>
+                </h:outputLabel>
+                <br/>
+                <h:outputLabel value="Description">
+                    <h:inputText value="#{projectEditor.project.title}" />
+                </h:outputLabel>
+                <h:commandButton value="Save!" action="#{projectEditor.save()}" styleClass="btn btn-danger"/>
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>

@@ -39,7 +39,7 @@ public class DatabaseControllerBean implements DatabaseController {
 
     public Query createNamedQuery(String queryName) {
         if (em == null) {
-            EntityManagerFactory entityMangerFactory = Persistence.createEntityManagerFactory("minijira-ejb");
+            EntityManagerFactory entityMangerFactory = Persistence.createEntityManagerFactory("minijira");
             em = entityMangerFactory.createEntityManager();
         }
         Log.getLogger().info("createNamedQuery - " + queryName + ", em = " + em);
@@ -263,6 +263,25 @@ public class DatabaseControllerBean implements DatabaseController {
             return getTask();
         }
         return null;
+    }
+
+    // more finders...
+
+    @Override
+    public Project find(int id) {
+        Log.getLogger().info("tClass = " + Project.class + " id = " + id + "em = " + em);
+        return em.find(Project.class, id);
+    }
+
+    @Override
+    public ProjectType findProjectType(int id) {
+        Log.getLogger().info("tClass = " + ProjectType.class + " id = " + id + "em = " + em);
+        return em.find(ProjectType.class, id);
+    }
+
+    @Override
+    public <T> T merge(T tObject) {
+        return em.merge(tObject);
     }
 
     // ----------------- Old

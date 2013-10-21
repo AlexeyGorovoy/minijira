@@ -35,6 +35,20 @@ public class ProjectsBean {
         Log.getLogger().info("ProjectsBean.init() called");
     }
 
+    String slovo = "";
+
+    public String getSlovo() {
+        return slovo;
+    }
+
+    public String hello() {
+        return "Hello, " + slovo + "!";
+    }
+
+    public void setSlovo(String slovo) {
+        this.slovo = slovo;
+    }
+
     public void findProjectsByEmployee() {
         projects = databaseBean.findProjectsByEmployeeSP(employee_id);
     }

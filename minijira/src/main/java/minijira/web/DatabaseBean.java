@@ -21,7 +21,7 @@ import java.util.List;
 public class DatabaseBean {
 
     //@EJB
-    DatabaseController dc = new DatabaseControllerBean();
+    DatabaseController dc;
 
     public DatabaseBean() {
         dc = new DatabaseControllerBean();

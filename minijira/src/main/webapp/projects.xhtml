@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" >
+<h:head>
+    <title>Projects</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+            <h2>Projects list</h2>
+
+            <ui:repeat value="#{databaseBean.projects}" var="pr" >
+                <h3>#{pr.title}</h3>
+                <h3><h:outputText value="(#{pr.type.title})" title="#{pr.type.description}" /></h3><br/>
+                <h:panelGroup layout="block" styleClass="well well-small">
+
+                <h:outputText value="Customer: #{pr.customer.title}" /><br/>
+                <h:outputText value="PM: #{pr.pm.employee.name} #{pr.pm.employee.surname}" /><br/>
+                <h:outputText value="Dev leader: #{pr.dev_leader.employee.name} #{pr.dev_leader.employee.surname}" /><br/>
+                <p>
+                <br/>
+                #{pr.description}
+                </p>
+                <h:form>
+                    <h:commandLink value="Edit project" action="#{projectEditor.edit(pr.id)}">
+                        <i class="icon-edit"></i>
+                    </h:commandLink>
+                </h:form>
+                </h:panelGroup>
+
+                <br/><br/>
+            </ui:repeat>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+
+</html>
