@@ -1,15 +1,12 @@
 package minijira.web;
 
-import com.sun.faces.context.FacesContextImpl;
-import ejb.database.DatabaseController;
-import ejb.database.DatabaseControllerBean;
 import ejb.database.model.Project;
-import ejb.database.model.ProjectType;
 import ejb.util.Log;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.util.Map;
 
@@ -21,30 +18,52 @@ import java.util.Map;
  * Email: alexey.gorovoy.work@gmail.com
  */
 @ManagedBean
+@SessionScoped
 public class ProjectEditor {
 
 
     int projectTypeId;
+      /*
+    @ManagedProperty("#{param.projectId}")
+    */
+    int projectId;
 
     Project project;
 
 
-    DatabaseController dc;
+    @ManagedProperty  ("#{databaseBean}")
+    DatabaseBean databaseBean;
+
+    public ProjectEditor () {
+    }
 
     @PostConstruct
-    void init() {
-        dc = new DatabaseControllerBean();
+    void prepare() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        Map<String,String> params =
+                fc.getExternalContext().getRequestParameterMap();
+        projectId = Integer.parseInt(params.get("projectId"));
+        edit(projectId);
     }
 
     public String edit (int id) {
-        Log.getLogger().info("JSF : edit project with id" + id);
-        project = dc.find(id);
-        return "/secure/edit_project";
+
+        projectId = id;
+        /*
+
+        */
+        //String strId = params.get("projectId");
+
+        Log.getLogger().info("JSF : edit project with strId = " + projectId + "; with dc = " + databaseBean.getDc());
+        //projectId = Integer.parseInt(strId);
+        project = databaseBean.find(projectId);
+        Log.getLogger().info("JSF : project = " + project);
+        return "/secure/edit_project?faces-redirect=true";
     }
 
     public void save() {
-        project.setType(dc.findProjectType(projectTypeId));
-        dc.merge(project);
+        project.setType(databaseBean.getDc().findProjectType(projectTypeId));
+        project = databaseBean.getDc().merge(project);
     }
 
     public Project getProject() {
@@ -61,5 +80,21 @@ public class ProjectEditor {
 
     public void setProjectTypeId(int projectTypeId) {
         this.projectTypeId = projectTypeId;
+    }
+
+    public DatabaseBean getDatabaseBean() {
+        return databaseBean;
+    }
+
+    public void setDatabaseBean(DatabaseBean databaseBean) {
+        this.databaseBean = databaseBean;
+    }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 }

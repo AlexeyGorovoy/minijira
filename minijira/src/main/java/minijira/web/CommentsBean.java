@@ -22,7 +22,7 @@ public class CommentsBean {
 
     List<Comment> comments;
 
-    @ManagedProperty  (value = "#{databaseBean}")
+    @ManagedProperty  ("#{databaseBean}")
     DatabaseBean databaseBean;
 
     @PostConstruct

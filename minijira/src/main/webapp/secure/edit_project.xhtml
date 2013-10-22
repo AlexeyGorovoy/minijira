@@ -19,14 +19,14 @@
                 </h:outputLabel>
                 <br/>
                 <h:outputLabel value="Type">
-                    <h:selectOneMenu value="#{projectEditor.projectTypeId}">
+                    <h:selectOneMenu value="#{projectEditor.project.id}">
                         <f:selectItems value="#{databaseBean.projectTypes}" var="t"
                                        itemLabel="#{t.title}" itemValue="#{t.id}" />
                     </h:selectOneMenu>
                 </h:outputLabel>
                 <br/>
                 <h:outputLabel value="Description">
-                    <h:inputText value="#{projectEditor.project.title}" />
+                    <h:inputTextarea  value="#{projectEditor.project.description}" />
                 </h:outputLabel>
                 <h:commandButton value="Save!" action="#{projectEditor.save()}" styleClass="btn btn-danger"/>
             </h:form>

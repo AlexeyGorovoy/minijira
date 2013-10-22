@@ -5,7 +5,9 @@ import ejb.database.DatabaseController;
 import ejb.database.DatabaseControllerBean;
 
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.util.List;
 
@@ -16,15 +18,19 @@ import java.util.List;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @SuppressWarnings(value = "unchecked")
-@ManagedBean
+@ManagedBean (name = "databaseBean")
 @SessionScoped
 public class DatabaseBean {
 
-    //@EJB
+    @EJB
     DatabaseController dc;
 
     public DatabaseBean() {
-        dc = new DatabaseControllerBean();
+        //dc = new DatabaseControllerBean();
+    }
+
+    public Project find (int id) {
+        return dc.find(id);
     }
 
     public List<Comment> getComments() {
@@ -111,5 +117,13 @@ public class DatabaseBean {
 
     public List<Task> getTasks() {
         return (List<Task>)dc.get(Task.class);
+    }
+
+    public DatabaseController getDc() {
+        return dc;
+    }
+
+    public void setDc(DatabaseController dc) {
+        this.dc = dc;
     }
 }

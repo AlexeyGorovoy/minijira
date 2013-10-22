@@ -37,11 +37,15 @@ public class DatabaseControllerBean implements DatabaseController {
 
     }
 
-    public Query createNamedQuery(String queryName) {
+    private void initEM() {
         if (em == null) {
             EntityManagerFactory entityMangerFactory = Persistence.createEntityManagerFactory("minijira");
             em = entityMangerFactory.createEntityManager();
         }
+    }
+
+    public Query createNamedQuery(String queryName) {
+        initEM();
         Log.getLogger().info("createNamedQuery - " + queryName + ", em = " + em);
         return em.createNamedQuery(queryName);
     }
@@ -270,13 +274,13 @@ public class DatabaseControllerBean implements DatabaseController {
     @Override
     public Project find(int id) {
         Log.getLogger().info("tClass = " + Project.class + " id = " + id + "em = " + em);
-        return em.find(Project.class, id);
+        return em.getReference(Project.class, id);
     }
 
     @Override
     public ProjectType findProjectType(int id) {
         Log.getLogger().info("tClass = " + ProjectType.class + " id = " + id + "em = " + em);
-        return em.find(ProjectType.class, id);
+        return em.getReference(ProjectType.class, id);
     }
 
     @Override

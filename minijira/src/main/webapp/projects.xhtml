@@ -28,9 +28,9 @@
                 #{pr.description}
                 </p>
                 <h:form>
-                    <h:commandLink value="Edit project" action="#{projectEditor.edit(pr.id)}">
-                        <i class="icon-edit"></i>
-                    </h:commandLink>
+                    <h:link value="Edit project" outcome="/secure/edit_project.jsf">
+                        <f:param name="projectId" value="#{pr.id}" />
+                    </h:link>
                 </h:form>
                 </h:panelGroup>
 

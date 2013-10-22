@@ -13,14 +13,14 @@
         <ui:define name="content">
 
             <h2>Comments</h2>
-            <h:dataTable value="#{databaseBean.comments}" var="o" styleClass="table table-bordered">
+            <h:dataTable value="#{commentsBean.databaseBean.comments}" var="o" styleClass="table table-bordered">
                 <h:column>
                     <f:facet name="header">Name</f:facet>
                     #{o.employee.name} #{o.employee.surname}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Project (id)</f:facet>
-                    #{o.project} (#{o.project.id})
+                    #{o.project.title} (#{o.project.id})
                 </h:column>
                 <h:column>
                     <f:facet name="header">Text</f:facet>
