@@ -5,8 +5,10 @@ import ejb.database.model.Project;
 import ejb.util.Log;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -16,15 +18,20 @@ import java.util.List;
  * Time: 1:15
  * Email: alexey.gorovoy.work@gmail.com
  */
-@ManagedBean
-public class ProjectsBean {
+@Named("projectsBean")
+@SessionScoped
+public class ProjectsBean implements Serializable {
+
     List<Project> projects;
+
+    Project project;
 
     int employee_id;
 
     int tech_id;
 
-    @ManagedProperty (value = "#{databaseBean}")
+
+    @Inject
     DatabaseBean databaseBean;
 
     @PostConstruct
@@ -87,5 +94,28 @@ public class ProjectsBean {
 
     public void setDatabaseBean(DatabaseBean databaseBean) {
         this.databaseBean = databaseBean;
+    }
+
+    public String edit (int id) {
+        Log.getLogger().info("JSF : edit project with strId = " + id);
+        project = projects.get(id-1);
+        Log.getLogger().info("JSF : project = " + project + " title=" + project.getTitle() + " id=" + project.getId());
+        return "edit_project";
+    }
+
+    public String save() {
+        Log.getLogger().info("Project saved: " + project + " title=" + project.getTitle() + " id=" + project.getId());
+        project.setType(databaseBean.getDc().findProjectType(project.getType().getId()));
+        project = databaseBean.getDc().merge(project);
+        Log.getLogger().info("Project saved: " + project + " title=" + project.getTitle() + " id=" + project.getId());
+        return "projects";
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

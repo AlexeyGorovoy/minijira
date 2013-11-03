@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        template="blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.projectsList}</ui:define>
+    <ui:define name="content">
+        <h2>#{msgs.projectsList}</h2>
+
+        <ui:repeat value="#{databaseBean.projects}" var="pr" >
+            <h3>#{pr.title}</h3>
+            <h3><h:outputText value="(#{pr.type.title})" title="#{pr.type.description}" /></h3><br/>
+            <h:panelGroup layout="block" styleClass="well well-small">
+
+            <h:outputText value="#{msgs.customer}: #{pr.customer.title}" /><br/>
+            <h:outputText value="#{msgs.pm}: #{pr.pm.employee.name} #{pr.pm.employee.surname}" /><br/>
+            <h:outputText value="#{msgs.dev_leader}: #{pr.dev_leader.employee.name} #{pr.dev_leader.employee.surname}" /><br/>
+            <p>
+            #{msgs.description}
+            <br/>
+            #{pr.description}
+            </p>
+            <h:form>
+                <h:commandLink value="#{msgs.edit}" action="#{projectsBean.edit(pr.id)}" />
+            </h:form>
+            </h:panelGroup>
+
+            <br/><br/>
+        </ui:repeat>
+
+    </ui:define>
+
+</ui:composition>

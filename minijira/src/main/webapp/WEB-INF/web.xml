@@ -30,4 +30,35 @@
     <welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>SecurePages</web-resource-name>
+            <url-pattern>/pages/secure/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name>
+            <role-name>ADMINISTRATOR</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>jdbcRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsf</form-login-page>
+            <form-error-page>/error.jsf</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+    
+    <security-role>
+        <role-name>ADMINISTRATOR</role-name>
+    </security-role>
+
 </web-app>

@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Test database</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+
+            <h2>Projects by techology</h2>
+
+            <h:form styleClass="form-actions form-search ">
+                <h:selectOneMenu value="#{projectsBean.tech_id}">
+                    <f:selectItems value="#{databaseBean.techs}" var="t"
+                                   itemLabel="#{t.title}" itemValue="#{t.id}" />
+                </h:selectOneMenu>
+                <h:commandButton value="Find!" action="#{projectsBean.findProjectsByTech}" styleClass="btn btn-danger"/>
+            </h:form>
+
+            <h:dataTable value="#{projectsBean.projects}" var="o" styleClass="table table-bordered">
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{o.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Type</f:facet>
+                    #{o.type.title}
+                </h:column>
+            </h:dataTable>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

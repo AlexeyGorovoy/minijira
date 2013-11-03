@@ -3,8 +3,10 @@ package minijira.web;
 import ejb.database.model.Comment;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,14 +17,15 @@ import java.util.List;
  * Time: 16:34
  * Email: alexey.gorovoy.work@gmail.com
  */
-@ManagedBean
-public class CommentsBean {
+@Named("commentsBean")
+@SessionScoped
+public class CommentsBean implements Serializable {
 
     int project_id;
 
     List<Comment> comments;
 
-    @ManagedProperty  ("#{databaseBean}")
+    @Inject
     DatabaseBean databaseBean;
 
     @PostConstruct

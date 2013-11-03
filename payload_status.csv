@@ -1,0 +1,5 @@
+status_id,title,description
+1,Open,"Task is in progress."
+2,Suspended,
+3,Canceled,NULL
+4,Done,NULL

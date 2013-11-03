@@ -66,8 +66,8 @@ public class Project implements ModelEntity {
     @JoinColumn (name = "customer_id")
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn (name = "project_type_id")
+    @ManyToOne (cascade = CascadeType.ALL)
+    @JoinColumn (name = "project_type_id", referencedColumnName = "project_type_id")
     private ProjectType type;
 
     /*

@@ -1,0 +1,32 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+
+	<div class="navbar navbar-static-top topMenu">
+		<div class="navbar-inner">
+			<a class="brand" href="/index.jsf">#{msgs.minijira}</a>
+			<ul class="nav">
+                <li class="#{utils.url == '/index.xhtml' ? 'active' : ''}"><a href="/index.jsf">#{msgs.topMenuMain}</a></li>
+                <li class="#{utils.url == '/pages/projects.xhtml' ? 'active' : ''}"><a href="/pages/projects.jsf">#{msgs.topMenuProjects}</a></li>
+                <li class="#{utils.url == '/pages/techs.xhtml' ? 'active' : ''}"><a href="/pages/techs.jsf">#{msgs.topMenuTechs}</a></li>
+                <li class="#{utils.url == '/pages/customers.xhtml' ? 'active' : ''}"><a href="/pages/customers.jsf">#{msgs.topMenuCustomers}</a></li>
+                <li class="#{utils.url == '/pages/people.xhtml' ? 'active' : ''}"><a href="/pages/people.jsf">#{msgs.topMenuPeople}</a></li>
+                <li>
+                <h:form>
+                    <f:view locale="#{utils.locale}">
+                        <h:commandLink value="English" action="#{utils.switchLocale('en')}" />
+                        <h:commandLink value="Русский" action="#{utils.switchLocale('ru')}" />
+                    </f:view>
+                </h:form>
+                </li>
+			</ul>
+		</div>
+	</div>
+	
+	
+</ui:composition>

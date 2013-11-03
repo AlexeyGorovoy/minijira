@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-        >
-<h:body>
 
-    <ui:composition template="/blocks/dafaultPage.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.startPage}</ui:define>
+    <ui:define name="content">
+        <h2>#{msgs.startPage}</h2>
 
-        <ui:define name="content">
-            <h2>Start page</h2>
+        <p>#{msgs.hello}</p>
+        <p>#{msgs.startPageText}</p>
+        <!--
+        <h:form>
+            <h:panelGrid columns="2">
 
-            <p>Hi there!</p>
-            <p>This is start page of minijira project tracking system!</p>
+                <h:outputLabel for ="uname" value="Enter User Name :  "/>
+                <h:inputText id="uname" value="#{auth.username}"/>
+                <h:outputLabel for ="pass" value="Enter Password  :"/>
+                <h:inputSecret id="pass" value="#{auth.password}"/>    <br />
+                <h:outputText value="#{auth.message}" rendered='#{! auth.message.equals("")}' />  <br />
+                <h:commandButton id="login" value="Login" action="#{auth.login()}"/>
+            </h:panelGrid>
+        </h:form>
+        -->
+    </ui:define>
 
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-
-</html>
+</ui:composition>

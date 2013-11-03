@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Alexx
+  Date: 28.10.13
+  Time: 1:13
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <p>Login to access secure pages:</p>
+    <form method="post" action="j_security_check">
+        <h:panelGrid columns="2">
+            <h:outputLabel for="j_username" value="Username" />
+            <input type="text" name="j_username" />
+
+            <h:outputLabel for="j_password" value="Password" />
+            <input type="password" name="j_password" />
+
+            <h:outputText value="" />
+            <h:panelGrid columns="2">
+                <input type="submit" name="submit" value="Login" />
+                <h:button outcome="index" value="Cancel" />
+            </h:panelGrid>
+        </h:panelGrid>
+    </form>
+</h:body>
+
+
+</html>

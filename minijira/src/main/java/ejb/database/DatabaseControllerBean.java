@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
 @Local(value = DatabaseController.class)
 @Stateless
 @SuppressWarnings("unchecked")
-public class DatabaseControllerBean implements DatabaseController {
+public class DatabaseControllerBean implements DatabaseController, Serializable {
 
     EntityManager em;
 
@@ -285,7 +286,16 @@ public class DatabaseControllerBean implements DatabaseController {
 
     @Override
     public <T> T merge(T tObject) {
-        return em.merge(tObject);
+        T newObject = em.merge(tObject);
+        flush();
+        return newObject;
+    }
+
+    @Override
+    public void flush() {
+        em.getTransaction().begin();
+        em.flush();
+        em.getTransaction().commit();
     }
 
     // ----------------- Old

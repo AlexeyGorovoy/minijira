@@ -2,13 +2,12 @@ package minijira.web;
 
 import ejb.database.model.*;
 import ejb.database.DatabaseController;
-import ejb.database.DatabaseControllerBean;
-
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -18,11 +17,11 @@ import java.util.List;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @SuppressWarnings(value = "unchecked")
-@ManagedBean (name = "databaseBean")
+@Named("databaseBean")
 @SessionScoped
-public class DatabaseBean {
+public class DatabaseBean implements Serializable {
 
-    @EJB
+    @Inject
     DatabaseController dc;
 
     public DatabaseBean() {

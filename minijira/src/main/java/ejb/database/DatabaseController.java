@@ -48,6 +48,7 @@ public interface DatabaseController {
     ProjectType findProjectType(int id);
     <T> T merge(T tObject);
 
+    void flush();
     // --------------- Old
     void test();
 }

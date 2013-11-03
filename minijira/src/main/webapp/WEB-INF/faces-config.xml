@@ -6,4 +6,32 @@
         http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
+    <application>
+
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>ru</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+
+        <resource-bundle>
+            <base-name>minijira.locale.ResourceBundle</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+
+    </application>
+
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>projects</from-outcome>
+            <to-view-id>/pages/projects.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit_project</from-outcome>
+            <to-view-id>/pages/secure/edit_project.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

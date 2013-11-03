@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="height: 100%"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>
+        <ui:insert name="title">Page name</ui:insert>
+    </title>
+    <h:outputStylesheet library="css" name="common.css" />
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="bootstrap-tables.css" />
+    <h:outputScript library="js" name="bootstrap.min.js" />
+    <h:outputScript library="js" name="jquery-1.7.2.min.js" />
+
+</h:head>
+
+<h:body style="height: 100%">
+    <ui:include src="topMenu.xhtml" />
+
+        <ui:include src="leftBar.xhtml" />
+        <ui:include src="rightBar.xhtml" />
+
+        <h:panelGroup layout="block" styleClass="centerBox">
+
+            <ui:insert name="content" >
+                <ui:include src="" />
+            </ui:insert>
+
+        </h:panelGroup>
+
+
+        <h:panelGroup layout="block" styleClass=" well footer">
+            <ui:include src="footer.xhtml" />
+        </h:panelGroup>
+</h:body>
+</html>

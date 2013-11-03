@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Test database</title>
+</h:head>
+<h:body>
+
+    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+
+            <h2>Customers</h2>
+            <h:dataTable value="#{databaseBean.customers}" var="o" styleClass="table table-bordered">
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{o.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{o.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    #{o.address}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Info</f:facet>
+                    #{o.info}
+                </h:column>
+            </h:dataTable>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

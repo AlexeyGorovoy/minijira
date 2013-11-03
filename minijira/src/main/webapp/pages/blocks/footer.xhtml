@@ -1,0 +1,21 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputStylesheet library="css" name="common.css" />
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="bootstrap-tables.css" />
+    <h:outputScript library="js" name="bootstrap.min.js" />
+
+	<h:panelGroup layout="block">
+
+        <h:outputText value="#{msgs.footerText}" />
+		<h:link value="#{msgs.testPage}" outcome="/pages/test.jsf" styleClass="label"/>
+        <h:outputText value="#{msgs.name}, #{msgs.group}." />
+
+	</h:panelGroup>
+	
+</ui:composition>
