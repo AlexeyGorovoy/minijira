@@ -11,7 +11,7 @@
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.editManagerType}" style="font-weight: bold" />
+                <h4>#{msgs.editManagerType}</h4>
 
                 <h:outputLabel value="#{msgs.title}: " for="title" />
                 <h:inputText value="#{managerBean.managerType.title}" validator="minijira.NotNullValidator" id="title" />

@@ -1,76 +1,60 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core" >
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.customers}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
+        <h2>#{msgs.customers}</h2>
+        <h:dataTable value="#{databaseBean.customers}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.contactEmail}</f:facet>
+                #{o.contact_email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.info}</f:facet>
+                #{o.info}
+            </h:column>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+            <h:column rendered="#{auth.admin}">
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form >
+                    <h:commandLink value="#{msgs.edit}" action="#{projectsBean.editCustomer(o)}" styleClass="" />
+                    <a href="?customerId=#{o.id}#advanced" role="button" data-toggle="modal">
+                        #{msgs.edit} (modal)
+                    </a>
+                    <h:commandLink value="#{msgs.delete}" action="#{projectsBean.deleteCustomer(o)}" styleClass="alert-danger"/>
+                </h:form>
+            </h:column>
 
-        <ui:define name="content">
+        </h:dataTable>
 
-            <h2>Customers</h2>
-            <h:dataTable value="#{databaseBean.customers}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">Title</f:facet>
-                    #{o.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Contact email</f:facet>
-                    #{o.contact_email}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Info</f:facet>
-                    #{o.info}
-                </h:column>
+        <h:panelGroup rendered="#{auth.admin}">
+            <ui:include src="/pages/secure/add/customer.xhtml" />
+        </h:panelGroup>
 
-                <h:column rendered="#{auth.admin}">
-                    <f:facet name="header">Actions</f:facet>
-                    <h:form >
-                        <h:commandLink value="Edit" action="#{projectsBean.editCustomer(o)}" styleClass="" />
-                        <a href="?customerId=#{o.id}#advanced" role="button" data-toggle="modal">
-                            Edit (modal)
-                        </a>
-                        <h:commandLink value=" Delete" action="#{projectsBean.deleteCustomer(o)}" styleClass="alert-danger"/>
-                    </h:form>
-                </h:column>
-
-            </h:dataTable>
-
-            <h:panelGroup rendered="#{auth.admin}">
-                <ui:include src="/pages/secure/add/customer.xhtml" />
-            </h:panelGroup>
-
-
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <a href="#advanced" role="button" data-toggle="modal" class="btn btn-warning">Advanced Sort</a>
-                    </div>
-                </div>
+    <h:panelGroup style="" />
+        <!-- Advanced Modal -->
+        <div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>Edit customer</h4>
             </div>
-            <h:panelGroup style="" />
-            <!-- Advanced Modal -->
-            <div id="advanced" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="advancedSort" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4>Edit customer</h4>
-                </div>
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <h:panelGroup>
-                        <ui:include src="/pages/secure/edit/customer.xhtml" />
-                    </h:panelGroup>
+                <h:panelGroup>
+                    <ui:include src="/pages/secure/edit/customer.xhtml" />
+                </h:panelGroup>
 
-                </div>
             </div>
+        </div>
 
-        </ui:define>
+    </ui:define>
 
-    </ui:composition>
+</ui:composition>
 
-</h:body>
-</html>

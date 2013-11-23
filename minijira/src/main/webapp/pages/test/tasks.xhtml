@@ -1,68 +1,60 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.tasks}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-</h:head>
-<h:body>
+        <h2>#{msgs.tasks}</h2>
+        <h:dataTable value="#{databaseBean.tasks}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.project}</f:facet>
+                #{o.project.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.description}</f:facet>
+                #{o.description}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.posted}</f:facet>
+                #{o.dueto}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.assignee}</f:facet>
+                #{o.assignee.name} #{o.assignee.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.reporter}</f:facet>
+                #{o.reporter.name} #{o.reporter.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.priority}</f:facet>
+                #{o.priority.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.status}</f:facet>
+                #{o.status.title}
+            </h:column>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+            <h:column>
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form>
+                    <h:outputText rendered="#{! (auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id)}">#{msgs.none}</h:outputText>
+                    <h:commandLink value="#{msgs.edit}" action="#{taskBean.editTask(o)}" styleClass="" rendered="#{auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id}"/>
+                    <h:commandLink value="#{msgs.delete}" action="#{taskBean.deleteTask(o)}" styleClass="alert-danger"  rendered="#{auth.admin or o.reporter eq auth.employee}" />
+                </h:form>
+            </h:column>
+        </h:dataTable>
 
-        <ui:define name="content">
+        <h:panelGroup rendered="#{auth.hasProjects() or auth.admin}" >
+            <ui:include src="/pages/secure/add/task.xhtml" />
+        </h:panelGroup>
 
-            <h2>#{msgs.tasks}</h2>
-            <h:dataTable value="#{databaseBean.tasks}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">#{msgs.project}</f:facet>
-                    #{o.project.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.title}</f:facet>
-                    #{o.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.description}</f:facet>
-                    #{o.description}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.posted}</f:facet>
-                    #{o.dueto}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.assignee}</f:facet>
-                    #{o.assignee.name} #{o.assignee.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.reporter}</f:facet>
-                    #{o.reporter.name} #{o.reporter.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.priority}</f:facet>
-                    #{o.priority.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{msgs.status}</f:facet>
-                    #{o.status.title}
-                </h:column>
+    </ui:define>
 
-                <h:column>
-                    <f:facet name="header">Actions</f:facet>
-                    <h:form>
-                        <h:outputText rendered="#{! (auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id)}">None</h:outputText>
-                        <h:commandLink value="Edit" action="#{taskBean.editTask(o)}" styleClass="" rendered="#{auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id}"/>
-                        <h:commandLink value=" Delete" action="#{taskBean.deleteTask(o)}" styleClass="alert-danger"  rendered="#{auth.admin or o.reporter eq auth.employee}" />
-                    </h:form>
-                </h:column>
-            </h:dataTable>
-
-            <h:panelGroup rendered="#{auth.hasProjects() or auth.admin}" >
-                <ui:include src="/pages/secure/add/task.xhtml" />
-            </h:panelGroup>
-
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>

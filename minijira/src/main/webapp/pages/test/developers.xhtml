@@ -1,36 +1,26 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+<ui:define name="title">#{msgs.developers}</ui:define>
+    <ui:define name="content">
+        <h2>#{msgs.developers}</h2>
+        <h:dataTable value="#{databaseBean.developers}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.name}</f:facet>
+                #{o.employee.name} #{o.employee.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.mainTech}</f:facet>
+                #{o.mainTech.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.rank}</f:facet>
+                #{o.rank.title}
+            </h:column>
+        </h:dataTable>
 
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
+    </ui:define>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
-
-        <ui:define name="content">
-
-            <h2>Developers</h2>
-            <h:dataTable value="#{databaseBean.developers}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">Name</f:facet>
-                    #{o.employee.name} #{o.employee.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Main tech</f:facet>
-                    #{o.mainTech.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Rank</f:facet>
-                    #{o.rank.title}
-                </h:column>
-            </h:dataTable>
-
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>

@@ -11,7 +11,7 @@
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.editStatus}" style="font-weight: bold" />
+                <h4>#{msgs.editStatus}</h4>
 
                 <h:outputLabel value="#{msgs.title}" for="title" />
                 <h:inputText value="#{taskBean.status.title}" validator="minijira.NotNullValidator" id="title" />

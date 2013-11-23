@@ -14,7 +14,7 @@
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.addPriority}" style="font-weight: bold"/>
+                <h4>#{msgs.addPriority}</h4>
 
                 <h:outputLabel value="#{msgs.title}" for="title" />
                 <h:inputText value="#{adder.priority.title}" id="title" validator="minijira.NotNullValidator"/>

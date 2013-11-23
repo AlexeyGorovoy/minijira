@@ -8,7 +8,7 @@
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.addProject}" style="font-weight: bold" />
+                <h4>#{msgs.addProject}</h4>
 
                 <h:outputLabel value="#{msgs.title}: " for="title" />
                 <h:inputText value="#{adder.project.title}" validator="minijira.NotNullValidator" id="title" />

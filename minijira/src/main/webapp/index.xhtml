@@ -12,88 +12,42 @@
         <p>#{msgs.hello}</p>
         <p>#{msgs.startPageText}</p>
 
-        <!-- experiments -->
-        <!-- Advanced Modal -->
-        <div id="advanced">
-            <div class="modal-header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active">
-                        <a href="#date" data-toggle="pill">Date</a>
-                    </li>
-                    <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
-                    <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
-                </ul>
-                <h4>Advanced Sort</h4>
-            </div>
-            <div class="modal-body">
+        <h4>#{msgs.employees}</h4>
 
-                <div class="row-fluid">
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="date">
-
-                                <div class="controls controls-row">
-
-                                    <h:outputText value=">AAAAA text!" />
-                                    <h:outputLabel value="#{msgs.rank}: " for="dev_rank" />
-                                    <h:selectOneMenu value="#{adder.rankId}" id="dev_rank">
-                                        <f:selectItems value="#{databaseBean.ranks}" var="r1"
-                                                       itemLabel="#{r1.title}" itemValue="#{r1.id}" />
-                                    </h:selectOneMenu>
-
-                                    <h:outputLabel value="#{msgs.mainTech}: " for="main_tech" />
-                                    <h:selectOneMenu value="#{adder.rankId}" id="main_tech">
-                                        <f:selectItems value="#{databaseBean.techs}" var="tech"
-                                                       itemLabel="#{tech.title}" itemValue="#{tech.id}" />
-                                    </h:selectOneMenu>
-
-                                </div>
-
-                        </div>
-                        <div class="tab-pane" id="relevance">
-                            <form>
-                                <fieldset>
-                                    <div class="controls controls-row">
-                                        <select class="span6">
-                                            <option value="">Relevance Factor</option>
-                                            <option value="">Containing</option>
-                                            <option value="">Starting with</option>
-                                            <option value="">Enging with</option>
-                                        </select>
-                                        <select class="span6">
-                                            <option value="">Sorting</option>
-                                            <option value="">Relevant on top</option>
-                                            <option value="">Relevant on bottom</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning">Sort</button>
-                                </fieldset>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="dealership">
-                            <form>
-                                <fieldset>
-                                    <div class="controls controls-row">
-                                        <input type="text" class="span8" placeholder="Location" />
-                                        <select class="span4">
-                                            <option>City</option>
-                                            <option>Los Angeles</option>
-                                            <option>Tokyo</option>
-                                            <option>New York</option>
-                                            <option>London</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-warning">Sort</button>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- experiments -->
-
+        <h:panelGrid columns="3">
+            <h:outputLink value="/pages/test/employees.jsf" styleClass="btn btn-info">Employees table</h:outputLink>
+            <h:outputLink value="/pages/test/developers.jsf" styleClass="btn btn-primary">Developers table</h:outputLink>
+            <h:outputLink value="/pages/test/testers.jsf" styleClass="btn btn-info">Testers table</h:outputLink>
+            <h:outputLink value="/pages/test/managers.jsf" styleClass="btn btn-info">Managers table</h:outputLink>
+        </h:panelGrid>
+        <br/>
+        <h4>#{msgs.users}</h4>
+        <h:panelGrid columns="3">
+            <h:outputLink value="/pages/test/users.jsf" styleClass="btn btn-info">Users table</h:outputLink>
+            <h:outputLink value="/pages/test/roles.jsf" styleClass="btn btn-info">Roles table</h:outputLink>
+        </h:panelGrid>
+        <br/>
+        <h4>#{msgs.types}</h4>
+        <h:panelGrid columns="3">
+            <h:outputLink value="/pages/test/project_types.jsf" styleClass="btn btn-info">Project types table</h:outputLink>
+            <h:outputLink value="/pages/test/test_types.jsf" styleClass="btn btn-info">Test types table</h:outputLink>
+            <h:outputLink value="/pages/test/manager_types.jsf" styleClass="btn btn-info">Manager types table</h:outputLink>
+        </h:panelGrid>
+        <br/>
+        <h4>#{msgs.tasks}</h4>
+        <h:panelGrid columns="3">
+            <h:outputLink value="/pages/test/priorities.jsf" styleClass="btn btn-info">Priorities table</h:outputLink>
+            <h:outputLink value="/pages/test/statuses.jsf" styleClass="btn btn-info">Statuses table</h:outputLink>
+            <h:outputLink value="/pages/test/ranks.jsf" styleClass="btn btn-info">Ranks table</h:outputLink>
+            <h:outputLink value="/pages/test/tasks.jsf" styleClass="btn btn-info">Tasks table</h:outputLink>
+        </h:panelGrid>
+        <br/>
+        <h4>#{msgs.projects}</h4>
+        <h:panelGrid columns="3">
+            <h:outputLink value="/pages/test/techs.jsf" styleClass="btn btn-info">Techs table</h:outputLink>
+            <h:outputLink value="/pages/test/customers.jsf" styleClass="btn btn-info">Customers table</h:outputLink>
+            <h:outputLink value="/pages/test/projects.jsf" styleClass="btn btn-info">Projects table</h:outputLink>
+        </h:panelGrid>
+        <br/>
     </ui:define>
-
 </ui:composition>

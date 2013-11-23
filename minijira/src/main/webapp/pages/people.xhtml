@@ -6,43 +6,42 @@
         xmlns:ui="http://java.sun.com/jsf/facelets"
         xmlns:f="http://java.sun.com/jsf/core"
         template="blocks/dafaultPage.xhtml">
-    <ui:define name="title">#{msgs.projectsList}</ui:define>
+    <ui:define name="title">#{msgs.topMenuPeople}</ui:define>
     <ui:define name="content">
         <h2>#{msgs.topMenuPeople}</h2>
-        <br/>
-        <h4>Managers</h4>
-        <ui:repeat value="#{databaseBean.managers}" var="m" >
-            <h:panelGrid columns="1">
 
+        <h4>#{msgs.managers}</h4>
+        <ui:repeat value="#{databaseBean.managers}" var="m" >
+            <h:panelGrid >
                 <h:outputText value="#{m.employee.name} #{m.employee.surname} (#{m.type.title})" title="#{m.type.description}"/>
-                <h:outputLabel value="Skype: ">
+                <h:outputLabel value="#{msgs.skype}: ">
                     <h:outputText value="#{m.employee.skype}" />
                 </h:outputLabel>
-                <h:outputLabel value="Email: ">
+                <h:outputLink value="mailto:#{m.employee.email}">
                     <h:outputText value="#{m.employee.email}" />
-                </h:outputLabel>
+                </h:outputLink>
             </h:panelGrid>
         </ui:repeat>
 
         <br/>
-        <h4>Developers</h4>
+        <h4>#{msgs.developers}</h4>
         <ui:repeat value="#{databaseBean.developers}" var="d" >
-            <h:panelGrid columns="1">
-                <h:outputText value="#{d.employee.name} #{d.employee.surname} (#{d.mainTech.title})" title="#{d.mainTech.description}" />
-                <h:outputLabel value="Skype: ">
+            <h:panelGrid >
+                <h:outputText value="#{d.employee.name} #{d.employee.surname} (#{d.rank.title d.mainTech.title})" title="#{d.mainTech.description}"/>
+                <h:outputLabel value="#{msgs.skype}: ">
                     <h:outputText value="#{d.employee.skype}" />
                 </h:outputLabel>
-                <h:outputLabel value="Email: ">
+                <h:outputLink value="mailto:#{d.employee.email}">
                     <h:outputText value="#{d.employee.email}" />
-                </h:outputLabel>
+                </h:outputLink>
             </h:panelGrid>
         </ui:repeat>
         <br/>
-        <h4>Testers</h4>
+        <h4>#{msgs.testers}</h4>
         <ui:repeat value="#{databaseBean.testers}" var="t" >
             <h:panelGrid >
-                <h:outputText value="#{t.employee.name} #{t.employee.surname} (#{t.type.title})" title="#{t.type.description}"/>
-                <h:outputLabel value="Skype: ">
+                <h:outputText value="#{t.employee.name} #{t.employee.surname} (#{t.rank.title t.type.title})" title="#{t.type.description}"/>
+                <h:outputLabel value="{msgs.skype}: ">
                     <h:outputText value="#{t.employee.skype}" />
                 </h:outputLabel>
                 <h:outputLink value="mailto:#{t.employee.email}">

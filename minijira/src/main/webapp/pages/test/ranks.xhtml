@@ -1,38 +1,30 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.ranks}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-</h:head>
-<h:body>
+        <h2>#{msgs.ranks}</h2>
+        <h:dataTable value="#{databaseBean.ranks}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.title}
+            </h:column>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+            <h:column>
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form>
+                    <h:commandLink value="#{msgs.edit}" action="#{devBean.editRank(o)}" styleClass=""/>
+                    <h:commandLink value=" #{msgs.delete}" action="#{devBean.deleteRank(o)}" styleClass="alert-danger"/>
+                </h:form>
+            </h:column>
 
-        <ui:define name="content">
+        </h:dataTable>
 
-            <h2>Ranks</h2>
-            <h:dataTable value="#{databaseBean.ranks}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">Title</f:facet>
-                    #{o.title}
-                </h:column>
+        <ui:include src="/pages/secure/add/rank.xhtml" />
 
-                <h:column>
-                    <f:facet name="header">Actions</f:facet>
-                    <h:form>
-                        <h:commandLink value="Edit" action="#{devBean.editRank(o)}" styleClass=""/>
-                        <h:commandLink value=" Delete" action="#{devBean.deleteRank(o)}" styleClass="alert-danger"/>
-                    </h:form>
-                </h:column>
+    </ui:define>
 
-            </h:dataTable>
-
-            <ui:include src="/pages/secure/add/rank.xhtml" />
-
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>

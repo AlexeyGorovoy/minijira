@@ -30,14 +30,14 @@
                                 <h:commandLink value="English" action="#{utils.switchLocale('en')}" />
                             </li>
                             <li>
-                                <i class="icon-bullhorn"></i>
+                                <i class="icon-briefcase"></i>
                                 <h:commandLink value="Русский" action="#{utils.switchLocale('ru')}" />
                             </li>
                         </h:form>
                             <li class="divider"></li>
                             <li>
                                 <h:form>
-                                    <i class="icon-off"></i>
+                                    <i class="incon-briefcase"></i>
                                     <h:commandLink value="#{msgs.logout}" action="#{auth.logout}"  rendered="#{auth.logged}"/>
                                     <h:commandLink value="#{msgs.login}" action="#{auth.logout}"  rendered="#{not auth.logged}"/>
                                 </h:form>

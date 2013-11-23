@@ -10,7 +10,7 @@
         <h:form styleClass="form-actions" id="edit">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.editCustomer}" style="font-weight: bold" />
+                <h4>#{msgs.editCustomer}</h4>
 
                 <h:outputLabel value="#{msgs.title}: " />
                 <h:inputText value="#{projectsBean.customer.title}" validator="minijira.NotNullValidator" id="title" />

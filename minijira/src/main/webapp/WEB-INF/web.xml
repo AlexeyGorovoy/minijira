@@ -81,7 +81,7 @@
 
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
-        <location>/error.xhtml</location>
+        <location>/error.jsf</location>
     </error-page>
 
     <security-role>

@@ -3,10 +3,10 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 template="/pages/blocks/dafaultPage.xhtml">
-    <ui:define name="title">#{msgs.startPage}</ui:define>
+    <ui:define name="title">#{msgs.employees}</ui:define>
         <ui:define name="content">
 
-            <h2>#{nsgs.employees}</h2>
+            <h2>#{msgs.employees}</h2>
             <h:dataTable value="#{databaseBean.employees}" var="o" styleClass="table table-bordered">
                 <h:column>
                     <f:facet name="header">#{msgs.name}</f:facet>
@@ -35,16 +35,18 @@
                 </h:column>
 
                 <h:column rendered="#{auth.admin}">
-                    <f:facet name="header">Actions</f:facet>
+                    <f:facet name="header">#{msgs.actions}</f:facet>
                     <h:form>
-                        <h:commandLink value="Edit" action="#{emplBean.editEmployee(o)}" styleClass=""/>
-                        <h:commandLink value=" Delete" action="#{emplBean.deleteEmployee(o)}" styleClass="alert-danger"/>
+                        <h:commandLink value="#{msgs.edit}" action="#{emplBean.editEmployee(o)}" styleClass=""/>
+                        <h:commandLink value="#{msgs.delete}" action="#{emplBean.deleteEmployee(o)}" styleClass="alert-danger"/>
                     </h:form>
                 </h:column>
 
             </h:dataTable>
 
-            <ui:include src="/pages/secure/add/employee.xhtml" rendered="#{auth.admin}"/>
+            <h:panelGroup rendered="#{auth.admin}">
+                <ui:include src="/pages/secure/add/employee.xhtml" />
+            </h:panelGroup>
 
         </ui:define>
 

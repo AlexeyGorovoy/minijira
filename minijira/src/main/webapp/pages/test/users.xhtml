@@ -1,47 +1,38 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.users}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
+        <h2>#{msgs.users}</h2>
+        <h:dataTable value="#{databaseBean.employees}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.name}</f:facet>
+                #{o.name} #{o.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.username}</f:facet>
+                #{o.user.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.pwdHash}</f:facet>
+                #{o.user.password}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.role}</f:facet>
+                #{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename}
+            </h:column>
+            <h:column rendered="#{auth.admin}">
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form>
+                    <h:commandLink value="#{msgs.grantAdmin}" action="#{adder.grantAdmin(o.user)}" rendered='#{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename.equals("USER")}'/>
+                    <h:commandLink value="#{msgs.revokeAdmin}" action="#{adder.revokeAdmin(o.user)}" rendered='#{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename.equals("ADMIN")}'/>
+                </h:form>
+            </h:column>
+        </h:dataTable>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+    </ui:define>
 
-        <ui:define name="content">
-
-            <h2>Users</h2>
-            <h:dataTable value="#{databaseBean.employees}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">Name</f:facet>
-                    #{o.name} #{o.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Login (email)</f:facet>
-                    #{o.user.email}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Role</f:facet>
-                    #{o.user.password}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Role</f:facet>
-                    #{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename}
-                </h:column>
-                <h:column rendered="#{auth.admin}">
-                    <f:facet name="header">Actions</f:facet>
-                    <h:form>
-                        <h:commandLink value="#{msgs.grantAdmin}" action="#{adder.grantAdmin(o.user)}" rendered='#{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename.equals("USER")}'/>
-                        <h:commandLink value="#{msgs.revokeAdmin}" action="#{adder.revokeAdmin(o.user)}" rendered='#{databaseBean.dc.findUserRoleByEmail(o.user.email).role.rolename.equals("ADMIN")}'/>
-                    </h:form>
-                </h:column>
-            </h:dataTable>
-
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>

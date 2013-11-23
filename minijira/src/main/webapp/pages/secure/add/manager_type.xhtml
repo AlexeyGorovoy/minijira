@@ -7,7 +7,7 @@
     <h:panelGroup layout="block">
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
-                <h:outputText value="#{msgs.addManagerType}" style="font-weight: bold"/>
+                <h4>#{msgs.addManagerType}</h4>
 
                 <h:outputLabel value="#{msgs.title}: " />
                 <h:inputText value="#{adder.managerType.title}" validator="minijira.NotNullValidator" id="title"/>

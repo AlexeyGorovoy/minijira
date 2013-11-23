@@ -14,7 +14,7 @@
         <h:form styleClass="form-actions">
             <h:panelGrid columns="1">
 
-                <h:outputText value="#{msgs.addTech}" style="font-weight: bold" />
+                <h4>#{msgs.addTech}</h4>
 
                 <h:outputLabel value="#{msgs.title}: " for="title"/>
                 <h:inputText value="#{adder.tech.title}" validator="minijira.NotNullValidator" id="title" />

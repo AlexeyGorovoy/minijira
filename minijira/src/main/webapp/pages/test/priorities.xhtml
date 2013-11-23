@@ -1,29 +1,23 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.priorities}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
-
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
-
-        <ui:define name="content">
-
-            <h2>Priorities</h2>
+            <h2>#{msgs.priorities}</h2>
             <h:dataTable value="#{databaseBean.priorities}" var="o" styleClass="table table-bordered">
                 <h:column>
-                    <f:facet name="header">Title</f:facet>
+                    <f:facet name="header">#{msgs.title}</f:facet>
                     #{o.title}
                 </h:column>
 
                 <h:column rendered="#{auth.admin}">
-                    <f:facet name="header">Actions</f:facet>
+                    <f:facet name="header">#{msgs.actions}</f:facet>
                     <h:form>
-                        <h:commandLink value="Edit" action="#{taskBean.editPriority(o)}" styleClass="alert-danger"/>
-                        <h:commandLink value=" Delete" action="#{taskBean.deletePriority(o)}" styleClass=""/>
+                        <h:commandLink value="#{msgs.edit}" action="#{taskBean.editPriority(o)}" styleClass=""/>
+                        <h:commandLink value="#{msgs.delete}" action="#{taskBean.deletePriority(o)}" styleClass="alert-danger"/>
                     </h:form>
                 </h:column>
 

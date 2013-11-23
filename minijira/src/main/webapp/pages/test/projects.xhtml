@@ -1,63 +1,54 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.projects}</ui:define>
+    <ui:define name="content">
 
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
+        <h2>#{msgs.projects}</h2>
+        <h:dataTable value="#{databaseBean.projects}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.description}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.type}</f:facet>
+                #{o.type.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.customer}</f:facet>
+                #{o.customer.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.pm}</f:facet>
+                #{o.pm.employee.name} #{o.pm.employee.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.dev_leader}</f:facet>
+                #{o.dev_leader.employee.name} #{o.dev_leader.employee.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">#{msgs.test_leader}</f:facet>
+                #{o.test_leader.employee.name} #{o.test_leader.employee.surname}
+            </h:column>
 
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+            <h:column>
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form>
+                    <h:commandLink value="#{msgs.edit}" action="#{projectsBean.editProject(o)}" styleClass=""/>
+                    <h:commandLink value="#{msgs.delete}" action="#{projectsBean.deleteProject(o)}" styleClass="alert-danger"/>
+                </h:form>
+            </h:column>
 
-        <ui:define name="content">
+        </h:dataTable>
 
-            <h2>Projects</h2>
-            <h:dataTable value="#{databaseBean.projects}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">Title</f:facet>
-                    #{o.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Description</f:facet>
-                    #{o.description}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Type</f:facet>
-                    #{o.type.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Customer</f:facet>
-                    #{o.customer.title}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">PM</f:facet>
-                    #{o.pm.employee.name} #{o.pm.employee.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Dev lead</f:facet>
-                    #{o.dev_leader.employee.name} #{o.dev_leader.employee.surname}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">TS lead</f:facet>
-                    #{o.test_leader.employee.name} #{o.test_leader.employee.surname}
-                </h:column>
+        <ui:include src="/pages/secure/add/project.xhtml" />
 
-                <h:column>
-                    <f:facet name="header">Actions</f:facet>
-                    <h:form>
-                        <h:commandLink value="Edit" action="#{projectsBean.editProject(o)}" styleClass="alert-danger"/>
-                        <h:commandLink value="Delete" action="#{projectsBean.deleteProject(o)}" styleClass=""/>
-                    </h:form>
-                </h:column>
+    </ui:define>
 
-            </h:dataTable>
-
-            <ui:include src="/pages/secure/add/project.xhtml" />
-
-        </ui:define>
-
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>
