@@ -1,0 +1,27 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:c="http://java.sun.com/jstl/core"
+        xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="#{msgs.addProjectType}" style="font-weight: bold"/>
+
+                <h:outputLabel value="#{msgs.title}" for="title" />
+                <h:inputText value="#{adder.projectType.title}" id="title" validator="minijira.NotNullValidator"/>
+                <h:message for="title" styleClass="alert-danger"  />
+
+                <h:outputLabel value="#{msgs.description}" />
+                <h:inputTextarea  value="#{adder.projectType.description}" />
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addProjectType}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

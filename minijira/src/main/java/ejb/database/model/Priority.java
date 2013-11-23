@@ -17,6 +17,7 @@ public class Priority implements ModelEntity {
 
     @Id
     @Column(name = "priority_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;

@@ -17,7 +17,18 @@
                     <f:facet name="header">Title</f:facet>
                     #{o.title}
                 </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{devBean.editRank(o)}" styleClass=""/>
+                        <h:commandLink value=" Delete" action="#{devBean.deleteRank(o)}" styleClass="alert-danger"/>
+                    </h:form>
+                </h:column>
+
             </h:dataTable>
+
+            <ui:include src="/pages/secure/add/rank.xhtml" />
 
         </ui:define>
 

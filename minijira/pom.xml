@@ -10,7 +10,7 @@
     <name>minijira-web</name>
 
     <properties>
-        <jsf.version>2.0.0</jsf.version>
+        <jsf.version>2.1</jsf.version>
     </properties>
    
     <build>
@@ -69,6 +69,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.26</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -77,18 +78,19 @@
             <version>2.5.1</version>
         </dependency>
 
+        <!--
         <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>${jsf.version}</version>
-            <scope>provided</scope>
+            <groupId>org.richfaces.core</groupId>
+            <artifactId>richfaces-core-impl</artifactId>
+            <version>4.3.4.Final</version>
         </dependency>
+        -->
 
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
-            <version>${jsf.version}</version>
-            <scope>provided</scope>
+            <version>2.2.0</version>
+            <!-- <scope>provided</scope> -->
         </dependency>
 
         <dependency>

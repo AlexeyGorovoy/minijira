@@ -21,7 +21,18 @@
                     <f:facet name="header">Description</f:facet>
                     #{o.description}
                 </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{testerBean.editTestType(o)}" styleClass="alert-danger"/>
+                        <h:commandLink value=" Delete" action="#{testerBean.deleteTestType(o)}" styleClass=""/>
+                    </h:form>
+                </h:column>
+
             </h:dataTable>
+
+            <ui:include src="/pages/secure/add/test_type.xhtml"/>
 
         </ui:define>
 

@@ -8,17 +8,18 @@ import javax.persistence.*;
 @NamedQueries(
         @NamedQuery( name = "Comment.findAll", query = "select c from Comment c")
 )
-@NamedQuery( name = "Comment.findByProject", query = "select c from Comment c where c.project.id = :project_id")
-@NamedStoredProcedureQuery( name = "Comment.findByProjectSP",
-                            procedureName = "findCommentsByProject",
+@NamedQuery( name = "Comment.findByProject", query = "select c from Comment c where c.task.id = :project_id")
+@NamedStoredProcedureQuery( name = "Comment.findByTaskSP",
+                            procedureName = "findCommentsByTask",
                             resultClasses = {Comment.class},
                             parameters = {
-                                    @StoredProcedureParameter(name = "project_id", type = Integer.class, mode = ParameterMode.IN)
+                                    @StoredProcedureParameter(name = "task_id", type = Integer.class, mode = ParameterMode.IN)
                             })
 public class Comment implements ModelEntity{
 
     @Id
     @Column (name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String text;
@@ -28,8 +29,8 @@ public class Comment implements ModelEntity{
     Employee employee;
 
     @ManyToOne
-    @JoinColumn (name = "project_id", nullable = false)
-    Project project;
+    @JoinColumn (name = "task_id", nullable = false)
+    Task task;
 
     public int getId() {
         return id;
@@ -55,11 +56,11 @@ public class Comment implements ModelEntity{
         this.employee = employee;
     }
 
-    public Project getProject() {
-        return project;
+    public Task getTask() {
+        return task;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setTask(Task task) {
+        this.task = task;
     }
 }

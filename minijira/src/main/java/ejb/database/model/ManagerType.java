@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class ManagerType implements ModelEntity{
     @Id
     @Column(name = "manager_type_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;

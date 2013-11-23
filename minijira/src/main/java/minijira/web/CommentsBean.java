@@ -21,7 +21,7 @@ import java.util.List;
 @SessionScoped
 public class CommentsBean implements Serializable {
 
-    int project_id;
+    int task_id;
 
     List<Comment> comments;
 
@@ -42,15 +42,15 @@ public class CommentsBean implements Serializable {
     }
 
     public void refresh() {
-        comments = databaseBean.getCommentsByProjectSP(project_id);
+        comments = databaseBean.getCommentsByTaskSP(task_id);
     }
 
-    public int getProject_id() {
-        return project_id;
+    public int getTask_id() {
+        return task_id;
     }
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public void setTask_id(int task_id) {
+        this.task_id = task_id;
     }
 
     public DatabaseBean getDatabaseBean() {

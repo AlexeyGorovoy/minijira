@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions" id="all">
+            <h:panelGrid columns="1">
+
+                <h4>#{msgs.addTask}</h4>
+
+                <h:outputLabel value="#{msgs.title}: " />
+                <h:inputText value="#{adder.task.title}" validator="minijira.NotNullValidator" id="title" />
+                <h:message for="title"  styleClass="alert-danger" />
+
+                <h:panelGroup rendered="#{auth.admin}">
+                    <h:outputLabel value="#{msgs.project}: " for="project1" />
+                    <h:selectOneMenu value="#{adder.projectId}" id="project1" >
+                        <f:selectItems value="#{databaseBean.projects}" var="t"
+                                       itemLabel="#{t.title}" itemValue="#{t.id}" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{not auth.admin}">
+                    <h:outputLabel value="#{msgs.project}: " for="project2" />
+                    <h:selectOneMenu value="#{adder.projectId}" id="project2" >
+                        <f:selectItems value="#{auth.managedProjects}" var="t"
+                                       itemLabel="#{t.title}" itemValue="#{t.id}" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+
+                <h:outputLabel value="#{msgs.description}: " for="description" />
+                <h:inputText value="#{adder.task.description}" id="description" validator="minijira.NotNullValidator" />
+                <h:message for="description" styleClass="alert-danger"/>
+
+                <h:outputLabel value="#{msgs.assignee}: " for="assignee" />
+                <h:selectOneMenu value="#{adder.assigneeId}" id="assignee">
+                    <f:selectItems value="#{databaseBean.employees}" var="e"
+                                   itemLabel="#{e.name} #{e.surname}" itemValue="#{e.id}" />
+                </h:selectOneMenu>
+
+                <h:panelGroup rendered="#{auth.admin}">
+
+                    <h:outputLabel value="#{msgs.reporter}: "  for="reporter"/>
+                    <h:selectOneMenu value="#{adder.reporterId}" id="reporter">
+                        <f:selectItems value="#{databaseBean.employees}" var="e"
+                                       itemLabel="#{e.name} #{e.surname}" itemValue="#{e.id}" />
+                    </h:selectOneMenu>
+
+                </h:panelGroup>
+
+                <h:outputLabel value="#{msgs.priority}: " for="priority" />
+                <h:selectOneMenu value="#{adder.priorityId}" id="priority" >
+                    <f:selectItems value="#{databaseBean.priorities}" var="pr"
+                                   itemLabel="#{pr.title}" itemValue="#{pr.id}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel value="#{msgs.status}: " for="status" />
+                <h:selectOneMenu value="#{adder.statusId}" id="status" >
+                    <f:selectItems value="#{databaseBean.statuses}" var="st"
+                                   itemLabel="#{st.title}" itemValue="#{st.id}" />
+                </h:selectOneMenu>
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addTask()}" styleClass="btn btn-danger" />
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

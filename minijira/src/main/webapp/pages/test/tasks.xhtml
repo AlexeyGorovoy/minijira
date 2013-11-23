@@ -11,45 +11,54 @@
 
         <ui:define name="content">
 
-            <h2>Ranks</h2>
+            <h2>#{msgs.tasks}</h2>
             <h:dataTable value="#{databaseBean.tasks}" var="o" styleClass="table table-bordered">
                 <h:column>
-                    <f:facet name="header">Project</f:facet>
+                    <f:facet name="header">#{msgs.project}</f:facet>
                     #{o.project.title}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Title</f:facet>
+                    <f:facet name="header">#{msgs.title}</f:facet>
                     #{o.title}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Description</f:facet>
+                    <f:facet name="header">#{msgs.description}</f:facet>
                     #{o.description}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Due to</f:facet>
+                    <f:facet name="header">#{msgs.posted}</f:facet>
                     #{o.dueto}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Is closed?</f:facet>
-                    #{o.closed}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Assignee</f:facet>
+                    <f:facet name="header">#{msgs.assignee}</f:facet>
                     #{o.assignee.name} #{o.assignee.surname}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Reporter</f:facet>
+                    <f:facet name="header">#{msgs.reporter}</f:facet>
                     #{o.reporter.name} #{o.reporter.surname}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Priority</f:facet>
+                    <f:facet name="header">#{msgs.priority}</f:facet>
                     #{o.priority.title}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Stage</f:facet>
-                    #{o.workflow.title}
+                    <f:facet name="header">#{msgs.status}</f:facet>
+                    #{o.status.title}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:outputText rendered="#{! (auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id)}">None</h:outputText>
+                        <h:commandLink value="Edit" action="#{taskBean.editTask(o)}" styleClass="" rendered="#{auth.admin or o.assignee.id eq auth.employee.id or o.reporter.id eq auth.employee.id}"/>
+                        <h:commandLink value=" Delete" action="#{taskBean.deleteTask(o)}" styleClass="alert-danger"  rendered="#{auth.admin or o.reporter eq auth.employee}" />
+                    </h:form>
                 </h:column>
             </h:dataTable>
+
+            <h:panelGroup rendered="#{auth.hasProjects() or auth.admin}" >
+                <ui:include src="/pages/secure/add/task.xhtml" />
+            </h:panelGroup>
 
         </ui:define>
 

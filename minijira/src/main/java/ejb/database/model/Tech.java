@@ -9,13 +9,14 @@ import javax.persistence.*;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table (name = "dev_tech")
+@Table (name = "tech")
 @NamedQueries(
         @NamedQuery(name = "Tech.findAll", query = "select t from Tech t")
 )
 public class Tech implements ModelEntity{
     @Id
-    @Column(name = "dev_tech_id")
+    @Column(name = "tech_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;

@@ -16,6 +16,7 @@ public class Rank implements ModelEntity{
 
     @Id
     @Column(name = "rank_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;

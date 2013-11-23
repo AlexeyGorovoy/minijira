@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:outputScript library="js" name="scripts.js" />
+    <h:outputScript library="js" name="jquery-1.7.2.min.js" />
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions" id="emplForm">
+
+            <h:panelGrid columns="1">
+
+               <h4>#{msgs.addEmployee}</h4>
+
+                <h:outputLabel value="#{msgs.name}: " />
+                <h:inputText value="#{adder.employee.name}" validator="minijira.NotNullValidator" id="name" />
+                <h:message for="name"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.surname}: " />
+                <h:inputText value="#{adder.employee.surname}" validator="minijira.NotNullValidator" id="surname" />
+                <h:message for="surname"  styleClass="alert-danger" />
+
+                <!--
+                <h:outputLabel value="{msgs.email}: " />
+                <h:inputText value="{adder.employee.user.email}" validator="minijira.EmailValidator" id="email" />
+                <h:message for="email"  styleClass="alert-danger" />
+                -->
+                <h:outputLabel value="#{msgs.phonenumber}: " />
+                <h:inputText value="#{adder.employee.phonenumber}" validator="minijira.PhoneValidator" id="phonenumber" />
+                <h:message for="phonenumber"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.skype}: " />
+                <h:inputText value="#{adder.employee.skype}" validator="minijira.NotNullValidator" id="skype" />
+                <h:message for="skype"  styleClass="alert-danger" />
+
+                <h4>#{msgs.userInfo}</h4>
+
+                <h:outputLabel value="#{msgs.email}: " />
+                <h:inputText value="#{adder.email}" id="email"  validator="minijira.EmailValidator" />
+                <h:message for="email"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.password}: " />
+                <h:inputText value="#{adder.password}" validator="minijira.NotNullValidator" id="pass" />
+                <h:message for="pass"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.role}: " for="user_role" />
+                <h:selectOneMenu value="#{adder.userRole}" id="user_role">
+                    <f:selectItems value="#{databaseBean.roles}" var="role"
+                                   itemLabel="#{role.rolename}" itemValue="#{role.rolename}" />
+                </h:selectOneMenu>
+
+            </h:panelGrid>
+
+                <div id="advanced">
+                    <div class="modal-header">
+                        <ul class="nav nav-pills pull-right">
+                            <li class="active">
+                                <a href="#date" data-toggle="pill">#{msgs.developer}</a>
+                            </li>
+                            <li><a href="#relevance" data-toggle="pill">#{msgs.tester}</a></li>
+
+                            <li><a href="#dealership" data-toggle="pill">#{msgs.manager}</a></li>
+                        </ul>
+                        <h4>#{msgs.employeeType}</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="row-fluid">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="date">
+
+                                    <div class="controls controls-row">
+
+                                        <h:outputLabel value="#{msgs.rank}: " for="dev_rank" />
+                                        <h:selectOneMenu value="#{adder.devRankId}" id="dev_rank">
+                                            <f:selectItems value="#{databaseBean.ranks}" var="r1"
+                                                           itemLabel="#{r1.title}" itemValue="#{r1.id}" />
+                                        </h:selectOneMenu>
+
+                                        <h:outputLabel value="#{msgs.mainTech}: " for="main_tech" />
+                                        <h:selectOneMenu value="#{adder.mainTechId}" id="main_tech">
+                                            <f:selectItems value="#{databaseBean.techs}" var="tech"
+                                                           itemLabel="#{tech.title}" itemValue="#{tech.id}" />
+                                        </h:selectOneMenu>
+                                        <br/>
+                                        <h:commandButton value="#{msgs.save}" action="#{adder.addEmployee('developer')}" styleClass="btn btn-danger" />
+
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane" id="relevance">
+
+                                            <div class="controls controls-row">
+
+                                                <h:outputText value=">AAAAA text!" />
+                                                <h:outputLabel value="#{msgs.rank}: " for="ts_rank" />
+                                                <h:selectOneMenu value="#{adder.rankId}" id="ts_rank">
+                                                    <f:selectItems value="#{databaseBean.ranks}" var="r1"
+                                                                   itemLabel="#{r1.title}" itemValue="#{r1.id}" />
+                                                </h:selectOneMenu>
+
+                                                <h:outputLabel value="#{msgs.testType}: " for="test_type" />
+                                                <h:selectOneMenu value="#{adder.testTypeId}" id="test_type">
+                                                    <f:selectItems value="#{databaseBean.testTypes}" var="test"
+                                                                   itemLabel="#{test.title}" itemValue="#{test.id}" />
+                                                </h:selectOneMenu>
+
+                                            </div>
+
+                                        <h:commandButton value="#{msgs.save}" action="#{adder.addEmployee('tester')}" styleClass="btn btn-danger" />
+
+                                </div>
+                                <div class="tab-pane" id="dealership">
+
+                                            <div class="controls controls-row">
+
+                                                <h:outputLabel value="#{msgs.managerType}: " for="manager_type" />
+                                                <h:selectOneMenu value="#{adder.managerTypeId}" id="manager_type">
+                                                    <f:selectItems value="#{databaseBean.managerTypes}" var="mt"
+                                                                   itemLabel="#{mt.title}" itemValue="#{mt.id}" />
+                                                </h:selectOneMenu>
+
+                                            </div>
+
+                                    <h:commandButton value="#{msgs.save}" action="#{adder.addEmployee('manager')}" styleClass="btn btn-danger" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

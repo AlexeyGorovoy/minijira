@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions" id="all">
+            <h:panelGrid columns="1">
+
+                <!-- <h:outputText id="add" value="{adder.addCustomer()}" styleClass="alert alert-success"/> -->
+
+                <h:outputText value="#{msgs.addCustomer}" style="font-weight: bold" />
+
+                <h:outputLabel value="#{msgs.title}: " />
+                <h:inputText value="#{adder.customer.title}" validator="minijira.NotNullValidator" id="title" />
+                <h:message for="title"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.email}: " for="email" />
+                <h:inputText value="#{adder.customer.contact_email}" id="email" validator="minijira.EmailValidator" />
+                <h:message for="email" styleClass="alert-danger"/>
+
+                <h:outputLabel value="#{msgs.info}: " />
+                <h:inputTextarea  value="#{adder.customer.info}" id="info"/>
+
+                <!--action="{adder.addCustomer()}" -->
+                <h:commandButton value="#{msgs.save}" action="#{adder.addCustomer()}" styleClass="btn btn-danger">
+                    <f:ajax execute="title email info" render="all" />
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

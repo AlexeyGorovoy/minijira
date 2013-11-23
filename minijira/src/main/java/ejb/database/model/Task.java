@@ -19,6 +19,7 @@ public class Task implements ModelEntity{
 
     @Id
     @Column (name = "task_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;
@@ -26,8 +27,6 @@ public class Task implements ModelEntity{
 
     @Temporal(value = TemporalType.DATE)
     Date dueto;
-
-    boolean closed;
 
     @ManyToOne
     @JoinColumn (name = "project_id")
@@ -47,8 +46,8 @@ public class Task implements ModelEntity{
     Priority priority;
 
     @ManyToOne
-    @JoinColumn(name = "workflow_id")
-    Workflow workflow;
+    @JoinColumn(name = "status_id")
+    Status status;
 
     public int getId() {
         return id;
@@ -80,14 +79,6 @@ public class Task implements ModelEntity{
 
     public void setDueto(Date dueto) {
         this.dueto = dueto;
-    }
-
-    public boolean isClosed() {
-        return closed;
-    }
-
-    public void setClosed(boolean closed) {
-        this.closed = closed;
     }
 
     public Project getProject() {
@@ -122,11 +113,11 @@ public class Task implements ModelEntity{
         this.priority = priority;
     }
 
-    public Workflow getWorkflow() {
-        return workflow;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setWorkflow(Workflow workflow) {
-        this.workflow = workflow;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

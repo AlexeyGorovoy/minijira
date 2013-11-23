@@ -6,10 +6,7 @@ import ejb.util.Log;
 import javax.annotation.PostConstruct;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +22,7 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class DatabaseControllerBean implements DatabaseController, Serializable {
 
+    @PersistenceContext
     EntityManager em;
 
     @PostConstruct
@@ -42,6 +40,7 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
         if (em == null) {
             EntityManagerFactory entityMangerFactory = Persistence.createEntityManagerFactory("minijira");
             em = entityMangerFactory.createEntityManager();
+            Log.getLogger().info("PersistenceContext not worked! :(");
         }
     }
 
@@ -51,25 +50,19 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
         return em.createNamedQuery(queryName);
     }
 
-
-    @Override
-    public List<Comment> getCommentByProject(int project_id) {
-        Log.getLogger().info("getCommentByProject called, project_id: " + project_id);
-        Query q = createNamedQuery("Comment.findByProject");
-        q.setParameter("project_id", project_id);
-        DatabaseGetter<Comment> dg = new DatabaseGetter<Comment>(q);
-        return dg.get();
-    }
     // Stored procedures calls
-    @Override
-    public List<Comment> findCommentByProjectSP(int project_id) {
-        Log.getLogger().info("SP findCommentByProjectSP called, project_id: " + project_id);
 
-        Query q = em.createNamedStoredProcedureQuery("Comment.findByProjectSP");
-        q.setParameter("project_id", project_id);
+    /*
+    @Override
+    public List<Comment> findCommentByTaskSP(int task_id) {
+        Log.getLogger().info("SP findCommentByTaskSP called, task_id: " + task_id);
+
+        Query q = em.createNamedStoredProcedureQuery("Comment.findByTaskSP");
+        q.setParameter("task_id", task_id);
         DatabaseGetter<Comment> dg = new DatabaseGetter<Comment>(q);
         return dg.get();
     }
+    */
 
     @Override
     public List<Project> findProjectByTechSP(int tech_id) {
@@ -89,6 +82,36 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
         q.setParameter("employee_id", employee_id);
         DatabaseGetter<Project> dg = new DatabaseGetter<Project>(q);
         return dg.get();
+    }
+
+    @Override
+    public Employee findEmployeeByEmail(String email) {
+        Log.getLogger().info("findEmployeeByEmail called, email: " + email);
+
+        Query q = em.createNamedQuery("Employee.findByEmail");
+        q.setParameter("email", email);
+        DatabaseGetter<Employee> dg = new DatabaseGetter<Employee>(q);
+        return (Employee)dg.get().get(0);
+    }
+
+    @Override
+    public List<Project> findProjectsByManagers(int id) {
+        Log.getLogger().info("findProjectsByManagers called, employee id: " + id);
+
+        Query q = em.createNamedStoredProcedureQuery("Project.findByManagersSP");
+        q.setParameter("employee_id", id);
+        DatabaseGetter<Project> dg = new DatabaseGetter<Project>(q);
+        return dg.get();
+    }
+
+    @Override
+    public UserRole findUserRoleByEmail(String email) {
+        Log.getLogger().info("findUserRoleByEmail called, email: " + email);
+
+        Query q = em.createNamedQuery("UserRole.findByEmail");
+        q.setParameter("email", email);
+        DatabaseGetter<UserRole> dg = new DatabaseGetter<UserRole>(q);
+        return (UserRole)(dg.get().get(0));
     }
 
     ///
@@ -122,16 +145,23 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
     }
 
     @Override
-    public List<CustomerAgent> getCustomerAgent() {
-        Log.getLogger().info("getCustomerAgent called");
-        DatabaseGetter<CustomerAgent> dg = new DatabaseGetter<CustomerAgent>(createNamedQuery("CustomerAgent.findAll"));
+    public List<User> getUser() {
+        Log.getLogger().info("getUser called");
+        DatabaseGetter<User> dg = new DatabaseGetter<User>(createNamedQuery("User.findAll"));
         return dg.get();
     }
 
     @Override
-    public List<Office> getOffice() {
-        Log.getLogger().info("getOffice called");
-        DatabaseGetter<Office> dg = new DatabaseGetter<Office>(createNamedQuery("Office.findAll"));
+    public List<Role> getRole() {
+        Log.getLogger().info("getRole");
+        DatabaseGetter<Role> dg = new DatabaseGetter<Role>(createNamedQuery("Role.findAll"));
+        return dg.get();
+    }
+
+    @Override
+    public List<UserRole> getUserRole() {
+        Log.getLogger().info("getUserRole");
+        DatabaseGetter<UserRole> dg = new DatabaseGetter<UserRole>(createNamedQuery("UserRole.findAll"));
         return dg.get();
     }
 
@@ -143,9 +173,9 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
     }
 
     @Override
-    public List<Workflow> getWorkflow() {
-        Log.getLogger().info("getWorkflow called");
-        DatabaseGetter<Workflow> dg = new DatabaseGetter<Workflow>(createNamedQuery("Workflow.findAll"));
+    public List<Status> getStatus() {
+        Log.getLogger().info("getStatus called");
+        DatabaseGetter<Status> dg = new DatabaseGetter<Status>(createNamedQuery("Status.findAll"));
         return dg.get();
     }
 
@@ -228,17 +258,17 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
         if (clazz.equals(Tester.class)){
             return getTester();
         }
-        if (clazz.equals(CustomerAgent.class)) {
-            return getCustomerAgent();
+        if (clazz.equals(User.class)) {
+            return getUser();
         }
-        if (clazz.equals(Office.class)) {
-            return getOffice();
+        if (clazz.equals(Role.class)) {
+            return getRole();
         }
         if (clazz.equals(Priority.class)){
             return getPriority();
         }
-        if (clazz.equals(Workflow.class)){
-            return getWorkflow();
+        if (clazz.equals(Status.class)){
+            return getStatus();
         }
         if (clazz.equals(Rank.class)){
             return getRank();
@@ -273,15 +303,22 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
     // more finders...
 
     @Override
-    public Project find(int id) {
-        Log.getLogger().info("tClass = " + Project.class + " id = " + id + "em = " + em);
-        return em.getReference(Project.class, id);
+    public <T> T find(Class<T> tClass, Object id) {
+        Log.getLogger().info("find tClass = " + tClass + " id = " + id + "em = " + em);
+        return em.find(tClass, id);
     }
 
     @Override
     public ProjectType findProjectType(int id) {
         Log.getLogger().info("tClass = " + ProjectType.class + " id = " + id + "em = " + em);
         return em.getReference(ProjectType.class, id);
+    }
+
+
+    @Override
+    public ManagerType findManagerType(int id) {
+        Log.getLogger().info("tClass = " + ManagerType.class + " id = " + id + "em = " + em);
+        return em.getReference(ManagerType.class, id);
     }
 
     @Override
@@ -292,10 +329,20 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
     }
 
     @Override
+    public <T> void persist(T tObject) {
+        em.persist(tObject);
+        flush();
+    }
+
+    @Override
+    public <T> void remove(T tObject) {
+        em.remove( em.merge(tObject));
+        flush();
+    }
+
+    @Override
     public void flush() {
-        em.getTransaction().begin();
         em.flush();
-        em.getTransaction().commit();
     }
 
     // ----------------- Old

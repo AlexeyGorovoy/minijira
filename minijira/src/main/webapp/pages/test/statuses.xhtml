@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+<h:body>
+
+    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
+
+        <ui:define name="content">
+
+            <h2>Status</h2>
+            <h:dataTable value="#{databaseBean.statuses}" var="o" styleClass="table table-bordered">
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    #{o.title}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">description</f:facet>
+                    #{o.description}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{taskBean.editStatus(o)}" styleClass="alert-danger"/>
+                        <h:commandLink value=" Delete" action="#{taskBean.deleteStatus(o)}" styleClass=""/>
+                    </h:form>
+                </h:column>
+
+            </h:dataTable>
+
+            <ui:include src="/pages/secure/add/status.xhtml" />
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

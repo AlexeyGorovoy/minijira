@@ -18,18 +18,18 @@ public class DeveloperTechId implements Serializable {
     private int developer_id;
 
     @Id
-    private int dev_tech_id;
+    private int tech_id;
 
     @Override
     public int hashCode() {
-        return developer_id + dev_tech_id;
+        return developer_id + tech_id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (o instanceof DeveloperTechId) {
             DeveloperTechId anotherId = (DeveloperTechId)o;
-            return (developer_id == anotherId.developer_id) && ( dev_tech_id == anotherId.dev_tech_id);
+            return (developer_id == anotherId.developer_id) && ( tech_id == anotherId.tech_id);
         }
         return false;
     }

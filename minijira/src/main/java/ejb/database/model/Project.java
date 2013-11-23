@@ -22,8 +22,8 @@ import java.util.Date;
                 parameters = {
                         @StoredProcedureParameter(name = "tech_id", type = Integer.class, mode = ParameterMode.IN)
                 }),
-        @NamedStoredProcedureQuery(name = "Project.findByEmployeeSP",
-                procedureName = "findProjectByEmployee",
+        @NamedStoredProcedureQuery(name = "Project.findByManagersSP",
+                procedureName = "findProjectByManagers",
                 resultClasses = Project.class,
                 parameters = {
                         @StoredProcedureParameter(name = "employee_id", type = Integer.class, mode = ParameterMode.IN)
@@ -32,16 +32,11 @@ import java.util.Date;
 public class Project implements ModelEntity {
     @Id
     @Column(name = "project_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
     private String description;
-
-    @Temporal(value = TemporalType.DATE)
-    private Date date_start;
-
-    @Temporal(value = TemporalType.DATE)
-    private Date date_end;
 
     @ManyToOne
     @JoinColumn(name = "dev_lead_id")
@@ -57,17 +52,12 @@ public class Project implements ModelEntity {
     @JoinColumn(name = "pm_id")
     private Manager pm;
 
-
-    @ManyToOne
-    @JoinColumn(name = "customer_agent_id")
-    private CustomerAgent customer_agent;
-
     @ManyToOne
     @JoinColumn (name = "customer_id")
     private Customer customer;
 
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn (name = "project_type_id", referencedColumnName = "project_type_id")
+    @ManyToOne
+    @JoinColumn (name = "project_type_id")
     private ProjectType type;
 
     /*
@@ -107,22 +97,6 @@ public class Project implements ModelEntity {
         this.description = description;
     }
 
-    public Date getDate_start() {
-        return date_start;
-    }
-
-    public void setDate_start(Date date_start) {
-        this.date_start = date_start;
-    }
-
-    public Date getDate_end() {
-        return date_end;
-    }
-
-    public void setDate_end(Date date_end) {
-        this.date_end = date_end;
-    }
-
     public Developer getDev_leader() {
         return dev_leader;
     }
@@ -145,14 +119,6 @@ public class Project implements ModelEntity {
 
     public void setPm(Manager pm) {
         this.pm = pm;
-    }
-
-    public CustomerAgent getCustomer_agent() {
-        return customer_agent;
-    }
-
-    public void setCustomer_agent(CustomerAgent customer_agent) {
-        this.customer_agent = customer_agent;
     }
 
     public Customer getCustomer() {

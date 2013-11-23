@@ -3,7 +3,6 @@ package minijira.web;
 import ejb.database.model.*;
 import ejb.database.DatabaseController;
 
-import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -28,21 +27,13 @@ public class DatabaseBean implements Serializable {
         //dc = new DatabaseControllerBean();
     }
 
-    public Project find (int id) {
-        return dc.find(id);
-    }
-
     public List<Comment> getComments() {
         return dc.getComment();
     }
 
-    public List<Comment> getCommentsByProject(int project_id) {
-        return dc.getCommentByProject(project_id);
-    }
-
     // Stored procedures
-    public List<Comment> getCommentsByProjectSP(int project_id) {
-        return dc.findCommentByProjectSP(project_id);
+    public List<Comment> getCommentsByTaskSP(int task_id) {
+        return null; //dc.findCommentByTaskSP(task_id);
     }
 
     public List<Project> findProjectsByEmployeeSP(int employee_id) {
@@ -66,24 +57,24 @@ public class DatabaseBean implements Serializable {
         return (List<Manager>)dc.get(Manager.class);
     }
 
-    public List<CustomerAgent> getCustomerAgents () {
-        return (List<CustomerAgent>)dc.get(CustomerAgent.class);
+    public List<User> getUsers () {
+        return (List<User>)dc.get(User.class);
     }
 
     public List<Developer> getDevelopers () {
         return (List<Developer>)dc.get(Developer.class);
     }
 
-    public List<Office> getOffices () {
-        return (List<Office>)dc.get(Office.class);
+    public List<Role> getRoles () {
+        return (List<Role>)dc.get(Role.class);
     }
 
     public List<Priority> getPriorities() {
         return (List<Priority>)dc.get(Priority.class);
     }
 
-    public List<Workflow> getWorkflows() {
-        return (List<Workflow>)dc.get(Workflow.class);
+    public List<Status> getStatuses() {
+        return (List<Status>)dc.get(Status.class);
     }
 
     public List<Rank> getRanks() {

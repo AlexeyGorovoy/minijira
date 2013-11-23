@@ -17,11 +17,11 @@ public class Customer implements ModelEntity{
 
     @Id
     @Column (name = "customer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
-    private String description;
-    private String address;
+    private String contact_email;
     private String info;
 
     public Customer() {}
@@ -42,27 +42,19 @@ public class Customer implements ModelEntity{
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getInfo() {
         return info;
     }
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getContact_email() {
+        return contact_email;
+    }
+
+    public void setContact_email(String contact_email) {
+        this.contact_email = contact_email;
     }
 }

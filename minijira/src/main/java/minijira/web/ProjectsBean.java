@@ -1,7 +1,7 @@
 package minijira.web;
 
 
-import ejb.database.model.Project;
+import ejb.database.model.*;
 import ejb.util.Log;
 
 import javax.annotation.PostConstruct;
@@ -25,14 +25,25 @@ public class ProjectsBean implements Serializable {
     List<Project> projects;
 
     Project project;
+    ProjectType projectType;
+    Customer customer;
+
+    private int projectTypeId;
+    private int projectCustomerId;
+    private int projectDeveloperId;
+    private int projectTesterId;
+    private int projectPmId;
+
 
     int employee_id;
 
     int tech_id;
 
-
     @Inject
     DatabaseBean databaseBean;
+
+    //expetimental!
+    int customerId;
 
     @PostConstruct
     void init() {
@@ -96,19 +107,62 @@ public class ProjectsBean implements Serializable {
         this.databaseBean = databaseBean;
     }
 
-    public String edit (int id) {
-        Log.getLogger().info("JSF : edit project with strId = " + id);
-        project = projects.get(id-1);
-        Log.getLogger().info("JSF : project = " + project + " title=" + project.getTitle() + " id=" + project.getId());
+    public String editProject(Project project){
+        this.project = project;
+        projectTypeId = project.getType().getId();
+        projectCustomerId = project.getCustomer().getId();
+        projectDeveloperId = project.getDev_leader().getEmployee().getId();
+        projectPmId = project.getPm().getEmployee().getId();
+        projectTesterId = project.getTest_leader().getEmployee().getId();
+
         return "edit_project";
     }
 
-    public String save() {
-        Log.getLogger().info("Project saved: " + project + " title=" + project.getTitle() + " id=" + project.getId());
-        project.setType(databaseBean.getDc().findProjectType(project.getType().getId()));
-        project = databaseBean.getDc().merge(project);
-        Log.getLogger().info("Project saved: " + project + " title=" + project.getTitle() + " id=" + project.getId());
+    public String saveProject() {
+
+        project.setType(databaseBean.getDc().find(ProjectType.class, projectTypeId));
+        project.setCustomer(databaseBean.getDc().find(Customer.class, projectCustomerId));
+        project.setDev_leader(databaseBean.getDc().find(Developer.class, projectDeveloperId));
+        project.setPm(databaseBean.getDc().find(Manager.class, projectPmId));
+        project.setTest_leader(databaseBean.getDc().find(Tester.class, projectTesterId));
+
+        databaseBean.getDc().merge(project);
         return "projects";
+    }
+
+    public String deleteProject(Project project) {
+        databaseBean.getDc().remove(project);
+        return "projects";
+    }
+
+    public String editProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+        return "edit_project_type";
+    }
+
+    public String saveProjectType() {
+        projectType = databaseBean.getDc().merge(projectType);
+        return "project_types";
+    }
+
+    public String deleteProjectType(ProjectType projectType) {
+        databaseBean.getDc().remove(projectType);
+        return "project_types";
+    }
+
+    public String editCustomer(Customer customer) {
+        this.customer = customer;
+        return "edit_customer";
+    }
+
+    public String saveCustomer() {
+        databaseBean.getDc().merge(customer);
+        return "customers";
+    }
+
+    public String deleteCustomer(Customer customer) {
+        databaseBean.getDc().remove(customer);
+        return "customers";
     }
 
     public Project getProject() {
@@ -117,5 +171,71 @@ public class ProjectsBean implements Serializable {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public ProjectType getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(ProjectType projectType) {
+        this.projectType = projectType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public int getProjectTypeId() {
+        return projectTypeId;
+    }
+
+    public void setProjectTypeId(int projectTypeId) {
+        this.projectTypeId = projectTypeId;
+    }
+
+    public int getProjectCustomerId() {
+        return projectCustomerId;
+    }
+
+    public void setProjectCustomerId(int projectCustomerId) {
+        this.projectCustomerId = projectCustomerId;
+    }
+
+    public int getProjectDeveloperId() {
+        return projectDeveloperId;
+    }
+
+    public void setProjectDeveloperId(int projectDeveloperId) {
+        this.projectDeveloperId = projectDeveloperId;
+    }
+
+    public int getProjectTesterId() {
+        return projectTesterId;
+    }
+
+    public void setProjectTesterId(int projectTesterId) {
+        this.projectTesterId = projectTesterId;
+    }
+
+    public int getProjectPmId() {
+        return projectPmId;
+    }
+
+    public void setProjectPmId(int projectPmId) {
+        this.projectPmId = projectPmId;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+        this.customer = databaseBean.getDc().find(Customer.class, customerId);
+        Log.getLogger().info("setCustomerId = " + customerId);
     }
 }

@@ -1,0 +1,59 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="#{msgs.addProject}" style="font-weight: bold" />
+
+                <h:outputLabel value="#{msgs.title}: " for="title" />
+                <h:inputText value="#{adder.project.title}" validator="minijira.NotNullValidator" id="title" />
+                <h:message for="title"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.description}: " />
+                <h:inputTextarea  value="#{adder.project.description}" validator="minijira.NotNullValidator" id="description" />
+                <h:message for="description"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.projectType}: " for="type" />
+                <h:selectOneMenu value="#{adder.projectTypeId}" id="type">
+                    <f:selectItems value="#{databaseBean.projectTypes}" var="t"
+                                   itemLabel="#{t.title}" itemValue="#{t.id}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel value="#{msgs.customer}: " for="customer" />
+                <h:selectOneMenu value="#{adder.projectCustomerId}" id="customer">
+                    <f:selectItems value="#{databaseBean.customers}" var="c"
+                                   itemLabel="#{c.title}" itemValue="#{c.id}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel value="#{msgs.pm}: " for="pm" />
+                <h:selectOneMenu value="#{adder.projectPmId}" id="pm">
+                    <f:selectItems value="#{databaseBean.managers}" var="m"
+                                   itemLabel="#{m.employee.name} #{m.employee.surname} (#{m.type.title})" itemValue="#{m.employee.id}" />
+                </h:selectOneMenu>
+
+
+                <h:outputLabel value="#{msgs.dev_leader}: " for="dev_lead" />
+                <h:selectOneMenu value="#{adder.projectDeveloperId}" id="dev_lead">
+                    <f:selectItems value="#{databaseBean.developers}" var="d"
+                                   itemLabel="#{d.employee.name} #{d.employee.surname} (#{d.mainTech.title})" itemValue="#{d.employee.id}" />
+                </h:selectOneMenu>
+
+
+                <h:outputLabel value="#{msgs.test_leader}: " for="test_lead" />
+                <h:selectOneMenu value="#{adder.projectTesterId}" id="test_lead">
+                    <f:selectItems value="#{databaseBean.testers}" var="ts"
+                                   itemLabel="#{ts.employee.name} #{ts.employee.surname} (#{ts.type.title})" itemValue="#{ts.employee.id}" />
+                </h:selectOneMenu>
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addProject()}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

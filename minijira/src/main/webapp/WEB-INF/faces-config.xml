@@ -24,14 +24,138 @@
     <navigation-rule>
         <navigation-case>
             <from-outcome>projects</from-outcome>
-            <to-view-id>/pages/projects.xhtml</to-view-id>
+            <to-view-id>/pages/test/projects.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+
         <navigation-case>
             <from-outcome>edit_project</from-outcome>
             <to-view-id>/pages/secure/edit_project.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_project_type</from-outcome>
+            <to-view-id>/pages/secure/edit_project_type.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>project_types</from-outcome>
+            <to-view-id>/pages/test/project_types.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_manager_type</from-outcome>
+            <to-view-id>/pages/secure/edit_manager_type.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>manager_types</from-outcome>
+            <to-view-id>/pages/test/manager_types.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_status</from-outcome>
+            <to-view-id>/pages/secure/edit_status.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>statuses</from-outcome>
+            <to-view-id>/pages/test/statuses.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+
+        <navigation-case>
+            <from-outcome>edit_priority</from-outcome>
+            <to-view-id>/pages/secure/edit_priority.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>priorities</from-outcome>
+            <to-view-id>/pages/test/priorities.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_rank</from-outcome>
+            <to-view-id>/pages/secure/edit_rank.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>ranks</from-outcome>
+            <to-view-id>/pages/test/ranks.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_tech</from-outcome>
+            <to-view-id>/pages/secure/edit_tech.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>techs</from-outcome>
+            <to-view-id>/pages/test/techs.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_task</from-outcome>
+            <to-view-id>/pages/edit_task.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>tasks</from-outcome>
+            <to-view-id>/pages/test/tasks.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+
+        <navigation-case>
+            <from-outcome>edit_test_type</from-outcome>
+            <to-view-id>/pages/secure/edit_test_type.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>test_types</from-outcome>
+            <to-view-id>/pages/test/test_types.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+        <from-outcome>edit_customer</from-outcome>
+        <to-view-id>/pages/secure/edit_customer.xhtml</to-view-id>
+        <redirect />
+    </navigation-case>
+
+        <navigation-case>
+            <from-outcome>customers</from-outcome>
+            <to-view-id>/pages/test/customers.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>edit_employee</from-outcome>
+            <to-view-id>/pages/secure/edit_employee.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>employees</from-outcome>
+            <to-view-id>/pages/test/employees.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+
     </navigation-rule>
 
 </faces-config>

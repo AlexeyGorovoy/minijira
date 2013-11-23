@@ -9,6 +9,13 @@
 
     <description>MyProject web.xml</description>
 
+
+    <context-param>
+        <param-name>org.richfaces.clientSideStyle</param-name>
+        <param-value>true</param-value>
+        <!-- Note this will be overridden by PROJECT_STAGE = Production -->
+    </context-param>
+
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
         <param-value>client</param-value>
@@ -28,13 +35,25 @@
 
     <!-- Welcome files -->
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>login.jsf</welcome-file>
     </welcome-file-list>
 
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>SecurePages</web-resource-name>
             <url-pattern>/pages/secure/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMINISTRATOR</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Pages</web-resource-name>
+            <url-pattern>/pages/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -47,14 +66,27 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>jdbcRealm</realm-name>
+
         <form-login-config>
             <form-login-page>/login.jsf</form-login-page>
             <form-error-page>/error.jsf</form-error-page>
         </form-login-config>
+
     </login-config>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error403.jsf</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/error.xhtml</location>
+    </error-page>
 
     <security-role>
         <role-name>USER</role-name>
+
     </security-role>
     
     <security-role>

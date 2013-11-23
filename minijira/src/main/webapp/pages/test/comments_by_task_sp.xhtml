@@ -12,13 +12,10 @@
 
         <ui:define name="content">
 
-            <h2>Comments by project</h2>
+            <h2>Comments by task (SP)</h2>
 
             <h:form>
-                <h:selectOneMenu value="#{commentsBean.project_id}">
-                    <f:selectItems value="#{databaseBean.projects}" var="p"
-                                   itemLabel="#{p.title}" itemValue="#{p.id}" />
-                </h:selectOneMenu>
+                <h:outputLabel value="Enter task id: "> <h:inputText value="#{commentsBean.task_id}" /> </h:outputLabel>
                 <h:commandButton value="Get!" action="#{commentsBean.refresh}" styleClass="btn btn-danger"/>
             </h:form>
 
@@ -28,8 +25,8 @@
                     #{o.employee.name} #{o.employee.surname}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Project (id)</f:facet>
-                    #{o.project.title} (#{o.project.id})
+                    <f:facet name="header">Task (id)</f:facet>
+                    #{o.task} (#{o.task.id})
                 </h:column>
                 <h:column>
                     <f:facet name="header">Text</f:facet>

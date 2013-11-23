@@ -10,17 +10,19 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries(
-        @NamedQuery( name = "Workflow.findAll", query = "select w from Workflow w")
+        @NamedQuery( name = "Status.findAll", query = "select s from Status s")
 )
-public class Workflow implements ModelEntity{
+public class Status implements ModelEntity{
 
     @Id
-    @Column(name = "workflow_id")
+    @Column(name = "status_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;
+    String description;
 
-    public Workflow () {}
+    public Status() {}
 
     public int getId() {
         return id;
@@ -36,5 +38,13 @@ public class Workflow implements ModelEntity{
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

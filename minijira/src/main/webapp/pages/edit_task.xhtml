@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.editTech}</ui:define>
+
+    <ui:define name="content">
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions" id="all">
+            <h:panelGrid columns="1">
+
+                <h4>#{msgs.addTask}</h4>
+
+                <h:outputLabel value="#{msgs.title}: " />
+                <h:outputText value="#{taskBean.task.title}" id="title" />
+
+                <h:outputLabel value="#{msgs.project}: " for="project" />
+                <h:outputText value="#{taskBean.task.project.title}" id="project" />
+
+
+                <h:outputLabel value="#{msgs.description}: " for="description" />
+                <h:inputTextarea value="#{taskBean.task.description}" id="description" validator="minijira.NotNullValidator" />
+                <h:message for="description" styleClass="alert-danger"/>
+
+                <h:panelGroup rendered="#{auth.employee.id eq taskBean.task.reporter.id or auth.admin}">
+                    <h:outputLabel value="#{msgs.assignee}: " for="assignee" />
+                    <h:selectOneMenu value="#{taskBean.assigneeId}" id="assignee">
+                        <f:selectItems value="#{databaseBean.employees}" var="e"
+                                       itemLabel="#{e.name} #{e.surname}" itemValue="#{e.id}" />
+                    </h:selectOneMenu>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{auth.admin}">
+
+                    <h:outputLabel value="#{msgs.reporter}: "  for="reporter"/>
+                    <h:selectOneMenu value="#{taskBean.reporterId}" id="reporter">
+                        <f:selectItems value="#{databaseBean.employees}" var="e"
+                                       itemLabel="#{e.name} #{e.surname}" itemValue="#{e.id}" />
+                    </h:selectOneMenu>
+
+                </h:panelGroup>
+
+                <h:outputLabel value="#{msgs.priority}: " for="priority" />
+                <h:selectOneMenu value="#{taskBean.priorityId}" id="priority" >
+                    <f:selectItems value="#{databaseBean.priorities}" var="pr"
+                                   itemLabel="#{pr.title}" itemValue="#{pr.id}" />
+                </h:selectOneMenu>
+
+                <h:outputLabel value="#{msgs.status}: " for="status" />
+                <h:selectOneMenu value="#{taskBean.statusId}" id="status" >
+                    <f:selectItems value="#{databaseBean.statuses}" var="st"
+                                   itemLabel="#{st.title}" itemValue="#{st.id}" />
+                </h:selectOneMenu>
+
+                <h:commandButton value="#{msgs.save}" action="#{taskBean.saveTask()}" styleClass="btn btn-danger" />
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

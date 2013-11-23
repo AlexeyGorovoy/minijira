@@ -13,7 +13,7 @@ import ejb.database.model.Project;
  * Email: alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table(name = "project_employee_joint")
+@Table(name = "project_employee")
 @IdClass(ProjectEmployeeId.class)
 public class ProjectEmployeeJoint {
     @Id

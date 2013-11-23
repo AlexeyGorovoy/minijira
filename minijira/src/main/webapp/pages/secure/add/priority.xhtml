@@ -1,0 +1,29 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: Alexx
+  Date: 09.11.13
+  Time: 13:30
+-->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="#{msgs.addPriority}" style="font-weight: bold"/>
+
+                <h:outputLabel value="#{msgs.title}" for="title" />
+                <h:inputText value="#{adder.priority.title}" id="title" validator="minijira.NotNullValidator"/>
+                <h:message for="title" styleClass="alert-danger" />
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addPriority()}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

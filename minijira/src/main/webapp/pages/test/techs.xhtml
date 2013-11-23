@@ -21,7 +21,18 @@
                     <f:facet name="header">Description</f:facet>
                     #{o.description}
                 </h:column>
+
+                <h:column>
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{devBean.editTech(o)}" styleClass="alert-danger"/>
+                        <h:commandLink value=" Delete" action="#{devBean.deleteTech(o)}" styleClass=""/>
+                    </h:form>
+                </h:column>
+
             </h:dataTable>
+
+            <ui:include src="/pages/secure/add/tech.xhtml" />
 
         </ui:define>
 

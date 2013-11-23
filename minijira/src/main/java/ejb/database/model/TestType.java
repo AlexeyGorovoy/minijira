@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class TestType implements ModelEntity{
     @Id
     @Column(name = "test_type_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;

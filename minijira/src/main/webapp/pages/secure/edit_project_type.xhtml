@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.editProjectType}</ui:define>
+
+    <ui:define name="content">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="#{msgs.editProjectType}" style="font-weight: bold" />
+
+                <h:outputLabel value="#{msgs.title}" for="title" />
+                <h:inputText value="#{projectsBean.projectType.title}" validator="minijira.NotNullValidator" id="title" />
+                <h:message for="title" styleClass="alert-danger"/>
+
+                <h:outputLabel value="#{msgs.description}"/>
+                <h:inputTextarea  value="#{projectsBean.projectType.description}" />
+
+                <h:commandButton value="#{msgs.save}" action="#{projectsBean.saveProjectType()}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

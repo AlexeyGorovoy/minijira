@@ -5,12 +5,12 @@
 
     <security-role-mapping>
         <role-name>ADMINISTRATOR</role-name>
-        <group-name>Administrator</group-name>
+        <group-name>ADMIN</group-name>
     </security-role-mapping>
 
     <security-role-mapping>
         <role-name>USER</role-name>
-        <group-name>User</group-name>
+        <group-name>USER</group-name>
     </security-role-mapping>
 
     <class-loader delegate="false"/>

@@ -11,13 +11,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "employee")
-@NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e")
-)
+@NamedQueries({
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e"),
+        @NamedQuery(name = "Employee.findByEmail", query = "select e from Employee e where e.email = :email")
+})
 public class Employee implements ModelEntity {
 
     @Id
     @Column (name = "employee_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String name;
@@ -28,10 +30,12 @@ public class Employee implements ModelEntity {
 
     String phonenumber;
 
-    @Column (unique = true)
-    String email;
+    @OneToOne //(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn (name = "email")
+    User user;
+
     String skype;
-    String password;
+    String email;
 
     public Employee() {
     }
@@ -76,12 +80,12 @@ public class Employee implements ModelEntity {
         this.phonenumber = phonenumber;
     }
 
-    public String getEmail() {
-        return email;
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getSkype() {
@@ -92,11 +96,11 @@ public class Employee implements ModelEntity {
         this.skype = skype;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -16,10 +16,8 @@ public interface DatabaseController {
 
     List <? extends ModelEntity> get(Class clazz);
 
-    List<Comment> getCommentByProject(int project_id);
-
     //Stored procedures calls
-    List<Comment> findCommentByProjectSP(int project_id);
+    Employee findEmployeeByEmail(String email);
     List<Project> findProjectByTechSP(int tech_id);
     List<Project> findProjectByEmployeeSP(int employee_id);
     ///
@@ -28,10 +26,8 @@ public interface DatabaseController {
     List<Developer> getDeveloper();
     List<Tester> getTester();
     List<Manager> getManager();
-    List<CustomerAgent> getCustomerAgent();
-    List<Office> getOffice();
     List<Priority> getPriority();
-    List<Workflow> getWorkflow();
+    List<Status> getStatus();
     List<Rank> getRank();
     List<ProjectType> getProjectType();
     List<TestType> getTestType();
@@ -41,14 +37,24 @@ public interface DatabaseController {
     List<Comment> getComment();
     List<Project> getProject();
     List<Task> getTask();
+    List<User> getUser();
+    List<Role> getRole();
+    List<UserRole> getUserRole();
 
 
     //
-    Project find(int id);
     ProjectType findProjectType(int id);
-    <T> T merge(T tObject);
+    ManagerType findManagerType(int id);
+    UserRole findUserRoleByEmail(String email);
+    List<Project> findProjectsByManagers(int id);
 
+
+    <T> T find(Class<T> tClass, Object id);
+    <T> T merge(T tObject);
+    <T> void persist(T tObject);
+    <T> void remove(T tObject);
     void flush();
+
     // --------------- Old
     void test();
 }

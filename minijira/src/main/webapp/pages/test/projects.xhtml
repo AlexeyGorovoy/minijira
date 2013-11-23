@@ -31,14 +31,6 @@
                     #{o.customer.title}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Started</f:facet>
-                    #{o.date_start}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Will end</f:facet>
-                    #{o.date_end}
-                </h:column>
-                <h:column>
                     <f:facet name="header">PM</f:facet>
                     #{o.pm.employee.name} #{o.pm.employee.surname}
                 </h:column>
@@ -50,11 +42,18 @@
                     <f:facet name="header">TS lead</f:facet>
                     #{o.test_leader.employee.name} #{o.test_leader.employee.surname}
                 </h:column>
+
                 <h:column>
-                    <f:facet name="header">Customer Agent</f:facet>
-                    #{o.customer_agent.employee.name} #{o.customer_agent.employee.surname}
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{projectsBean.editProject(o)}" styleClass="alert-danger"/>
+                        <h:commandLink value="Delete" action="#{projectsBean.deleteProject(o)}" styleClass=""/>
+                    </h:form>
                 </h:column>
+
             </h:dataTable>
+
+            <ui:include src="/pages/secure/add/project.xhtml" />
 
         </ui:define>
 

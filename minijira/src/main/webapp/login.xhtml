@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Created by IntelliJ IDEA.
-  User: Alexx
-  Date: 28.10.13
-  Time: 1:13
--->
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="height: 100%"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
-    <title>Simple JSF Facelets page</title>
+    <title>
+        #{msgs.hello}
+    </title>
+
+    <h:outputStylesheet library="css" name="common.css" />
+    <h:outputStylesheet library="css" name="bootstrap.min.css" />
+    <h:outputStylesheet library="css" name="bootstrap-tables.css" />
+    <h:outputScript library="js" name="bootstrap.min.js" />
+    <h:outputScript library="js" name="jquery-1.7.2.min.js" />
+
 </h:head>
 
-<h:body>
-    <p>Login to access secure pages:</p>
-    <form method="post" action="j_security_check">
-        <h:panelGrid columns="2">
-            <h:outputLabel for="j_username" value="Username" />
-            <input type="text" name="j_username" />
+<h:body style="height: 100%">
+   <h1 class="form-signin-heading text-muted">#{msgs.hello}</h1>
 
-            <h:outputLabel for="j_password" value="Password" />
-            <input type="password" name="j_password" />
+   <h:panelGroup  id="fullscreen_bg" class="fullscreen_bg"/>
 
-            <h:outputText value="" />
-            <h:panelGrid columns="2">
-                <input type="submit" name="submit" value="Login" />
-                <h:button outcome="index" value="Cancel" />
-            </h:panelGrid>
-        </h:panelGrid>
-    </form>
+   <div class="container">
+
+   </div>
+
+   <h:panelGroup styleClass="container">
+       <h:form styleClass="form-signin">
+           <h:panelGrid columns="2" >
+
+               <h:outputLabel for ="j_username" value="#{msgs.yourEmail}:"/>
+               <h:inputText id="j_username" value="#{auth.username}"/>
+               <h:outputLabel for ="j_password" value="#{msgs.yourPassword}:" />
+               <h:inputSecret id="j_password" value="#{auth.password}"/>    <br />
+               <h:outputText value="#{auth.message}" rendered='#{! auth.message.equals("")}' />  <br />
+
+               <h:commandButton id="login" value="#{msgs.login}" action="#{auth.login()}" styleClass="btn btn-primary"/>
+
+           </h:panelGrid>
+       </h:form>
+   </h:panelGroup>
+
 </h:body>
-
-
 </html>

@@ -3,6 +3,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
                 template="/pages/blocks/dafaultPage.xhtml">
     <ui:define name="title">#{msgs.startPage}</ui:define>
     <ui:define name="content">
@@ -10,19 +11,89 @@
 
         <p>#{msgs.hello}</p>
         <p>#{msgs.startPageText}</p>
-        <!--
-        <h:form>
-            <h:panelGrid columns="2">
 
-                <h:outputLabel for ="uname" value="Enter User Name :  "/>
-                <h:inputText id="uname" value="#{auth.username}"/>
-                <h:outputLabel for ="pass" value="Enter Password  :"/>
-                <h:inputSecret id="pass" value="#{auth.password}"/>    <br />
-                <h:outputText value="#{auth.message}" rendered='#{! auth.message.equals("")}' />  <br />
-                <h:commandButton id="login" value="Login" action="#{auth.login()}"/>
-            </h:panelGrid>
-        </h:form>
-        -->
+        <!-- experiments -->
+        <!-- Advanced Modal -->
+        <div id="advanced">
+            <div class="modal-header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active">
+                        <a href="#date" data-toggle="pill">Date</a>
+                    </li>
+                    <li><a href="#relevance" data-toggle="pill">Relevance</a></li>
+                    <li><a href="#dealership" data-toggle="pill">Dealership</a></li>
+                </ul>
+                <h4>Advanced Sort</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row-fluid">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="date">
+
+                                <div class="controls controls-row">
+
+                                    <h:outputText value=">AAAAA text!" />
+                                    <h:outputLabel value="#{msgs.rank}: " for="dev_rank" />
+                                    <h:selectOneMenu value="#{adder.rankId}" id="dev_rank">
+                                        <f:selectItems value="#{databaseBean.ranks}" var="r1"
+                                                       itemLabel="#{r1.title}" itemValue="#{r1.id}" />
+                                    </h:selectOneMenu>
+
+                                    <h:outputLabel value="#{msgs.mainTech}: " for="main_tech" />
+                                    <h:selectOneMenu value="#{adder.rankId}" id="main_tech">
+                                        <f:selectItems value="#{databaseBean.techs}" var="tech"
+                                                       itemLabel="#{tech.title}" itemValue="#{tech.id}" />
+                                    </h:selectOneMenu>
+
+                                </div>
+
+                        </div>
+                        <div class="tab-pane" id="relevance">
+                            <form>
+                                <fieldset>
+                                    <div class="controls controls-row">
+                                        <select class="span6">
+                                            <option value="">Relevance Factor</option>
+                                            <option value="">Containing</option>
+                                            <option value="">Starting with</option>
+                                            <option value="">Enging with</option>
+                                        </select>
+                                        <select class="span6">
+                                            <option value="">Sorting</option>
+                                            <option value="">Relevant on top</option>
+                                            <option value="">Relevant on bottom</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">Sort</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="dealership">
+                            <form>
+                                <fieldset>
+                                    <div class="controls controls-row">
+                                        <input type="text" class="span8" placeholder="Location" />
+                                        <select class="span4">
+                                            <option>City</option>
+                                            <option>Los Angeles</option>
+                                            <option>Tokyo</option>
+                                            <option>New York</option>
+                                            <option>London</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">Sort</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- experiments -->
+
     </ui:define>
 
 </ui:composition>

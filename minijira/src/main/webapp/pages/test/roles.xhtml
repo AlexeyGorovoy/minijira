@@ -4,6 +4,7 @@
       xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
+    <title>Test database</title>
 </h:head>
 <h:body>
 
@@ -11,11 +12,11 @@
 
         <ui:define name="content">
 
-            <h2>Workflow</h2>
-            <h:dataTable value="#{databaseBean.workflows}" var="o" styleClass="table table-bordered">
+            <h2>Roles</h2>
+            <h:dataTable value="#{databaseBean.roles}" var="o" styleClass="table table-bordered">
                 <h:column>
-                    <f:facet name="header">Title</f:facet>
-                    #{o.title}
+                    <f:facet name="header">Role name</f:facet>
+                    #{o.rolename}
                 </h:column>
             </h:dataTable>
 

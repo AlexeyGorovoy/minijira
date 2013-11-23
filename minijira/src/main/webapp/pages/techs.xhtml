@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        template="blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.topMenuTechs}</ui:define>
+    <ui:define name="content">
+        <h2>#{msgs.topMenuTechs}</h2>
+
+        <ui:repeat value="#{databaseBean.techs}" var="t" >
+            <h:outputLink value='#{utils.googleSearchString(t.title)}' styleClass="text-info">
+                #{t.title}
+            </h:outputLink><br/>
+            <h:outputText value="#{t.description}" styleClass=""/> <br/> <br/>
+        </ui:repeat>
+
+    </ui:define>
+
+</ui:composition>

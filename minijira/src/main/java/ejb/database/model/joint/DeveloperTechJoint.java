@@ -12,14 +12,14 @@ import ejb.database.model.*;
  * Email: alexey.gorovoy.work@gmail.com
  */
 @Entity
-@Table(name = "dev_tech_joint")
+@Table(name = "dev_tech")
 @IdClass(DeveloperTechId.class)
 public class DeveloperTechJoint implements ModelEntity {
     @Id
     int developer_id;
 
     @Id
-    int dev_tech_id;
+    int tech_id;
 
     int experience;
 
@@ -28,6 +28,6 @@ public class DeveloperTechJoint implements ModelEntity {
     private Developer developer;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn(name="dev_tech_id", referencedColumnName="dev_tech_id")
+    @PrimaryKeyJoinColumn(name="tech_id", referencedColumnName="tech_id")
     private Tech tech;
 }

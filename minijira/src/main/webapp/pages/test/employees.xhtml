@@ -1,44 +1,51 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jstl/core" xmlns:f="http://java.sun.com/jsf/core">
-
-<h:head>
-    <title>Test database</title>
-</h:head>
-<h:body>
-
-    <ui:composition template="/pages/blocks/dafaultPage.xhtml">
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/pages/blocks/dafaultPage.xhtml">
+    <ui:define name="title">#{msgs.startPage}</ui:define>
         <ui:define name="content">
 
-            <h2>Employees</h2>
+            <h2>#{nsgs.employees}</h2>
             <h:dataTable value="#{databaseBean.employees}" var="o" styleClass="table table-bordered">
                 <h:column>
-                    <f:facet name="header">Name</f:facet>
+                    <f:facet name="header">#{msgs.name}</f:facet>
                     #{o.name}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Surname</f:facet>
+                    <f:facet name="header">#{msgs.surname}</f:facet>
                     #{o.surname}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Mail</f:facet>
-                    #{o.email}
+                    <f:facet name="header">#{msgs.email}</f:facet>
+                    #{o.user.email}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Skype</f:facet>
+                    <f:facet name="header">#{msgs.skype}</f:facet>
                     #{o.skype}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Phone</f:facet>
+                    <f:facet name="header">#{msgs.phonenumber}</f:facet>
                     #{o.phonenumber}
                 </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{msgs.dateHired}</f:facet>
+                    #{o.date_hired}
+                </h:column>
+
+                <h:column rendered="#{auth.admin}">
+                    <f:facet name="header">Actions</f:facet>
+                    <h:form>
+                        <h:commandLink value="Edit" action="#{emplBean.editEmployee(o)}" styleClass=""/>
+                        <h:commandLink value=" Delete" action="#{emplBean.deleteEmployee(o)}" styleClass="alert-danger"/>
+                    </h:form>
+                </h:column>
+
             </h:dataTable>
+
+            <ui:include src="/pages/secure/add/employee.xhtml" rendered="#{auth.admin}"/>
 
         </ui:define>
 
     </ui:composition>
-
-</h:body>
-</html>

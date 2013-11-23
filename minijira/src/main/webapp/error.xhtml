@@ -4,12 +4,11 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="/pages/blocks/dafaultPage.xhtml">
-    <ui:define name="title">#{msgs.startPage}</ui:define>
+    <ui:define name="title">#{msgs.error}</ui:define>
     <ui:define name="content">
-        <h2>#{msgs.startPage}</h2>
+        <h2>#{msgs.error}</h2>
 
-        <p>Login error</p>
-        <p>Please try again.</p>
+        <p>#{msgs.errorLogin}</p>
 
     </ui:define>
 

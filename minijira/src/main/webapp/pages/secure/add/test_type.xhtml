@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+
+                <h:outputText value="#{msgs.addTestType}" style="font-weight: bold" />
+
+                <h:outputLabel value="#{msgs.title}: " for="title" />
+                <h:inputText value="#{adder.testType.title}"  validator="minijira.NotNullValidator" id="title" />
+                <h:message for="title"  styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.description}: " />
+                <h:inputTextarea  value="#{adder.testType.description}" />
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addTestType()}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

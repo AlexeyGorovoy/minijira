@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:panelGroup layout="block">
+        <h:form styleClass="form-actions">
+            <h:panelGrid columns="1">
+                <h:outputText value="#{msgs.addManagerType}" style="font-weight: bold"/>
+
+                <h:outputLabel value="#{msgs.title}: " />
+                <h:inputText value="#{adder.managerType.title}" validator="minijira.NotNullValidator" id="title"/>
+                <h:message for="title" styleClass="alert-danger" />
+
+                <h:outputLabel value="#{msgs.description}: " />
+                <h:inputTextarea  value="#{adder.managerType.description}" />
+
+                <h:commandButton value="#{msgs.save}" action="#{adder.addManagerType()}" styleClass="btn btn-danger"/>
+            </h:panelGrid>
+        </h:form>
+
+    </h:panelGroup>
+
+</ui:composition>

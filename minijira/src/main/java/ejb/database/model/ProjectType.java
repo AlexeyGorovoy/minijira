@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class ProjectType implements ModelEntity{
     @Id
     @Column(name = "project_type_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
     String title;
