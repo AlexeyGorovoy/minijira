@@ -10,7 +10,3 @@ create procedure findProjectByManagers (IN employee_id INT)
 	where p.dev_lead_id = employee_id 
 			or p.test_lead_id = employee_id 
 			or p.pm_id = employee_id;
-
-create procedure getPasswordHash 
-	(IN pass_string VARCHAR(40), OUT hash_string VARCHAR(41) )
-		return MD5(pass_string);

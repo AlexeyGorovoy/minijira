@@ -51,9 +51,10 @@
         <br/>
         <h4>#{msgs.reports}</h4>
         <h:panelGrid columns="3">
-            <h:outputLink value="/pages/secure/report1.jsf" styleClass="btn btn-success">Projects table</h:outputLink>
-            <h:outputLink value="/pages/secure/report2.jsf" styleClass="btn btn-success">Customers table</h:outputLink>
-            <h:outputLink value="/pages/secure/report3.jsf" styleClass="btn btn-success">Techs table</h:outputLink>
+            <h:form>
+                <h:commandLink value="Report1" action="#{reports.prepareReport1}" styleClass="btn btn-success"/>
+                <h:commandLink value="Report2" action="#{reports.prepareReport2}" styleClass="btn btn-success"/>
+            </h:form>
         </h:panelGrid>
         <br/>
     </ui:define>

@@ -304,6 +304,44 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
 
 
     @Override
+    public int calculateTask(Project project, Status status) {
+
+        Log.getLogger().info("calculateTask called, project = " + project.getTitle() + " status = " + status.getTitle());
+
+        Query q = createNamedQuery("Task.findByProjectAndStatus");
+        q.setParameter("project", project);
+        q.setParameter("status", status);
+        DatabaseGetter<Task> dg = new DatabaseGetter<Task>(q);
+
+        return dg.get().size();
+    }
+
+    @Override
+    public int calculateTask(Employee assignee, Status status) {
+
+        Log.getLogger().info("calculateTask called, employee = " + assignee.getSurname() + " status = " + status.getTitle());
+
+        Query q = createNamedQuery("Task.findByAssigneeAndStatus");
+        q.setParameter("assignee", assignee);
+        q.setParameter("status", status);
+        DatabaseGetter<Task> dg = new DatabaseGetter<Task>(q);
+
+        return dg.get().size();
+    }
+
+    @Override
+    public List<Task> findTasksToBeDone(Employee assignee) {
+        Log.getLogger().info("findTasksToBeDone called, employee = " + assignee);
+
+        Query q = createNamedQuery("Task.findByAssigneeAndStatus");
+        q.setParameter("assignee", assignee);
+        q.setParameter("status", em.find(Status.class, 1));
+        DatabaseGetter<Task> dg = new DatabaseGetter<Task>(q);
+
+        return dg.get();
+    }
+
+    @Override
     public <T extends ModelEntity> boolean hasConnections(T modelEntity) {
 
         String className = modelEntity.getClass().getSimpleName();

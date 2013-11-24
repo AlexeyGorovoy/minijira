@@ -12,9 +12,13 @@ import java.util.Date;
  */
 @Entity
 @Table (name = "task")
-@NamedQueries(
-        @NamedQuery(name = "Task.findAll", query = "select t from Task t")
-)
+@NamedQueries({
+        @NamedQuery(name = "Task.findAll", query = "select t from Task t"),
+        @NamedQuery(name = "Task.findByProjectAndStatus", query = "select t from Task t " +
+                "                                                   where t.project = :project and t.status = :status"),
+        @NamedQuery(name = "Task.findByAssigneeAndStatus", query = "select t from Task t " +
+                "                                                   where t.assignee = :assignee and t.status = :status")
+})
 public class Task implements ModelEntity{
 
     @Id

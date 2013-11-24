@@ -23,7 +23,8 @@ public interface DatabaseController {
     ///
 
     <T extends ModelEntity> boolean hasConnections(T modelEntity);
-
+    int calculateTask(Project project, Status status);
+    int calculateTask(Employee assignee, Status status);
     ///
     List<Employee> getEmployee();
     List<Developer> getDeveloper();
@@ -47,6 +48,7 @@ public interface DatabaseController {
 
     //
     ProjectType findProjectType(int id);
+    List<Task> findTasksToBeDone(Employee employee);
     ManagerType findManagerType(int id);
     UserRole findUserRoleByEmail(String email);
     List<Project> findProjectsByManagers(int id);

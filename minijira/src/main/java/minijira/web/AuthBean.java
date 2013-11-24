@@ -73,12 +73,14 @@ public class AuthBean implements Serializable {
                 managedProjects = databaseBean.getDc().findProjectsByManagers(employee.getId());
 
                 Log.getLogger().info("Logged in as USER");
+                return "/index.xhtml";
             }
             if (request.isUserInRole("ADMINISTRATOR")) {
                 admin = true;
                 logged = true;
                 employee = databaseBean.getDc().findEmployeeByEmail(username);
                 Log.getLogger().info("Logged in as ADMINISTRATOR");
+                return "/index.xhtml";
             }
             if (!logged){
                 message = bundle.getString("wrongUsernameOrPassword");

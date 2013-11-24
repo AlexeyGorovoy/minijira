@@ -78,13 +78,12 @@
             <version>2.5.1</version>
         </dependency>
 
-        <!--
         <dependency>
-            <groupId>org.richfaces.core</groupId>
-            <artifactId>richfaces-core-impl</artifactId>
-            <version>4.3.4.Final</version>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>4.2.1</version>
         </dependency>
-        -->
+
 
         <dependency>
             <groupId>com.sun.faces</groupId>
