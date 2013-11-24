@@ -13,23 +13,16 @@
 
     <h:outputStylesheet library="css" name="common.css" />
     <h:outputStylesheet library="css" name="bootstrap.min.css" />
-    <h:outputStylesheet library="css" name="bootstrap-tables.css" />
     <h:outputScript library="js" name="bootstrap.min.js" />
-    <h:outputScript library="js" name="jquery-1.7.2.min.js" />
 
 </h:head>
 
 <h:body style="height: 100%">
-   <h1 class="form-signin-heading text-muted">#{msgs.hello}</h1>
 
-   <h:panelGroup  id="fullscreen_bg" class="fullscreen_bg"/>
 
-   <div class="container">
-
-   </div>
-
-   <h:panelGroup styleClass="container">
-       <h:form styleClass="form-signin">
+   <h:panelGroup styleClass="centered">
+       <h2>#{msgs.hello}</h2>
+       <h:form>
            <h:panelGrid columns="2" >
 
                <h:outputLabel for ="j_username" value="#{msgs.username}:"/>
@@ -38,7 +31,7 @@
                <h:inputSecret id="j_password" value="#{auth.password}"/>    <br />
                <h:outputText value="#{auth.message}" rendered='#{! auth.message.equals("")}' />  <br />
 
-               <h:commandButton id="login" value="#{msgs.login}" action="#{auth.login()}" styleClass="btn btn-primary"/>
+               <h:commandButton id="login" value="#{msgs.login}" action="#{auth.login()}" styleClass="btn btn-info"/>
 
            </h:panelGrid>
        </h:form>

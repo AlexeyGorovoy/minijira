@@ -10,9 +10,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "test_type")
-@NamedQueries(
-        @NamedQuery(name = "TestType.findAll", query = "select tt from TestType tt")
-)
+@NamedQueries({
+        @NamedQuery(name = "TestType.findAll", query = "select tt from TestType tt"),
+        @NamedQuery(name = "TestType.connection", query = "select t from Tester t where t.type = :param")
+})
 public class TestType implements ModelEntity{
     @Id
     @Column(name = "test_type_id")

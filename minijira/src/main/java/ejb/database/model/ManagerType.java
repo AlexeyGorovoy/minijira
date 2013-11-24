@@ -10,9 +10,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "manager_type")
-@NamedQueries(
-        @NamedQuery(name = "ManagerType.findAll", query = "select mt from ManagerType mt")
-)
+@NamedQueries( {
+        @NamedQuery(name = "ManagerType.findAll", query = "select mt from ManagerType mt"),
+        @NamedQuery(name = "ManagerType.connection", query = "select m from Manager m where m.type = :param")
+})
 public class ManagerType implements ModelEntity{
     @Id
     @Column(name = "manager_type_id")

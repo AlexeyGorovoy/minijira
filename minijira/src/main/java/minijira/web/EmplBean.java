@@ -62,7 +62,7 @@ public class EmplBean implements Serializable {
 
         email = employee.getUser().getEmail();
         password = "";
-        userRole = databaseBean.getDc().findUserRoleByEmail(email).getEmail();
+        userRole = databaseBean.getDc().findUserRoleByEmail(email).getRole().getRolename();
 
         return "edit_employee";
     }
@@ -72,16 +72,18 @@ public class EmplBean implements Serializable {
         employee.setEmail(email);
         //employee.setDate_hired(new Date());
         employee = databaseBean.getDc().merge(employee);
-
+        /*
         User user = employee.getUser();
+
         user.setEmail(email);
         if (password != null && ! password.equals("")) {
             user.setPassword(password);
         }
         user = databaseBean.getDc().merge(user);
+
         employee.setUser(user);
         employee = databaseBean.getDc().merge(employee);
-
+        */
         UserRole ur = databaseBean.getDc().findUserRoleByEmail(email);
         ur.setRole(databaseBean.getDc().find(Role.class, userRole));
         ur.setEmail(email);
@@ -148,7 +150,7 @@ public class EmplBean implements Serializable {
     }
 
     public String deleteEmployee(Employee employee) {
-        //databaseBean.getDc().deleteEmployee(employee.getId());
+        databaseBean.getDc().remove(employee);
         return "employees";
     }
 

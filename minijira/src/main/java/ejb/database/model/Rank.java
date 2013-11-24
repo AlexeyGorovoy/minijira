@@ -9,9 +9,12 @@ import javax.persistence.*;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@NamedQueries(
-        @NamedQuery( name = "Rank.findAll", query = "select r from Rank r")
-)
+@NamedQueries({
+        @NamedQuery(name = "Rank.findAll", query = "select r from Rank r"),
+        @NamedQuery(name = "Rank.connection", query = "select e from Employee e " +
+                "where e in (select t.employee from Tester t where t.rank = :param)" +
+                "or e in (select d.employee from Developer d where d.rank = :param)")
+})
 public class Rank implements ModelEntity{
 
     @Id

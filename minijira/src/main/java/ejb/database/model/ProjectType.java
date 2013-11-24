@@ -10,9 +10,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table (name = "project_type")
-@NamedQueries(
-        @NamedQuery(name = "ProjectType.findAll", query = "select pt from ProjectType pt")
-)
+@NamedQueries({
+        @NamedQuery(name = "ProjectType.findAll", query = "select pt from ProjectType pt"),
+        @NamedQuery(name = "ProjectType.connection", query = "select p from Project p where p.type = :param")
+})
 public class ProjectType implements ModelEntity{
     @Id
     @Column(name = "project_type_id")

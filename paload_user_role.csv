@@ -1,4 +1,4 @@
-employee_id,role_id
+user_id,role_id
 vega@company.com,USER
 lane@company.com,USER
 pennington@company.com,USER
@@ -10,7 +10,7 @@ mcintosh@company.com,USER
 compton@company.com,USER
 shepherd@company.com,USER
 jones@company.com,USER
-carpenter@company.com,USER,
+carpenter@company.com,USER
 delacruz@company.com,USER
 suarez@company.com,USER
 myers@company.com,USER
@@ -29,3 +29,4 @@ herring@company.com,USER
 lara@company.com,USER
 norman@company.com,USER
 elliot@company.com,USER
+dummy@company.com,ADMIN

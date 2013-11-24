@@ -9,9 +9,10 @@ import javax.persistence.*;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@NamedQueries(
-        @NamedQuery(name = "Priority.findAll", query = "select p from Priority p")
-)
+@NamedQueries({
+        @NamedQuery(name = "Priority.findAll", query = "select p from Priority p"),
+        @NamedQuery(name = "Priority.connection", query = "select t from Task t where t.priority = :param")
+})
 @Table(name = "priority")
 public class Priority implements ModelEntity {
 

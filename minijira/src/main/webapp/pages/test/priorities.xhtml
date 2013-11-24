@@ -6,28 +6,26 @@
     <ui:define name="title">#{msgs.priorities}</ui:define>
     <ui:define name="content">
 
-            <h2>#{msgs.priorities}</h2>
-            <h:dataTable value="#{databaseBean.priorities}" var="o" styleClass="table table-bordered">
-                <h:column>
-                    <f:facet name="header">#{msgs.title}</f:facet>
-                    #{o.title}
-                </h:column>
+        <h2>#{msgs.priorities}</h2>
+        <h:dataTable value="#{databaseBean.priorities}" var="o" styleClass="table table-bordered">
+            <h:column>
+                <f:facet name="header">#{msgs.title}</f:facet>
+                #{o.title}
+            </h:column>
 
-                <h:column rendered="#{auth.admin}">
-                    <f:facet name="header">#{msgs.actions}</f:facet>
-                    <h:form>
-                        <h:commandLink value="#{msgs.edit}" action="#{taskBean.editPriority(o)}" styleClass=""/>
-                        <h:commandLink value="#{msgs.delete}" action="#{taskBean.deletePriority(o)}" styleClass="alert-danger"/>
-                    </h:form>
-                </h:column>
+            <h:column rendered="#{auth.admin}">
+                <f:facet name="header">#{msgs.actions}</f:facet>
+                <h:form>
+                    <h:commandLink value="#{msgs.edit}" action="#{taskBean.editPriority(o)}" styleClass=""/>
+                    <h:commandLink value="#{msgs.delete}" action="#{taskBean.deletePriority(o)}"
+                                   rendered="#{not databaseBean.dc.hasConnections(o)}" styleClass="alert-danger"/>
+                </h:form>
+            </h:column>
 
-            </h:dataTable>
+        </h:dataTable>
 
-            <ui:include src="/pages/secure/add/priority.xhtml" />
+        <ui:include src="/pages/secure/add/priority.xhtml" />
 
-        </ui:define>
+    </ui:define>
 
-    </ui:composition>
-
-</h:body>
-</html>
+</ui:composition>

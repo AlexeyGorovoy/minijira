@@ -35,3 +35,11 @@
 .mainDiv {
     height: 90%;
 }
+
+.centered {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    margin-top: -50px;
+    margin-left: -100px;
+}

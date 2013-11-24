@@ -9,9 +9,10 @@ import javax.persistence.*;
  * Email:   alexey.gorovoy.work@gmail.com
  */
 @Entity
-@NamedQueries(
-        @NamedQuery( name = "Status.findAll", query = "select s from Status s")
-)
+@NamedQueries({
+        @NamedQuery(name = "Status.findAll", query = "select s from Status s"),
+        @NamedQuery(name = "Status.connection", query = "select t from Task t where t.status = :param")
+})
 public class Status implements ModelEntity{
 
     @Id

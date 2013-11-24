@@ -22,6 +22,9 @@ public interface DatabaseController {
     List<Project> findProjectByEmployeeSP(int employee_id);
     ///
 
+    <T extends ModelEntity> boolean hasConnections(T modelEntity);
+
+    ///
     List<Employee> getEmployee();
     List<Developer> getDeveloper();
     List<Tester> getTester();

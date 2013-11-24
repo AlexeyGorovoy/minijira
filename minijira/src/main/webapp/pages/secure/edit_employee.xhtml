@@ -32,13 +32,13 @@
                 <h4>#{msgs.userInfo}</h4>
 
                 <h:outputLabel value="#{msgs.email}: " />
-                <h:inputText value="#{emplBean.email}" id="email"  validator="minijira.EmailValidator" />
+                <h:inputText value="#{emplBean.email}" id="email"  validator="minijira.EmailValidator" disabled="true" />
                 <h:message for="email"  styleClass="alert-danger" />
-
+                <!--
                 <h:outputLabel value="#{msgs.password}: " />
                 <h:inputText value="#{emplBean.password}" id="pass" />
                 <h:message for="pass"  styleClass="alert-danger" />
-
+                -->
                 <h:outputLabel value="#{msgs.role}: " for="user_role" />
                 <h:selectOneMenu value="#{emplBean.userRole}" id="user_role">
                     <f:selectItems value="#{databaseBean.roles}" var="role"
@@ -88,7 +88,6 @@
 
                                 <div class="controls controls-row">
 
-                                    <h:outputText value=">AAAAA text!" />
                                     <h:outputLabel value="#{msgs.rank}: " for="ts_rank" />
                                     <h:selectOneMenu value="#{emplBean.rankId}" id="ts_rank">
                                         <f:selectItems value="#{databaseBean.ranks}" var="r1"

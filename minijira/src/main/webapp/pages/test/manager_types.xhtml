@@ -21,7 +21,8 @@
                 <f:facet name="header">#{msgs.actions}</f:facet>
                 <h:form>
                     <h:commandLink value="#{msgs.edit}" action="#{managerBean.editManagerType(o)}" styleClass=""/>
-                    <h:commandLink value=" #{msgs.delete}" action="#{managerBean.deleteManagerType(o)}" styleClass="alert-danger"/>
+                    <h:commandLink value=" #{msgs.delete}" action="#{managerBean.deleteManagerType(o)}"
+                                   rendered="#{not databaseBean.dc.hasConnections(o)}" styleClass="alert-danger"/>
                 </h:form>
             </h:column>
 

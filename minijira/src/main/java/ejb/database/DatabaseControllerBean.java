@@ -302,6 +302,19 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
 
     // more finders...
 
+
+    @Override
+    public <T extends ModelEntity> boolean hasConnections(T modelEntity) {
+
+        String className = modelEntity.getClass().getSimpleName();
+        Log.getLogger().info("hasConnections called, for a class named " + className);
+        Query q = createNamedQuery(className+".connection");
+        q.setParameter("param", modelEntity);
+        DatabaseGetter<T> dg = new DatabaseGetter<T>(q);
+
+        return ! dg.get().isEmpty();
+    }
+
     @Override
     public <T> T find(Class<T> tClass, Object id) {
         Log.getLogger().info("find tClass = " + tClass + " id = " + id + "em = " + em);
@@ -338,6 +351,9 @@ public class DatabaseControllerBean implements DatabaseController, Serializable 
     public <T> void remove(T tObject) {
         em.remove( em.merge(tObject));
         flush();
+        if (tObject.getClass() == Employee.class || tObject.getClass() == Project.class) {
+            em.getEntityManagerFactory().getCache().evictAll();
+        }
     }
 
     @Override
