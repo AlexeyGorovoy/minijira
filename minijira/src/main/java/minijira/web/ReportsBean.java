@@ -1,10 +1,7 @@
 package minijira.web;
 
 import com.lowagie.text.*;
-import com.lowagie.text.pdf.CMYKColor;
-import com.lowagie.text.pdf.PdfSpotColor;
-import com.lowagie.text.pdf.PdfWriter;
-import com.lowagie.text.pdf.SpotColor;
+import com.lowagie.text.pdf.*;
 import ejb.database.model.Project;
 import ejb.database.model.Status;
 import ejb.database.model.Task;
@@ -48,7 +45,22 @@ public class ReportsBean implements Serializable {
         locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         bundle = ResourceBundle.getBundle(bundlename, locale);
     }
-
+    private Font getFont(int size, int red, int green, int blue) {
+        Font font = null;
+        try {
+            font = new Font(BaseFont.createFont("fonts/arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), size);
+            font.setColor(red, green, blue);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }  catch (DocumentException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (font == null) {
+                font = new Font();
+            }
+        }
+        return font;
+    }
     public void prepareReport1() {
         init();
 
@@ -72,16 +84,14 @@ public class ReportsBean implements Serializable {
             //paragraph1.add(anchorTarget);
             document.add(paragraph1);
 
-            Paragraph title1 = new Paragraph(bundle.getString("reports.report1Title"),
-                         FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new CMYKColor(252, 33, 26, 0)));
+            Paragraph title1 = new Paragraph(bundle.getString("reports.report1Title"), getFont(18,47, 150, 140));
             Chapter chapter = new Chapter(title1, 1);
 
             chapter.setNumberDepth(0);
 
             for (Project project : projectList) {
 
-                Paragraph projectTitle = new Paragraph(project.getTitle(),
-                        FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(237, 8, 255, 0)));
+                Paragraph projectTitle = new Paragraph(project.getTitle(), getFont(14, 81, 163, 81));
 
                 Section section1 = chapter.addSection(projectTitle);
 
@@ -96,15 +106,15 @@ public class ReportsBean implements Serializable {
                     }
                     all += num;
 
-                    Paragraph someSectionText = new Paragraph(" - " + status.getTitle() + "     " + num);
+                    Paragraph someSectionText = new Paragraph(" - " + status.getTitle() + "     " + num, getFont(14, 0,0,0));
                     section1.add(someSectionText);
                 }
 
-                Paragraph someSectionText = new Paragraph(bundle.getString("reports.all") + ": " + all + ".");
+                Paragraph someSectionText = new Paragraph(bundle.getString("reports.all") + ": " + all + ".", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
                 float percent = (all == 0) ? 0 : ((float)completed/all)*100;
-                someSectionText = new Paragraph(bundle.getString("reports.completion") + ": " + percent + "%.");
+                someSectionText = new Paragraph(bundle.getString("reports.completion") + ": " + percent + "%.", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
             }
@@ -146,40 +156,38 @@ public class ReportsBean implements Serializable {
             //paragraph1.add(anchorTarget);
             document.add(paragraph1);
 
-            Paragraph title1 = new Paragraph(bundle.getString("reports.report2Title"),
-                    FontFactory.getFont(FontFactory.HELVETICA, 18, Font.BOLDITALIC, new CMYKColor(252, 33, 26, 0)));
+            Paragraph title1 = new Paragraph(bundle.getString("reports.report2Title"),  getFont(18,47, 150, 140));
             Chapter chapter = new Chapter(title1, 1);
 
             chapter.setNumberDepth(0);
 
             for (Task task : databaseBean.getDc().findTasksToBeDone(authBean.getEmployee())) {
 
-                Paragraph projectTitle = new Paragraph(task.getTitle(),
-                        FontFactory.getFont(FontFactory.COURIER, 14, Font.BOLD,	new CMYKColor(237, 8, 255, 0)));
+                Paragraph projectTitle = new Paragraph(task.getTitle(),  getFont(14, 81, 163, 81));
 
                 Section section1 = chapter.addSection(projectTitle);
 
                 Paragraph someSectionText = new Paragraph(bundle.getString("reports.project") + ": " + task.getProject().getTitle()
-                        + " (" + task.getProject().getType().getTitle() +")");
+                        + " (" + task.getProject().getType().getTitle() +")", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
 
                 someSectionText = new Paragraph(bundle.getString("reports.reporter") + ": " + task.getReporter().getName()
                                                                        + task.getReporter().getSurname()
-                                                                       + " ("+ task.getReporter().getEmail() +")");
+                                                                       + " ("+ task.getReporter().getEmail() +")", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
 
-                someSectionText = new Paragraph(bundle.getString("reports.description") + ": " + task.getDescription() + ".");
+                someSectionText = new Paragraph(bundle.getString("reports.description") + ": " + task.getDescription() + ".", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
-                someSectionText = new Paragraph(bundle.getString("reports.priority") + ": " + task.getPriority().getTitle() + ".");
+                someSectionText = new Paragraph(bundle.getString("reports.priority") + ": " + task.getPriority().getTitle() + ".", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
-                someSectionText = new Paragraph(bundle.getString("reports.status") + ": " + task.getStatus().getTitle() + ".");
+                someSectionText = new Paragraph(bundle.getString("reports.status") + ": " + task.getStatus().getTitle() + ".", getFont(14, 0,0,0));
                 section1.add(someSectionText);
 
-                someSectionText = new Paragraph(bundle.getString("reports.posted") + ": " + (new SimpleDateFormat("dd-MM-yyyy").format(task.getDueto()))+ ".");
+                someSectionText = new Paragraph(bundle.getString("reports.posted") + ": " + (new SimpleDateFormat("dd-MM-yyyy").format(task.getDueto()))+ ".", getFont(14, 0,0,0));
                 section1.add(someSectionText);
             }
 
