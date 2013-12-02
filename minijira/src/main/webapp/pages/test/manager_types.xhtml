@@ -28,7 +28,9 @@
 
         </h:dataTable>
 
-        <ui:include src="/pages/secure/add/manager_type.xhtml" />
+        <h:panelGroup rendered="#{auth.admin}">
+            <ui:include src="/pages/secure/add/manager_type.xhtml" />
+        </h:panelGroup>
 
     </ui:define>
 

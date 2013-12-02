@@ -56,6 +56,13 @@ public class AuthBean implements Serializable {
 
     public String login() {
 
+        if (logged) {
+            return "/index.xhtml";
+        }
+
+        admin = false;
+        logged = false;
+
         String bundlename = "minijira.locale.ResourceBundle";
         Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
         ResourceBundle bundle = ResourceBundle.getBundle(bundlename, locale);
@@ -97,6 +104,12 @@ public class AuthBean implements Serializable {
     }
 
     public String logout() {
+        /*
+        admin = false;
+        logged = false;
+        employee = null;
+        managedProjects = null;
+        */
           ((HttpSession) FacesContext.getCurrentInstance().getExternalContext()
                 .getSession(true)).invalidate();
         return "/login.xhtml";

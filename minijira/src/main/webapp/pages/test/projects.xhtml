@@ -37,7 +37,7 @@
                 #{o.test_leader.employee.name} #{o.test_leader.employee.surname}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{auth.admin}">
                 <f:facet name="header">#{msgs.actions}</f:facet>
                 <h:form>
                     <h:commandLink value="#{msgs.edit}" action="#{projectsBean.editProject(o)}" styleClass=""/>
@@ -47,7 +47,9 @@
 
         </h:dataTable>
 
-        <ui:include src="/pages/secure/add/project.xhtml" />
+        <h:panelGroup rendered="#{auth.admin}">
+            <ui:include src="/pages/secure/add/project.xhtml" />
+        </h:panelGroup>
 
     </ui:define>
 

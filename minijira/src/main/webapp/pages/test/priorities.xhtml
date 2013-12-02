@@ -24,7 +24,9 @@
 
         </h:dataTable>
 
-        <ui:include src="/pages/secure/add/priority.xhtml" />
+        <h:panelGroup rendered="#{auth.admin}">
+            <ui:include src="/pages/secure/add/priority.xhtml" />
+        </h:panelGroup>
 
     </ui:define>
 

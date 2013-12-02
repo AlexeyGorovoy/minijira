@@ -17,7 +17,7 @@
                 #{o.description}
             </h:column>
 
-            <h:column>
+            <h:column rendered="#{auth.admin}">
                 <f:facet name="header">#{msgs.actions}</f:facet>
                 <h:form>
                     <h:commandLink value="#{msgs.edit}" action="#{devBean.editTech(o)}" styleClass=""/>
@@ -28,7 +28,9 @@
 
         </h:dataTable>
 
-        <ui:include src="/pages/secure/add/tech.xhtml" />
+        <h:panelGroup rendered="#{auth.admin}">
+            <ui:include src="/pages/secure/add/tech.xhtml" />
+        </h:panelGroup>
 
     </ui:define>
 
