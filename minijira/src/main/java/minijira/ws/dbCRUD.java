@@ -31,7 +31,6 @@ import java.util.LinkedList;
  */
 @Stateless
 @WebService (serviceName = "minijiraWS")
-@SOAPBinding(style = SOAPBinding.Style.RPC)
 @SuppressWarnings("unchecked")
 public class dbCRUD {
 
