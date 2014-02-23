@@ -17,7 +17,7 @@ import java.util.List;
  * Time:    13:35
  * Email:   alexey.gorovoy.work@gmail.com
  */
-@Local(value = DatabaseController.class)
+@Local//(value = DatabaseController.class)
 @Stateless
 @SuppressWarnings("unchecked")
 public class DatabaseControllerBean implements DatabaseController, Serializable {

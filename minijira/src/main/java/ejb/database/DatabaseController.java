@@ -11,7 +11,7 @@ import java.util.List;
  * Time:    13:38
  * Email:   alexey.gorovoy.work@gmail.com
  */
-@Local
+//@Local
 public interface DatabaseController {
 
     List <? extends ModelEntity> get(Class clazz);
