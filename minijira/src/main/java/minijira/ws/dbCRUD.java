@@ -5,6 +5,7 @@ package minijira.ws;
 import ejb.database.DatabaseController;
 import ejb.database.model.ModelEntity;
 import ejb.database.model.Tech;
+import ejb.database.model.User;
 import ejb.util.Log;
 import minijira.web.DatabaseBean;
 
@@ -62,6 +63,23 @@ public class dbCRUD {
     @WebMethod(operationName = "removeTech")
     public void removeTech(Tech tech){
         dc.remove(tech);
+    }
+
+    @WebMethod(operationName = "login")
+    public String login(String email, String hash){
+        Log.getLogger().info("WS Login for email: " + email + "; hash: " + hash);
+        if(email != null && hash != null){
+
+            User user = dc.find(User.class, email);
+
+            if (user != null) {
+                Log.getLogger().info("WS Login user found with hash: " + user.getPassword());
+                if (user.getPassword().equals(hash)) {
+                    return "OK";
+                }
+            }
+        }
+        return "FAIL";
     }
 
     @WebMethod(operationName = "sayHello")
