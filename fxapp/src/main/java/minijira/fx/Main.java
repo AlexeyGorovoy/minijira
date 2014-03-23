@@ -10,9 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
         primaryStage.setTitle("Minijira - Login");
-        primaryStage.setScene(new Scene(root, 300, 240));
+        primaryStage.setScene(new Scene(root, 340, 240));
         primaryStage.show();
     }
 
