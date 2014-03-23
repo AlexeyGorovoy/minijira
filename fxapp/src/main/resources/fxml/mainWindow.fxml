@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<BorderPane id="BorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="minijira.fx.MainController">
+  <center>
+    <TableView fx:id="techsTable" prefHeight="200.0" prefWidth="200.0">
+      <columns>
+        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="30.0" resizable="false" text="Id" fx:id="idColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="160.0" text="Title" fx:id="titleColumn" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="409.0" text="Description" fx:id="descriptionColumn" />
+      </columns>
+      <contextMenu>
+        <ContextMenu fx:id="contextMenu">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#openAddTechWindow" text="Add" />
+            <MenuItem mnemonicParsing="false" onAction="#deleteTechWindow" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#handleInitMenuAction" text="Refresh" />
+          </items>
+        </ContextMenu>
+      </contextMenu>
+    </TableView>
+  </center>
+  <top>
+    <MenuBar>
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleInitMenuAction" text="Refresh table" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Delete" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>

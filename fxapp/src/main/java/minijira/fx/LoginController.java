@@ -1,16 +1,23 @@
 package minijira.fx;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javafx.stage.Stage;
 import minijira.ws.DbCRUD;
 import minijira.ws.WsWorker;
 import java.security.MessageDigest;
 
 public class LoginController {
+    @FXML Parent parent;
     @FXML private TextField loginFld;
     @FXML private PasswordField passwordFld;
     @FXML private Label statusLbl;
@@ -54,6 +61,8 @@ public class LoginController {
                 statusLbl.setText("Login FAILED!");
             }
 
+            gotoMainWindow();
+
         } catch (Exception ex) {
             ex.printStackTrace();
             statusLbl.setText("Exception during login.");
@@ -61,4 +70,21 @@ public class LoginController {
 
     }
 
+    private void gotoMainWindow() {
+        try {
+            parent = statusLbl.getScene().getRoot();
+            Parent page = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));
+
+            System.out.println("parent : " + parent);
+
+            Stage stage = (Stage) parent.getScene().getWindow();
+            Scene scene = stage.getScene();
+            scene.setRoot(page);
+            stage.setMinWidth(600);
+            stage.setMinHeight(400);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
