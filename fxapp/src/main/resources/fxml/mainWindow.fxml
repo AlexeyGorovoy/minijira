@@ -17,8 +17,10 @@
       <contextMenu>
         <ContextMenu fx:id="contextMenu">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#openAddTechWindow" text="Add" />
-            <MenuItem mnemonicParsing="false" onAction="#deleteTechWindow" text="Delete" />
+            <MenuItem mnemonicParsing="false" onAction="#openAddTechWindow" text="Add new" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#openEditTechWindow" text="Edit" />
+            <MenuItem mnemonicParsing="false" onAction="#deleteTech" text="Delete" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" onAction="#handleInitMenuAction" text="Refresh" />
           </items>
@@ -32,16 +34,21 @@
         <Menu mnemonicParsing="false" text="File">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#handleInitMenuAction" text="Refresh table" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#logout" text="Logout" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Edit">
           <items>
-            <MenuItem mnemonicParsing="false" text="Delete" />
+            <MenuItem mnemonicParsing="false" onAction="#openAddTechWindow" text="Add new" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#openEditTechWindow" text="Edit row" />
+            <MenuItem mnemonicParsing="false" onAction="#deleteTech" text="Delete" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About" />
+            <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About" />
           </items>
         </Menu>
       </menus>

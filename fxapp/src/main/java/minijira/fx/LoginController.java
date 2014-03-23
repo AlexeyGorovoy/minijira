@@ -57,11 +57,10 @@ public class LoginController {
 
             if (answer.equals("OK")) {
                 statusLbl.setText("Login is OK!");
+                gotoMainWindow();
             } else {
                 statusLbl.setText("Login FAILED!");
             }
-
-            gotoMainWindow();
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -82,9 +81,13 @@ public class LoginController {
             scene.setRoot(page);
             stage.setMinWidth(600);
             stage.setMinHeight(400);
+            stage.setMaxWidth(600);
+            stage.setMaxHeight(400);
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
+
+
 }
