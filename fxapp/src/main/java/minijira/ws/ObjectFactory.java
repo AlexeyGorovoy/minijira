@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _RemoveTech_QNAME = new QName("http://ws.minijira/", "removeTech");
+    private final static QName _LoginResponse_QNAME = new QName("http://ws.minijira/", "loginResponse");
     private final static QName _GetTechsList_QNAME = new QName("http://ws.minijira/", "getTechsList");
     private final static QName _GetTechsListResponse_QNAME = new QName("http://ws.minijira/", "getTechsListResponse");
     private final static QName _GetFirstTechResponse_QNAME = new QName("http://ws.minijira/", "getFirstTechResponse");
@@ -34,28 +35,13 @@ public class ObjectFactory {
     private final static QName _GetFirstTech_QNAME = new QName("http://ws.minijira/", "getFirstTech");
     private final static QName _RemoveTechResponse_QNAME = new QName("http://ws.minijira/", "removeTechResponse");
     private final static QName _MergeTechResponse_QNAME = new QName("http://ws.minijira/", "mergeTechResponse");
+    private final static QName _Login_QNAME = new QName("http://ws.minijira/", "login");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: minijira.ws
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link MergeTech }
-     * 
-     */
-    public MergeTech createMergeTech() {
-        return new MergeTech();
-    }
-
-    /**
-     * Create an instance of {@link MergeTechResponse }
-     * 
-     */
-    public MergeTechResponse createMergeTechResponse() {
-        return new MergeTechResponse();
     }
 
     /**
@@ -67,59 +53,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Tech }
+     * Create an instance of {@link LoginResponse }
      * 
      */
-    public Tech createTech() {
-        return new Tech();
-    }
-
-    /**
-     * Create an instance of {@link RemoveTechResponse }
-     * 
-     */
-    public RemoveTechResponse createRemoveTechResponse() {
-        return new RemoveTechResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetFirstTechResponse }
-     * 
-     */
-    public GetFirstTechResponse createGetFirstTechResponse() {
-        return new GetFirstTechResponse();
-    }
-
-    /**
-     * Create an instance of {@link SayHello }
-     * 
-     */
-    public SayHello createSayHello() {
-        return new SayHello();
-    }
-
-    /**
-     * Create an instance of {@link GetTechsList }
-     * 
-     */
-    public GetTechsList createGetTechsList() {
-        return new GetTechsList();
-    }
-
-    /**
-     * Create an instance of {@link GetFirstTech }
-     * 
-     */
-    public GetFirstTech createGetFirstTech() {
-        return new GetFirstTech();
-    }
-
-    /**
-     * Create an instance of {@link SayHelloResponse }
-     * 
-     */
-    public SayHelloResponse createSayHelloResponse() {
-        return new SayHelloResponse();
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
     }
 
     /**
@@ -131,12 +69,101 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetTechsList }
+     * 
+     */
+    public GetTechsList createGetTechsList() {
+        return new GetTechsList();
+    }
+
+    /**
+     * Create an instance of {@link MergeTechResponse }
+     * 
+     */
+    public MergeTechResponse createMergeTechResponse() {
+        return new MergeTechResponse();
+    }
+
+    /**
+     * Create an instance of {@link Login }
+     * 
+     */
+    public Login createLogin() {
+        return new Login();
+    }
+
+    /**
+     * Create an instance of {@link MergeTech }
+     * 
+     */
+    public MergeTech createMergeTech() {
+        return new MergeTech();
+    }
+
+    /**
+     * Create an instance of {@link GetFirstTechResponse }
+     * 
+     */
+    public GetFirstTechResponse createGetFirstTechResponse() {
+        return new GetFirstTechResponse();
+    }
+
+    /**
+     * Create an instance of {@link SayHelloResponse }
+     * 
+     */
+    public SayHelloResponse createSayHelloResponse() {
+        return new SayHelloResponse();
+    }
+
+    /**
+     * Create an instance of {@link SayHello }
+     * 
+     */
+    public SayHello createSayHello() {
+        return new SayHello();
+    }
+
+    /**
+     * Create an instance of {@link RemoveTechResponse }
+     * 
+     */
+    public RemoveTechResponse createRemoveTechResponse() {
+        return new RemoveTechResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetFirstTech }
+     * 
+     */
+    public GetFirstTech createGetFirstTech() {
+        return new GetFirstTech();
+    }
+
+    /**
+     * Create an instance of {@link Tech }
+     * 
+     */
+    public Tech createTech() {
+        return new Tech();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RemoveTech }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.minijira/", name = "removeTech")
     public JAXBElement<RemoveTech> createRemoveTech(RemoveTech value) {
         return new JAXBElement<RemoveTech>(_RemoveTech_QNAME, RemoveTech.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoginResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.minijira/", name = "loginResponse")
+    public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
+        return new JAXBElement<LoginResponse>(_LoginResponse_QNAME, LoginResponse.class, null, value);
     }
 
     /**
@@ -218,6 +245,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.minijira/", name = "mergeTechResponse")
     public JAXBElement<MergeTechResponse> createMergeTechResponse(MergeTechResponse value) {
         return new JAXBElement<MergeTechResponse>(_MergeTechResponse_QNAME, MergeTechResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.minijira/", name = "login")
+    public JAXBElement<Login> createLogin(Login value) {
+        return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
     }
 
 }
