@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.Controller">
+  <children>
+    <GridPane layoutX="50.0" layoutY="90.0">
+      <children>
+        <Label fx:id="loginLbl" text="Login" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Label fx:id="passwordLbl" text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <PasswordField fx:id="passwordFld" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <TextField fx:id="loginFld" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button fx:id="submitBtn" alignment="CENTER" mnemonicParsing="false" prefWidth="100.0" text="Submit" textAlignment="LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button fx:id="testBtn" mnemonicParsing="false" onAction="#handleTestBtnAction" prefWidth="73.0" text="Test hello" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+    <Label fx:id="statusLbl" layoutX="50.0" layoutY="210.0" prefWidth="200.0" text="Please, enter your login info." />
+    <Label fx:id="titleLbl" layoutX="45.0" layoutY="26.0" text="Minijira FX Client">
+      <font>
+        <Font name="System Bold" size="26.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

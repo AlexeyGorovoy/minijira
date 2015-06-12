@@ -26,13 +26,13 @@
         <class>ejb.database.model.Tester</class>
         <class>ejb.database.model.TestType</class>
         <class>ejb.database.model.Status</class>
-
+           -->
         <properties>
            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/minijira" />
            <property name="javax.persistence.jdbc.user" value="root" />
-           <property name="javax.persistence.jdbc.password" value="rootpass" />
+           <property name="javax.persistence.jdbc.password" value="" />
         </properties>
-        -->
+
     </persistence-unit>
 </persistence>

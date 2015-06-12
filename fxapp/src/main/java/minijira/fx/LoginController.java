@@ -37,7 +37,6 @@ public class LoginController {
         try {
 
             String plainPassword = passwordFld.getText();
-
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(plainPassword.getBytes());
 
@@ -81,9 +80,8 @@ public class LoginController {
             scene.setRoot(page);
             stage.setMinWidth(600);
             stage.setMinHeight(400);
-            stage.setMaxWidth(600);
-            stage.setMaxHeight(400);
-
+            stage.setMaxWidth(2048);
+            stage.setMaxHeight(1024);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
